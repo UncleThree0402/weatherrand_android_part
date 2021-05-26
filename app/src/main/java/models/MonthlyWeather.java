@@ -40,6 +40,8 @@ public class MonthlyWeather {
     private String clouds;
     @ColumnInfo(name = "humidity")
     private String humidity;
+    @ColumnInfo(name = "rain")
+    private String rain;
 
     @ColumnInfo(name = "wind_deg")
     private String windDeg;
@@ -57,7 +59,7 @@ public class MonthlyWeather {
     @ColumnInfo(name = "weather_id")
     private String weatherId;
 
-    public MonthlyWeather(String datetime, String sunriseTime, String sunsetTime, String minimumTemperature, String maximumTemperature, String monTemperature, String dayTemperature, String eveTemperature, String nightTemperature, String monFeelLike, String dayFeelLike, String eveFeelLike, String nightFeelLike, String pressure, String clouds, String humidity, String windDeg, String windDegText, String windSpeed, String weatherIconUrl, String weatherDescription, String weatherMain, String weatherId) {
+    public MonthlyWeather(String datetime, String sunriseTime, String sunsetTime, String minimumTemperature, String maximumTemperature, String monTemperature, String dayTemperature, String eveTemperature, String nightTemperature, String monFeelLike, String dayFeelLike, String eveFeelLike, String nightFeelLike, String pressure, String clouds, String humidity, String rain, String windDeg, String windDegText, String windSpeed, String weatherIconUrl, String weatherDescription, String weatherMain, String weatherId) {
         this.datetime = datetime;
         this.sunriseTime = sunriseTime;
         this.sunsetTime = sunsetTime;
@@ -74,6 +76,7 @@ public class MonthlyWeather {
         this.pressure = pressure;
         this.clouds = clouds;
         this.humidity = humidity;
+        this.rain = rain;
         this.windDeg = windDeg;
         this.windDegText = windDegText;
         this.windSpeed = windSpeed;
@@ -85,6 +88,14 @@ public class MonthlyWeather {
 
     @Ignore
     public MonthlyWeather() {
+    }
+
+    public String getRain() {
+        return rain;
+    }
+
+    public void setRain(String rain) {
+        this.rain = rain;
     }
 
     public String getDatetime() {

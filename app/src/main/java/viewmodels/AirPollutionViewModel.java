@@ -21,7 +21,7 @@ public class AirPollutionViewModel extends AndroidViewModel {
         mAirPollution = mWeatherrandRepositoty.getAirPollution();
     }
 
-    public void insetCurrentWeather(AirPollution airPollution){
+    public void insetAirPollution(AirPollution airPollution){
         mWeatherrandRepositoty.insertAirPollution(airPollution);
     }
 

@@ -14,6 +14,7 @@ public class InsertAirPollutionAsyncTask extends AsyncTask<AirPollution,Void,Voi
 
     @Override
     protected Void doInBackground(AirPollution... airPollutions) {
+        mWeatherrandDao.deleteAllAirPollution();
         mWeatherrandDao.insertAirPollution(airPollutions);
         return null;
     }

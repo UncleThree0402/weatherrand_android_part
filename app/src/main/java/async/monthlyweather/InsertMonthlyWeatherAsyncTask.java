@@ -14,6 +14,7 @@ public class InsertMonthlyWeatherAsyncTask extends AsyncTask<MonthlyWeather,Void
 
     @Override
     protected Void doInBackground(MonthlyWeather... monthlyWeathers) {
+        mWeatherrandDao.deleteAllMonthlyWeather();
         mWeatherrandDao.insertMonthlyWeather(monthlyWeathers);
         return null;
     }

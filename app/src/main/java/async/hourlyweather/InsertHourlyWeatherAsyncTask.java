@@ -14,6 +14,7 @@ public class InsertHourlyWeatherAsyncTask extends AsyncTask<HourlyWeather,Void,V
 
     @Override
     protected Void doInBackground(HourlyWeather... hourlyWeathers) {
+        mWeatherrandDao.deleteAllHourlyWeather();
         mWeatherrandDao.insertHourlyWeather(hourlyWeathers);
         return null;
     }

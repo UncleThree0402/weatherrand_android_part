@@ -41,4 +41,19 @@ public interface WeatherrandDao {
 
     @Query("SELECT * FROM air_pollution")
     LiveData<List<AirPollution>> getAirPollution();
+
+    @Query("DELETE FROM current_weather")
+    void deleteAllCurrentWeather();
+
+    @Query("DELETE FROM daily_weather")
+    void deleteAllDailyWeather();
+
+    @Query("DELETE FROM hourly_weather")
+    void deleteAllHourlyWeather();
+
+    @Query("DELETE FROM monthly_weather")
+    void deleteAllMonthlyWeather();
+
+    @Query("DELETE FROM air_pollution")
+    void deleteAllAirPollution();
 }
