@@ -47,8 +47,10 @@ public class CurrentWeather {
     private String weatherIconUrl;
     @ColumnInfo(name = "main")
     private String weatherMain;
+    @ColumnInfo(name = "weather_id")
+    private String weatherId;
 
-    public CurrentWeather(String dateTime, String sunriseTime, String sunsetTime, String currentTemperature, String feelLikeTemperature, String maximumTemperature, String minimumTemperature, String pressure, String humidity, String visibility, String clouds, String windSpeed, String windGust, String windDeg, String windDegText, String weatherDescription, String weatherIconUrl, String weatherMain) {
+    public CurrentWeather(String dateTime, String sunriseTime, String sunsetTime, String currentTemperature, String feelLikeTemperature, String maximumTemperature, String minimumTemperature, String pressure, String humidity, String visibility, String clouds, String windSpeed, String windGust, String windDeg, String windDegText, String weatherDescription, String weatherIconUrl, String weatherMain, String weatherId) {
         this.dateTime = dateTime;
         this.sunriseTime = sunriseTime;
         this.sunsetTime = sunsetTime;
@@ -67,10 +69,19 @@ public class CurrentWeather {
         this.weatherDescription = weatherDescription;
         this.weatherIconUrl = weatherIconUrl;
         this.weatherMain = weatherMain;
+        this.weatherId = weatherId;
     }
 
     @Ignore
     public CurrentWeather() {
+    }
+
+    public String getWeatherId() {
+        return weatherId;
+    }
+
+    public void setWeatherId(String weatherId) {
+        this.weatherId = weatherId;
     }
 
     public String getDateTime() {

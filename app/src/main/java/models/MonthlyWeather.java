@@ -4,8 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 
-@Entity(tableName = "daily_weather")
-public class DailyWeather {
+@Entity(tableName = "monthly_weather")
+public class MonthlyWeather {
     @ColumnInfo(name = "datetime")
     private String datetime;
     @ColumnInfo(name = "sunrise_time")
@@ -13,8 +13,6 @@ public class DailyWeather {
     @ColumnInfo(name = "sunset_time")
     private String sunsetTime;
 
-    @ColumnInfo(name = "moon_phase")
-    private String moonPhase;
     @ColumnInfo(name = "min_temp")
     private String minimumTemperature;
     @ColumnInfo(name = "max_temp")
@@ -36,25 +34,17 @@ public class DailyWeather {
     @ColumnInfo(name = "night_feel_like")
     private String nightFeelLike;
 
-    @ColumnInfo(name = "uvi")
-    private String uvi;
     @ColumnInfo(name = "pressure")
     private String pressure;
     @ColumnInfo(name = "clouds")
     private String clouds;
-    @ColumnInfo(name = "rain_percentage")
-    private String rainPercentage;
     @ColumnInfo(name = "humidity")
     private String humidity;
-    @ColumnInfo(name = "dew_point")
-    private String dewPoint;
 
     @ColumnInfo(name = "wind_deg")
     private String windDeg;
     @ColumnInfo(name = "wind_deg_text")
     private String windDegText;
-    @ColumnInfo(name = "wind_gust")
-    private String windGust;
     @ColumnInfo(name = "wind_speed")
     private String windSpeed;
 
@@ -67,11 +57,10 @@ public class DailyWeather {
     @ColumnInfo(name = "weather_id")
     private String weatherId;
 
-    public DailyWeather(String datetime, String sunriseTime, String sunsetTime, String moonPhase, String minimumTemperature, String maximumTemperature, String monTemperature, String dayTemperature, String eveTemperature, String nightTemperature, String monFeelLike, String dayFeelLike, String eveFeelLike, String nightFeelLike, String uvi, String pressure, String clouds, String rainPercentage, String humidity, String dewPoint, String windDeg, String windDegText, String windGust, String windSpeed, String weatherIconUrl, String weatherDescription, String weatherMain, String weatherId) {
+    public MonthlyWeather(String datetime, String sunriseTime, String sunsetTime, String minimumTemperature, String maximumTemperature, String monTemperature, String dayTemperature, String eveTemperature, String nightTemperature, String monFeelLike, String dayFeelLike, String eveFeelLike, String nightFeelLike, String pressure, String clouds, String humidity, String windDeg, String windDegText, String windSpeed, String weatherIconUrl, String weatherDescription, String weatherMain, String weatherId) {
         this.datetime = datetime;
         this.sunriseTime = sunriseTime;
         this.sunsetTime = sunsetTime;
-        this.moonPhase = moonPhase;
         this.minimumTemperature = minimumTemperature;
         this.maximumTemperature = maximumTemperature;
         this.monTemperature = monTemperature;
@@ -82,15 +71,11 @@ public class DailyWeather {
         this.dayFeelLike = dayFeelLike;
         this.eveFeelLike = eveFeelLike;
         this.nightFeelLike = nightFeelLike;
-        this.uvi = uvi;
         this.pressure = pressure;
         this.clouds = clouds;
-        this.rainPercentage = rainPercentage;
         this.humidity = humidity;
-        this.dewPoint = dewPoint;
         this.windDeg = windDeg;
         this.windDegText = windDegText;
-        this.windGust = windGust;
         this.windSpeed = windSpeed;
         this.weatherIconUrl = weatherIconUrl;
         this.weatherDescription = weatherDescription;
@@ -99,7 +84,7 @@ public class DailyWeather {
     }
 
     @Ignore
-    public DailyWeather() {
+    public MonthlyWeather() {
     }
 
     public String getDatetime() {
@@ -124,14 +109,6 @@ public class DailyWeather {
 
     public void setSunsetTime(String sunsetTime) {
         this.sunsetTime = sunsetTime;
-    }
-
-    public String getMoonPhase() {
-        return moonPhase;
-    }
-
-    public void setMoonPhase(String moonPhase) {
-        this.moonPhase = moonPhase;
     }
 
     public String getMinimumTemperature() {
@@ -214,14 +191,6 @@ public class DailyWeather {
         this.nightFeelLike = nightFeelLike;
     }
 
-    public String getUvi() {
-        return uvi;
-    }
-
-    public void setUvi(String uvi) {
-        this.uvi = uvi;
-    }
-
     public String getPressure() {
         return pressure;
     }
@@ -238,28 +207,12 @@ public class DailyWeather {
         this.clouds = clouds;
     }
 
-    public String getRainPercentage() {
-        return rainPercentage;
-    }
-
-    public void setRainPercentage(String rainPercentage) {
-        this.rainPercentage = rainPercentage;
-    }
-
     public String getHumidity() {
         return humidity;
     }
 
     public void setHumidity(String humidity) {
         this.humidity = humidity;
-    }
-
-    public String getDewPoint() {
-        return dewPoint;
-    }
-
-    public void setDewPoint(String dewPoint) {
-        this.dewPoint = dewPoint;
     }
 
     public String getWindDeg() {
@@ -276,14 +229,6 @@ public class DailyWeather {
 
     public void setWindDegText(String windDegText) {
         this.windDegText = windDegText;
-    }
-
-    public String getWindGust() {
-        return windGust;
-    }
-
-    public void setWindGust(String windGust) {
-        this.windGust = windGust;
     }
 
     public String getWindSpeed() {
