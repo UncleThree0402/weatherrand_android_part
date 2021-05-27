@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp">
+        <TextView
+                android:id="@+id/hourly_time_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_centerHorizontal="true"
+                android:text="9:00"
+                android:textSize="24sp"
+                android:textColor="#434242"
+                android:fontFamily="@font/quicksand_medium"/>
+
+        <ImageView
+                android:id="@+id/hourly_weather_icon"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="8dp"
+                android:layout_below="@+id/hourly_time_text"
+                android:layout_centerHorizontal="true"/>
+
+        <TextView
+                android:id="@+id/hourly_temp_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/hourly_weather_icon"
+                android:layout_centerHorizontal="true"
+                android:text="30°"
+                android:textSize="32sp"
+                android:fontFamily="@font/quicksand_medium"/>
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/hourly_temp_text"
+                android:layout_marginTop="8dp">
+            <ImageView
+                    android:id="@+id/hourly_cloud_icon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/cloud_icon"/>
+            <TextView
+                    android:id="@+id/hourly_rain_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/hourly_cloud_icon"
+                    android:layout_marginStart="4dp"
+                    android:text="20%"
+                    android:textSize="16sp"
+                    android:textColor="#000000"/>
+
+        </RelativeLayout>
+
+</RelativeLayout>

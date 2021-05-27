@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp">
+
+    <RelativeLayout
+            android:id="@+id/rel_tomorrow"
+            android:layout_width="315dp"
+            android:layout_height="215dp"
+            android:layout_centerHorizontal="true">
+
+        <RelativeLayout
+                android:id="@+id/tomorrow_rel_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp">
+
+            <TextView
+                    android:id="@+id/tomorrow_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="Tomorrow"
+                    android:textSize="24sp"
+                    android:textColor="#000000"
+                    android:fontFamily="@font/quicksand_medium"/>
+
+            <ImageView
+                    android:id="@+id/tomorrow_weather_icon"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_below="@+id/tomorrow_text"
+                    android:layout_marginTop="16dp"
+                    android:layout_centerHorizontal="true"/>
+
+            <TextView
+                    android:id="@+id/tomorrow_weather_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/tomorrow_weather_icon"
+                    android:layout_marginTop="8dp"
+                    android:text="Sunny"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/quicksand_bold"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:id="@+id/tomorrow_rel_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/tomorrow_rel_left"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp">
+
+            <TextView
+                    android:id="@+id/tomorrow_date_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="FRI 5-28"
+                    android:textSize="16sp"
+                    android:textColor="#707070"
+                    android:fontFamily="@font/quicksand_medium"
+                    android:layout_alignParentEnd="true"/>
+
+            <TextView
+                    android:id="@+id/tomorrow_temp_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tomorrow_date_text"
+                    android:layout_marginTop="16dp"
+                    android:layout_centerHorizontal="true"
+                    android:text="30°"
+                    android:textSize="64sp"
+                    android:textColor="#000000"
+                    android:fontFamily="@font/quicksand_bold"/>
+
+            <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tomorrow_temp_text"
+                    android:layout_marginTop="8dp"
+                    android:layout_centerHorizontal="true">
+
+                <RelativeLayout
+                        android:id="@+id/rel_wind"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <ImageView
+                            android:id="@+id/tomorrow_wind_icon"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/wind_icon"/>
+
+                    <TextView
+                            android:id="@+id/tomorrow_wind_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tomorrow_wind_icon"
+                            android:layout_centerHorizontal="true"
+                            android:text="2km/h"
+                            android:textSize="16sp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                        android:id="@+id/rel_humidity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/rel_wind"
+                        android:layout_marginStart="8dp">
+
+                    <ImageView
+                            android:id="@+id/tomorrow_humidity_icon"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/humidity_icon"/>
+
+                    <TextView
+                            android:id="@+id/tomorrow_humidity_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tomorrow_humidity_icon"
+                            android:layout_centerHorizontal="true"
+                            android:text="32%"
+                            android:textSize="16sp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                        android:id="@+id/rel_cloud"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/rel_humidity"
+                        android:layout_marginStart="8dp">
+
+                    <ImageView
+                            android:id="@+id/tomorrow_cloud_icon"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/cloud_icon"/>
+
+                    <TextView
+                            android:id="@+id/tomorrow_cloud_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tomorrow_cloud_icon"
+                            android:layout_centerHorizontal="true"
+                            android:text="20%"
+                            android:textSize="16sp"/>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/seven_day_recycle_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rel_tomorrow"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
