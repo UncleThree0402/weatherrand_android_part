@@ -24,10 +24,12 @@ import dataformatter.TimeFormatter;
 import models.AirPollution;
 import models.CurrentWeather;
 import models.HourlyWeather;
+import models.UserData;
 import util.HourlyWeatherDecorator;
 import viewmodels.AirPollutionViewModel;
 import viewmodels.CurrentWeatherViewModel;
 import viewmodels.HourlyWeatherViewModel;
+import viewmodels.UserDataViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +49,12 @@ public class TodayPageFragment extends Fragment {
     //Var
     private ArrayList<HourlyWeather> mHourlyWeathers = new ArrayList<>();
     private HourlyRecycleViewAdapter mHourlyRecycleViewAdapter;
+    private String currentTempText;
+    private String currentIconText;
+    private String currentWeatherTextText;
+    private String currentWindText;
+    private String currentAqiText;
+    private String currentHumidityText;
 
     @Nullable
     @Override
@@ -63,6 +71,7 @@ public class TodayPageFragment extends Fragment {
         CurrentWeatherViewModel mCurrentWeatherViewModel = new ViewModelProvider(this).get(CurrentWeatherViewModel.class);
         AirPollutionViewModel mAirPollutionViewModel = new ViewModelProvider(this).get(AirPollutionViewModel.class);
         HourlyWeatherViewModel mHourlyWeatherViewModel = new ViewModelProvider(this).get(HourlyWeatherViewModel.class);
+        UserDataViewModel mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
 
         initHourlyRecycleView();
 
@@ -71,11 +80,11 @@ public class TodayPageFragment extends Fragment {
             @Override
             public void onChanged(List<CurrentWeather> currentWeathers) {
                 if (currentWeathers.size() > 0) {
-                    currentTemp.setText(NumberFormatter.roundNumber(currentWeathers.get(0).getCurrentTemperature())+"°");
-                    currentWind.setText(currentWeathers.get(0).getWindSpeed());
-                    currentHumidity.setText(currentWeathers.get(0).getHumidity() + "%");
-                    Glide.with(getActivity()).asBitmap().load(currentWeathers.get(0).getWeatherIconUrl()).into(currentIcon);
-                    currentWeatherText.setText(currentWeathers.get(0).getWeatherDescription());
+                    currentTempText = NumberFormatter.roundNumber(currentWeathers.get(0).getCurrentTemperature()) + "°";
+                    currentWindText = currentWeathers.get(0).getWindSpeed();
+                    currentHumidityText = currentWeathers.get(0).getHumidity() + "%";
+                    currentIconText = currentWeathers.get(0).getWeatherIconUrl();
+                    currentWeatherTextText = currentWeathers.get(0).getWeatherDescription();
                 }
             }
         });
@@ -84,7 +93,7 @@ public class TodayPageFragment extends Fragment {
             @Override
             public void onChanged(List<AirPollution> airPollutions) {
                 if (airPollutions.size() > 0) {
-                    currentAqi.setText(airPollutions.get(0).getAqi());
+                    currentAqiText = airPollutions.get(0).getAqi();
                 }
             }
         });
@@ -100,14 +109,29 @@ public class TodayPageFragment extends Fragment {
                         mHourlyWeathers.addAll(hourlyWeathers);
                     }
 
-                    while(mHourlyWeathers.size() > 0){
-                        if(TimeFormatter.datetimeToHour(mHourlyWeathers.get(0).getDateTime()).equals(TimeFormatter.datetimeToHour(Long.toString(System.currentTimeMillis() / 1000)))){
-                            break;
-                        }
-                        mHourlyWeathers.remove(0);
-                    }
-                    mHourlyRecycleViewAdapter.notifyDataSetChanged();
+
+
                 }
+            }
+        });
+
+        mUserDataViewModel.getUserData().observe(this.getViewLifecycleOwner(), new Observer<List<UserData>>() {
+            @Override
+            public void onChanged(List<UserData> userData) {
+                currentTemp.setText(currentTempText);
+                currentWind.setText(currentWindText);
+                currentHumidity.setText(currentHumidityText);
+                Glide.with(getActivity()).asBitmap().load(currentIconText).into(currentIcon);
+                currentWeatherText.setText(currentWeatherTextText);
+                currentAqi.setText(currentAqiText);
+                while(mHourlyWeathers.size() > 0){
+                    if(TimeFormatter.datetimeToHour(mHourlyWeathers.get(0).getDateTime()).equals(TimeFormatter.datetimeToHour(Long.toString(System.currentTimeMillis() / 1000)))){
+                        break;
+                    }
+                    mHourlyWeathers.remove(0);
+                }
+                mHourlyRecycleViewAdapter.notifyDataSetChanged();
+
             }
         });
 

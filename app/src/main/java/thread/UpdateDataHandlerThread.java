@@ -16,7 +16,7 @@ public class UpdateDataHandlerThread extends HandlerThread {
     private ViewModelStoreOwner viewModelStoreOwner;
 
     public UpdateDataHandlerThread() {
-        super("UpdateDataHandlerThread", Process.THREAD_PRIORITY_BACKGROUND);
+        super("UpdateDataHandlerThread", Process.THREAD_PRIORITY_URGENT_AUDIO);
     }
 
 

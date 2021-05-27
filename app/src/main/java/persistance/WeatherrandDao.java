@@ -28,6 +28,9 @@ public interface WeatherrandDao {
     @Insert
     long[] insertAirPollution(AirPollution... airPollutions);
 
+    @Insert
+    long[] insertUserData(UserData... userData);
+
     @Query("SELECT * FROM current_weather")
     LiveData<List<CurrentWeather>> getCurrentWeather();
 
@@ -43,6 +46,9 @@ public interface WeatherrandDao {
     @Query("SELECT * FROM air_pollution")
     LiveData<List<AirPollution>> getAirPollution();
 
+    @Query("SELECT * FROM user_table")
+    LiveData<List<UserData>> getUserData();
+
     @Query("DELETE FROM current_weather")
     void deleteAllCurrentWeather();
 
@@ -57,4 +63,7 @@ public interface WeatherrandDao {
 
     @Query("DELETE FROM air_pollution")
     void deleteAllAirPollution();
+
+    @Query("DELETE FROM user_table")
+    void deleteAllUserData();
 }

@@ -11,10 +11,7 @@ public class UpdateDataMethod {
     }
 
     public void init(String location){
-        updateCurrentWeatherNAirPollution(location);
-        updateHourlyWeather(location);
-        updateDailyWeather(location);
-        updateMonthlyWeather(location);
+        updateAll(location);
     }
 
     public void updateCurrentWeatherNAirPollution(String currentLocation){
@@ -41,6 +38,13 @@ public class UpdateDataMethod {
     public void updateMonthlyWeather(String currentLocation){
         Message msg = Message.obtain();
         msg.what = 4;
+        msg.obj = currentLocation;
+        updateDataHandler.sendMessage(msg);
+    }
+
+    public void updateAll(String currentLocation){
+        Message msg = Message.obtain();
+        msg.what = 5;
         msg.obj = currentLocation;
         updateDataHandler.sendMessage(msg);
     }

@@ -21,6 +21,16 @@ public class SqlServerRetrieveData {
         this.viewModelStoreOwner = viewModelStoreOwner;
     }
 
+    public void updateAll(String location){
+        UserDataViewModel userDataViewModel = new ViewModelProvider(viewModelStoreOwner).get(UserDataViewModel.class);
+        userDataViewModel.insertUserData(new UserData(location, true));
+        insertCurrentWeatherNAirPollution(location);
+        insertHourlyWeather(location);
+        insertDailyWeather(location);
+        insertMonthlyWeather(location);
+        userDataViewModel.deleteAllUserData();
+    }
+
     public void insertCurrentWeatherNAirPollution(String location){
         CurrentWeatherViewModel currentWeatherViewModel = new ViewModelProvider(viewModelStoreOwner).get(CurrentWeatherViewModel.class);
         AirPollutionViewModel airPollutionViewModel = new ViewModelProvider(viewModelStoreOwner).get(AirPollutionViewModel.class);

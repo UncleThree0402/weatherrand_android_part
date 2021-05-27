@@ -1,6 +1,7 @@
 package com.nckupd2.weatherrand;
 
 
+import SqlServerData.SqlServerRetrieveData;
 import adapter.FragmentAdapter;
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -20,7 +21,6 @@ import thread.UpdateDataHandlerThread;
 import thread.UpdateDataMethod;
 
 public class MainActivity extends AppCompatActivity {
-
     private static final String TAG = "MainActivity";
 
     //UI
@@ -49,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
         mUpdateDataHandlerThread = new UpdateDataHandlerThread();
         mUpdateDataHandlerThread.start();
         testHandle = new UpdateDataHandle(mUpdateDataHandlerThread.getLooper(),this);
-
         mUpdateDataMethod = new UpdateDataMethod(testHandle);
         mUpdateDataMethod.init(currentLocation);
+
 
         mViewPager = findViewById(R.id.view_page);
 
@@ -67,13 +67,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void setViewPage(ViewPager viewPage){
         FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
-        fragmentAdapter.addFragment(new TodayPageFragment(),"Fresh Food");
+        fragmentAdapter.addFragment(new TodayPageFragment(),"Today Page");
         viewPage.setAdapter(fragmentAdapter);
     }
 
     public void locationListener(View view) {
         SheetBtnFragment sheetBtn = new SheetBtnFragment(this);
-        sheetBtn.show(getSupportFragmentManager(),"sheet button");
+        sheetBtn.show(getSupportFragmentManager(),"Sheet Button");
     }
 
 

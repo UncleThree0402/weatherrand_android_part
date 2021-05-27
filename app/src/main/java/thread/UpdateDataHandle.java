@@ -20,6 +20,7 @@ public class UpdateDataHandle extends Handler {
     public static final int UPDATE_HOURLY_WEATHER = 2;
     public static final int UPDATE_DAILY_WEATHER = 3;
     public static final int UPDATE_MONTHLY_WEATHER = 4;
+    public static final int UPDATE_ALL = 5;
 
     @Override
     public void handleMessage(Message msg) {
@@ -36,7 +37,9 @@ public class UpdateDataHandle extends Handler {
             case  UPDATE_MONTHLY_WEATHER:
                 mSqlServerRetrieveData.insertMonthlyWeather((String) msg.obj);
                 break;
-
+            case UPDATE_ALL:
+                mSqlServerRetrieveData.updateAll((String) msg.obj);
+                break;
         }
     }
 

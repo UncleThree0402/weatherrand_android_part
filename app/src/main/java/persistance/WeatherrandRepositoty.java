@@ -12,10 +12,12 @@ import async.hourlyweather.DeleteHourlyWeatherAsyncTask;
 import async.hourlyweather.InsertHourlyWeatherAsyncTask;
 import async.monthlyweather.DeleteMonthlyWeatherAsyncTask;
 import async.monthlyweather.InsertMonthlyWeatherAsyncTask;
+import async.userdata.DeleteUserDataAsyncTask;
+import async.userdata.InsertUserDataAsyncTask;
 import models.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class WeatherrandRepositoty {
 
@@ -45,6 +47,10 @@ public class WeatherrandRepositoty {
         new InsertAirPollutionAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute(airPollution);
     }
 
+    public void insertUserData(UserData userData){
+        new InsertUserDataAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute(userData);
+    }
+
     public LiveData<List<CurrentWeather>> getCurrentWeather(){
         return mWetherrandDatabase.getWeatherrandDao().getCurrentWeather();
     }
@@ -65,6 +71,10 @@ public class WeatherrandRepositoty {
         return mWetherrandDatabase.getWeatherrandDao().getAirPollution();
     }
 
+    public LiveData<List<UserData>> getUserData(){
+        return mWetherrandDatabase.getWeatherrandDao().getUserData();
+    }
+
     public void deleteAllHourlyWeather(){
         new DeleteHourlyWeatherAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute();
     }
@@ -83,6 +93,10 @@ public class WeatherrandRepositoty {
 
     public void deleteAllAirPollution(){
         new DeleteAirPollutionAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute();
+    }
+
+    public void deleteAllUserData(){
+        new DeleteUserDataAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute();
     }
 
 
