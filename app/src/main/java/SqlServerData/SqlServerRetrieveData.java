@@ -29,6 +29,8 @@ public class SqlServerRetrieveData {
         if(SqlServerConnection.getConnection() != null){
             try{
                 ResultSet resultSet = SqlServerConnection.getStatement().executeQuery("Select * from " + location + "CurrentlyWeather; ");
+                airPollutionViewModel.deleteAllAirPollution();
+                currentWeatherViewModel.deleteAllCurrentWeather();
                 while(resultSet.next()){
                     CurrentWeather currentWeather = new CurrentWeather();
                     AirPollution airPollution = new AirPollution();
@@ -83,10 +85,9 @@ public class SqlServerRetrieveData {
         SqlServerConnection.connect();
         if(SqlServerConnection.getConnection() != null){
             try {
-                hourlyWeatherViewModel.deleteHourlyWeather();
+                hourlyWeatherViewModel.deleteAllHourlyWeather();
                 ResultSet resultSet = SqlServerConnection.getStatement().executeQuery("Select * from " + location + "HourlyWeatherForecast; ");
                 while (resultSet.next()){
-                    Log.d(TAG, "insertHourlyWeather: called");
                     HourlyWeather hourlyWeather = new HourlyWeather();
                     hourlyWeather.setDateTime(resultSet.getString("dt"));
 
@@ -130,6 +131,7 @@ public class SqlServerRetrieveData {
         SqlServerConnection.connect();
         if(SqlServerConnection.getConnection() != null){
             try{
+                dailyWeatherViewModel.deleteAllDailyWeather();
                 ResultSet resultSet = SqlServerConnection.getStatement().executeQuery("Select * from " + location + "DailyWeatherForecast; ");
                 while (resultSet.next()){
                     DailyWeather dailyWeather = new DailyWeather();
@@ -183,6 +185,7 @@ public class SqlServerRetrieveData {
         SqlServerConnection.connect();
         if(SqlServerConnection.getConnection() != null){
             try{
+                monthlyWeatherViewModel.deleteAllMonthlyWeather();
                 ResultSet resultSet = SqlServerConnection.getStatement().executeQuery("Select * from " + location + "30DaysWeatherForecast; ");
                 while (resultSet.next()){
                     MonthlyWeather monthlyWeather = new MonthlyWeather();

@@ -27,4 +27,8 @@ public class DailyWeatherViewModel extends AndroidViewModel {
     public LiveData<List<DailyWeather>> getDailyWeather(){
         return mDailyWeather;
     }
+
+    public void deleteAllDailyWeather(){
+        mWeatherrandRepositoty.deleteAllDailyWeather();
+    }
 }

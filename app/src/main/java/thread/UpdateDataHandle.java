@@ -6,16 +6,13 @@ import android.os.Looper;
 import android.os.Message;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelStoreOwner;
-import com.nckupd2.weatherrand.MainActivity;
 
-public class TestHandle extends Handler {
+public class UpdateDataHandle extends Handler {
 
-    private ViewModelStoreOwner viewModelStoreOwner;
     private SqlServerRetrieveData mSqlServerRetrieveData;
 
-    public TestHandle(@NonNull Looper looper, ViewModelStoreOwner viewModelStoreOwner) {
+    public UpdateDataHandle(@NonNull Looper looper, ViewModelStoreOwner viewModelStoreOwner) {
         super(looper);
-        this.viewModelStoreOwner = viewModelStoreOwner;
         this.mSqlServerRetrieveData = new SqlServerRetrieveData(viewModelStoreOwner);
     }
 

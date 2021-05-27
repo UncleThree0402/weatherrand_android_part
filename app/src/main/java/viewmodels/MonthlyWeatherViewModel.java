@@ -27,4 +27,8 @@ public class MonthlyWeatherViewModel extends AndroidViewModel {
     public LiveData<List<MonthlyWeather>> getMonthlyWeather(){
         return mMonthlyWeather;
     }
+
+    public void deleteAllMonthlyWeather(){
+        mWeatherrandRepositoty.deleteAllMonthlyWeather();
+    }
 }

@@ -14,7 +14,6 @@ public class InsertDailyWeatherAsyncTask extends AsyncTask<DailyWeather,Void,Voi
 
     @Override
     protected Void doInBackground(DailyWeather... dailyWeathers) {
-        mWeatherrandDao.deleteAllDailyWeather();
         mWeatherrandDao.insertDailyWeather(dailyWeathers);
         return null;
     }

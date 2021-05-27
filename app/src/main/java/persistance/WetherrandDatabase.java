@@ -6,7 +6,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import models.*;
 
-@Database(entities = {CurrentWeather.class, DailyWeather.class, HourlyWeather.class, MonthlyWeather.class, AirPollution.class}, version = 2)
+@Database(entities = {CurrentWeather.class, DailyWeather.class, HourlyWeather.class, MonthlyWeather.class, AirPollution.class}, version = 3)
 public abstract class WetherrandDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "weatherrand_db";
 

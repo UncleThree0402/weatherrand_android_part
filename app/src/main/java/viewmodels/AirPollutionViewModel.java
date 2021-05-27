@@ -28,4 +28,8 @@ public class AirPollutionViewModel extends AndroidViewModel {
     public LiveData<List<AirPollution>> getAirPollution(){
         return mAirPollution;
     }
+
+    public void deleteAllAirPollution(){
+        mWeatherrandRepositoty.deleteAllAirPollution();
+    }
 }

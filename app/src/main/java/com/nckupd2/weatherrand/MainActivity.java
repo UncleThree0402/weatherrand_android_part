@@ -1,20 +1,22 @@
 package com.nckupd2.weatherrand;
 
 
-import SqlServerData.SqlServerRetrieveData;
 import adapter.FragmentAdapter;
 import android.Manifest;
 import android.content.pm.PackageManager;
 
+import android.os.Message;
 import android.os.StrictMode;
 
-import android.view.View;
 import androidx.core.app.ActivityCompat;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.viewpager.widget.ViewPager;
 import fragments.TodayPageFragment;
+import thread.UpdateDataHandle;
+import thread.UpdateDataHandlerThread;
+import thread.UpdateDataMethod;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +27,13 @@ public class MainActivity extends AppCompatActivity {
 
     //Var
     private FragmentAdapter mFragmentAdapter;
+
     private String currentLocation = "TaiNanCity";
+
+    private UpdateDataHandlerThread mUpdateDataHandlerThread;
+    private UpdateDataHandle testHandle;
+
+    private UpdateDataMethod mUpdateDataMethod;
 
 
     @Override
@@ -36,12 +44,16 @@ public class MainActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        SqlServerRetrieveData sqlServerRetrieveData = new SqlServerRetrieveData(this);
-        sqlServerRetrieveData.insertCurrentWeatherNAirPollution(currentLocation);
-        sqlServerRetrieveData.insertHourlyWeather(currentLocation);
 
+        mUpdateDataHandlerThread = new UpdateDataHandlerThread();
+        mUpdateDataHandlerThread.start();
+        testHandle = new UpdateDataHandle(mUpdateDataHandlerThread.getLooper(),this);
+
+        mUpdateDataMethod = new UpdateDataMethod(testHandle);
+        mUpdateDataMethod.init(currentLocation);
 
         mViewPager = findViewById(R.id.view_page);
+
         mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
         setViewPage(mViewPager);
     }
@@ -49,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        mUpdateDataHandlerThread.quitSafely();
+        mUpdateDataHandlerThread.quitSafely();
     }
 
     public void setViewPage(ViewPager viewPage){
@@ -58,40 +70,7 @@ public class MainActivity extends AppCompatActivity {
         viewPage.setAdapter(fragmentAdapter);
     }
 
-//    public void init(String location){
-//        updateCurrentWeatherNAirPollution(location);
-//        updateHourlyWeather(location);
-//        updateDailyWeather(location);
-//        updateMonthlyWeather(location);
-//    }
-//
-//    public void updateCurrentWeatherNAirPollution(String currentLocation){
-//        Message msg = Message.obtain();
-//        msg.what = 1;
-//        msg.obj = currentLocation;
-//       testHandle.sendMessage(msg);
-//    }
-//
-//    public void updateHourlyWeather(String currentLocation){
-//        Message msg = Message.obtain();
-//        msg.what = 2;
-//        msg.obj = currentLocation;
-//        testHandle.sendMessage(msg);
-//    }
-//
-//    public void updateDailyWeather(String currentLocation){
-//        Message msg = Message.obtain();
-//        msg.what = 3;
-//        msg.obj = currentLocation;
-//        testHandle.sendMessage(msg);
-//    }
-//
-//    public void updateMonthlyWeather(String currentLocation){
-//        Message msg = Message.obtain();
-//        msg.what = 4;
-//        msg.obj = currentLocation;
-//        testHandle.sendMessage(msg);
-//    }
+
 
 
 }

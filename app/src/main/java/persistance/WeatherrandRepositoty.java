@@ -2,11 +2,15 @@ package persistance;
 
 import android.content.Context;
 import androidx.lifecycle.LiveData;
+import async.airpollution.DeleteAirPollutionAsyncTask;
 import async.airpollution.InsertAirPollutionAsyncTask;
+import async.currentwearther.DeleteCurrentWeatherAsyncTask;
 import async.currentwearther.InsertCurrentWeatherAsyncTask;
+import async.dailyweather.DeleteDailyWeatherAsyncTask;
 import async.dailyweather.InsertDailyWeatherAsyncTask;
 import async.hourlyweather.DeleteHourlyWeatherAsyncTask;
 import async.hourlyweather.InsertHourlyWeatherAsyncTask;
+import async.monthlyweather.DeleteMonthlyWeatherAsyncTask;
 import async.monthlyweather.InsertMonthlyWeatherAsyncTask;
 import models.*;
 
@@ -63,6 +67,22 @@ public class WeatherrandRepositoty {
 
     public void deleteAllHourlyWeather(){
         new DeleteHourlyWeatherAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute();
+    }
+
+    public void deleteAllDailyWeather(){
+        new DeleteDailyWeatherAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute();
+    }
+
+    public void deleteAllMonthlyWeather(){
+        new DeleteMonthlyWeatherAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute();
+    }
+
+    public void deleteAllCurrentWeather(){
+        new DeleteCurrentWeatherAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute();
+    }
+
+    public void deleteAllAirPollution(){
+        new DeleteAirPollutionAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute();
     }
 
 

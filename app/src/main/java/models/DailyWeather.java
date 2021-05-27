@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "daily_weather")
 public class DailyWeather {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int daily_weather_id;
 
     @ColumnInfo(name = "datetime")

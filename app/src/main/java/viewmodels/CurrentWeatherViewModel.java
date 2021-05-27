@@ -30,4 +30,8 @@ public class CurrentWeatherViewModel extends AndroidViewModel {
     public LiveData<List<CurrentWeather>> getCurrentWeather(){
         return mCurrentWeather;
     }
+
+    public void deleteAllCurrentWeather(){
+        mWeatherrandRepositoty.deleteAllCurrentWeather();
+    }
 }
