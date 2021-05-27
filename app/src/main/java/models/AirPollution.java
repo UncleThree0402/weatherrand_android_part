@@ -3,9 +3,13 @@ package models;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 @Entity(tableName = "air_pollution")
 public class AirPollution {
+
+    @PrimaryKey
+    private int air_pollution_id;
 
     @ColumnInfo(name = "aqi")
     private String aqi;
@@ -26,7 +30,8 @@ public class AirPollution {
     @ColumnInfo(name = "nh_3")
     private String nhThree;
 
-    public AirPollution(String aqi, String co, String no, String noTwo, String oThree, String soTwo, String pmTwoPFive, String pmTen, String nhThree) {
+    public AirPollution(int air_pollution_id, String aqi, String co, String no, String noTwo, String oThree, String soTwo, String pmTwoPFive, String pmTen, String nhThree) {
+        this.air_pollution_id = air_pollution_id;
         this.aqi = aqi;
         this.co = co;
         this.no = no;
@@ -40,6 +45,16 @@ public class AirPollution {
 
     @Ignore
     public AirPollution() {
+    }
+
+
+
+    public int getAir_pollution_id() {
+        return air_pollution_id;
+    }
+
+    public void setAir_pollution_id(int air_pollution_id) {
+        this.air_pollution_id = air_pollution_id;
     }
 
     public String getAqi() {
@@ -74,11 +89,11 @@ public class AirPollution {
         this.noTwo = noTwo;
     }
 
-    public String getoThree() {
+    public String getOThree() {
         return oThree;
     }
 
-    public void setoThree(String oThree) {
+    public void setOThree(String oThree) {
         this.oThree = oThree;
     }
 

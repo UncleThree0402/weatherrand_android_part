@@ -3,9 +3,14 @@ package models;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 @Entity(tableName = "monthly_weather")
 public class MonthlyWeather {
+
+    @PrimaryKey
+    private int monthly_weather_id;
+
     @ColumnInfo(name = "datetime")
     private String datetime;
     @ColumnInfo(name = "sunrise_time")
@@ -59,7 +64,8 @@ public class MonthlyWeather {
     @ColumnInfo(name = "weather_id")
     private String weatherId;
 
-    public MonthlyWeather(String datetime, String sunriseTime, String sunsetTime, String minimumTemperature, String maximumTemperature, String monTemperature, String dayTemperature, String eveTemperature, String nightTemperature, String monFeelLike, String dayFeelLike, String eveFeelLike, String nightFeelLike, String pressure, String clouds, String humidity, String rain, String windDeg, String windDegText, String windSpeed, String weatherIconUrl, String weatherDescription, String weatherMain, String weatherId) {
+    public MonthlyWeather(int monthly_weather_id, String datetime, String sunriseTime, String sunsetTime, String minimumTemperature, String maximumTemperature, String monTemperature, String dayTemperature, String eveTemperature, String nightTemperature, String monFeelLike, String dayFeelLike, String eveFeelLike, String nightFeelLike, String pressure, String clouds, String humidity, String rain, String windDeg, String windDegText, String windSpeed, String weatherIconUrl, String weatherDescription, String weatherMain, String weatherId) {
+        this.monthly_weather_id = monthly_weather_id;
         this.datetime = datetime;
         this.sunriseTime = sunriseTime;
         this.sunsetTime = sunsetTime;
@@ -88,6 +94,14 @@ public class MonthlyWeather {
 
     @Ignore
     public MonthlyWeather() {
+    }
+
+    public int getMonthly_weather_id() {
+        return monthly_weather_id;
+    }
+
+    public void setMonthly_weather_id(int monthly_weather_id) {
+        this.monthly_weather_id = monthly_weather_id;
     }
 
     public String getRain() {

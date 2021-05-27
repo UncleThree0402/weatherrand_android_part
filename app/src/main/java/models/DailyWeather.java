@@ -3,9 +3,14 @@ package models;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 @Entity(tableName = "daily_weather")
 public class DailyWeather {
+
+    @PrimaryKey
+    private int daily_weather_id;
+
     @ColumnInfo(name = "datetime")
     private String datetime;
     @ColumnInfo(name = "sunrise_time")
@@ -67,7 +72,8 @@ public class DailyWeather {
     @ColumnInfo(name = "weather_id")
     private String weatherId;
 
-    public DailyWeather(String datetime, String sunriseTime, String sunsetTime, String moonPhase, String minimumTemperature, String maximumTemperature, String monTemperature, String dayTemperature, String eveTemperature, String nightTemperature, String monFeelLike, String dayFeelLike, String eveFeelLike, String nightFeelLike, String uvi, String pressure, String clouds, String rainPercentage, String humidity, String dewPoint, String windDeg, String windDegText, String windGust, String windSpeed, String weatherIconUrl, String weatherDescription, String weatherMain, String weatherId) {
+    public DailyWeather(int daily_weather_id, String datetime, String sunriseTime, String sunsetTime, String moonPhase, String minimumTemperature, String maximumTemperature, String monTemperature, String dayTemperature, String eveTemperature, String nightTemperature, String monFeelLike, String dayFeelLike, String eveFeelLike, String nightFeelLike, String uvi, String pressure, String clouds, String rainPercentage, String humidity, String dewPoint, String windDeg, String windDegText, String windGust, String windSpeed, String weatherIconUrl, String weatherDescription, String weatherMain, String weatherId) {
+        this.daily_weather_id = daily_weather_id;
         this.datetime = datetime;
         this.sunriseTime = sunriseTime;
         this.sunsetTime = sunsetTime;
@@ -100,6 +106,14 @@ public class DailyWeather {
 
     @Ignore
     public DailyWeather() {
+    }
+
+    public int getDaily_weather_id() {
+        return daily_weather_id;
+    }
+
+    public void setDaily_weather_id(int daily_weather_id) {
+        this.daily_weather_id = daily_weather_id;
     }
 
     public String getDatetime() {

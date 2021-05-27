@@ -56,7 +56,7 @@ public class SqlServerRetrieveData {
                     airPollution.setCo(resultSet.getString("ap_co"));
                     airPollution.setNo(resultSet.getString("ap_no"));
                     airPollution.setNoTwo(resultSet.getString("ap_no2"));
-                    airPollution.setoThree(resultSet.getString("ap_o3"));
+                    airPollution.setOThree(resultSet.getString("ap_o3"));
                     airPollution.setSoTwo(resultSet.getString("ap_so2"));
                     airPollution.setPmTwoPFive(resultSet.getString("ap_pm2_5"));
                     airPollution.setPmTen(resultSet.getString("ap_pm10"));

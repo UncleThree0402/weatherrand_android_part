@@ -3,9 +3,14 @@ package models;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 @Entity(tableName = "hourly_weather")
 public class HourlyWeather {
+
+
+    @PrimaryKey
+    private int hourly_weather_id;
 
     @ColumnInfo(name = "datetime")
     private String dateTime;
@@ -48,7 +53,8 @@ public class HourlyWeather {
     @ColumnInfo(name = "weather_id")
     private String weatherId;
 
-    public HourlyWeather(String dateTime, String temperature, String feelLike, String uvi, String pressure, String clouds, String rainPercentage, String humidity, String visibility, String dewPoint, String windDeg, String windDegText, String windGust, String windSpeed, String weatherIconUrl, String weatherDescription, String weatherMain, String weatherId) {
+    public HourlyWeather(int hourly_weather_id, String dateTime, String temperature, String feelLike, String uvi, String pressure, String clouds, String rainPercentage, String humidity, String visibility, String dewPoint, String windDeg, String windDegText, String windGust, String windSpeed, String weatherIconUrl, String weatherDescription, String weatherMain, String weatherId) {
+        this.hourly_weather_id = hourly_weather_id;
         this.dateTime = dateTime;
         this.temperature = temperature;
         this.feelLike = feelLike;
@@ -71,6 +77,14 @@ public class HourlyWeather {
 
     @Ignore
     public HourlyWeather() {
+    }
+
+    public int getHourly_weather_id() {
+        return hourly_weather_id;
+    }
+
+    public void setHourly_weather_id(int hourly_weather_id) {
+        this.hourly_weather_id = hourly_weather_id;
     }
 
     public String getDateTime() {

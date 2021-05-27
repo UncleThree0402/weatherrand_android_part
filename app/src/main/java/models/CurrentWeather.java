@@ -3,9 +3,13 @@ package models;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 @Entity(tableName = "current_weather")
 public class CurrentWeather {
+
+    @PrimaryKey
+    private int current_weather_id;
 
     @ColumnInfo(name = "datetime")
     private String dateTime;
@@ -50,7 +54,8 @@ public class CurrentWeather {
     @ColumnInfo(name = "weather_id")
     private String weatherId;
 
-    public CurrentWeather(String dateTime, String sunriseTime, String sunsetTime, String currentTemperature, String feelLikeTemperature, String maximumTemperature, String minimumTemperature, String pressure, String humidity, String visibility, String clouds, String windSpeed, String windGust, String windDeg, String windDegText, String weatherDescription, String weatherIconUrl, String weatherMain, String weatherId) {
+    public CurrentWeather(int current_weather_id, String dateTime, String sunriseTime, String sunsetTime, String currentTemperature, String feelLikeTemperature, String maximumTemperature, String minimumTemperature, String pressure, String humidity, String visibility, String clouds, String windSpeed, String windGust, String windDeg, String windDegText, String weatherDescription, String weatherIconUrl, String weatherMain, String weatherId) {
+        this.current_weather_id = current_weather_id;
         this.dateTime = dateTime;
         this.sunriseTime = sunriseTime;
         this.sunsetTime = sunsetTime;
@@ -74,6 +79,14 @@ public class CurrentWeather {
 
     @Ignore
     public CurrentWeather() {
+    }
+
+    public int getCurrent_weather_id() {
+        return current_weather_id;
+    }
+
+    public void setCurrent_weather_id(int current_weather_id) {
+        this.current_weather_id = current_weather_id;
     }
 
     public String getWeatherId() {
