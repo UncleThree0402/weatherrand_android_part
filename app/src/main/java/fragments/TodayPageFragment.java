@@ -20,6 +20,7 @@ import com.nckupd2.weatherrand.R;
 import models.AirPollution;
 import models.CurrentWeather;
 import models.HourlyWeather;
+import util.HourlyWeatherDecorator;
 import viewmodels.AirPollutionViewModel;
 import viewmodels.CurrentWeatherViewModel;
 import viewmodels.HourlyWeatherViewModel;
@@ -107,6 +108,8 @@ public class TodayPageFragment extends Fragment {
     private void initHourlyRecycleView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(),LinearLayoutManager.HORIZONTAL,false);
         hourlyWeatherRecycleView.setLayoutManager(linearLayoutManager);
+        HourlyWeatherDecorator hourlyWeatherDecorator = new HourlyWeatherDecorator(20);
+        hourlyWeatherRecycleView.addItemDecoration(hourlyWeatherDecorator);
         mHourlyRecycleViewAdapter = new HourlyRecycleViewAdapter(mHourlyWeathers, getContext());
         hourlyWeatherRecycleView.setAdapter(mHourlyRecycleViewAdapter);
     }

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.nckupd2.weatherrand.R;
+import dataformatter.TimeFormatter;
 import models.HourlyWeather;
 
 import java.util.ArrayList;
@@ -36,9 +37,8 @@ public class HourlyRecycleViewAdapter extends RecyclerView.Adapter<HourlyRecycle
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.d(TAG, "onBindViewHolder: " + mHourlyWeatherList);
         Glide.with(mContext).asBitmap().load(mHourlyWeatherList.get(position).getWeatherIconUrl()).into(holder.weather_icon);
-        holder.time.setText(mHourlyWeatherList.get(position).getDateTime());
+        holder.time.setText(TimeFormatter.datetimeToHour(mHourlyWeatherList.get(position).getDateTime()) + ":00");
         holder.temp.setText(mHourlyWeatherList.get(position).getTemperature());
         holder.rain.setText(mHourlyWeatherList.get(position).getRainPercentage());
     }
