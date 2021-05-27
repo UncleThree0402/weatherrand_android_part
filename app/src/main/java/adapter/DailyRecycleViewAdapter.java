@@ -14,7 +14,7 @@ import models.DailyWeather;
 
 import java.util.ArrayList;
 
-public class DailyRecycleViewAdapter extends RecyclerView.Adapter<DailyRecycleViewAdapter.ViewHolder>{
+public class DailyRecycleViewAdapter extends RecyclerView.Adapter<DailyRecycleViewAdapter.ViewHolder> {
 
     private ArrayList<DailyWeather> mDailyWeatherList = new ArrayList<>();
     private Context mContext;
@@ -27,12 +27,13 @@ public class DailyRecycleViewAdapter extends RecyclerView.Adapter<DailyRecycleVi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.day_list_item,parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.day_list_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         Glide.with(mContext).asBitmap().load(mDailyWeatherList.get(position).getWeatherIconUrl()).into(holder.weather_icon);
         holder.date.setText(mDailyWeatherList.get(position).getDatetime());
         holder.weather.setText(mDailyWeatherList.get(position).getWeatherDescription());
@@ -45,10 +46,12 @@ public class DailyRecycleViewAdapter extends RecyclerView.Adapter<DailyRecycleVi
         return 6;
     }
 
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView date,temp,weather,rain;
+        TextView date, temp, weather, rain;
         ImageView weather_icon;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
