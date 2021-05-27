@@ -1,7 +1,9 @@
 package fragments;
 
 import adapter.HourlyRecycleViewAdapter;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.nckupd2.weatherrand.R;
+import dataformatter.NumberFormatter;
+import dataformatter.TimeFormatter;
 import models.AirPollution;
 import models.CurrentWeather;
 import models.HourlyWeather;
@@ -63,12 +67,13 @@ public class TodayPageFragment extends Fragment {
         initHourlyRecycleView();
 
         mCurrentWeatherViewModel.getCurrentWeather().observe(this.getViewLifecycleOwner(), new Observer<List<CurrentWeather>>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onChanged(List<CurrentWeather> currentWeathers) {
                 if (currentWeathers.size() > 0) {
-                    currentTemp.setText(currentWeathers.get(0).getCurrentTemperature());
+                    currentTemp.setText(NumberFormatter.roundNumber(currentWeathers.get(0).getCurrentTemperature())+"°");
                     currentWind.setText(currentWeathers.get(0).getWindSpeed());
-                    currentHumidity.setText(currentWeathers.get(0).getHumidity());
+                    currentHumidity.setText(currentWeathers.get(0).getHumidity() + "%");
                     Glide.with(getActivity()).asBitmap().load(currentWeathers.get(0).getWeatherIconUrl()).into(currentIcon);
                     currentWeatherText.setText(currentWeathers.get(0).getWeatherDescription());
                 }
@@ -94,7 +99,13 @@ public class TodayPageFragment extends Fragment {
                     if (mHourlyWeathers != null) {
                         mHourlyWeathers.addAll(hourlyWeathers);
                     }
-                    Log.d(TAG, "onChanged: " + mHourlyWeathers.size());
+
+                    while(mHourlyWeathers.size() > 0){
+                        if(TimeFormatter.datetimeToHour(mHourlyWeathers.get(0).getDateTime()).equals(TimeFormatter.datetimeToHour(Long.toString(System.currentTimeMillis() / 1000)))){
+                            break;
+                        }
+                        mHourlyWeathers.remove(0);
+                    }
                     mHourlyRecycleViewAdapter.notifyDataSetChanged();
                 }
             }

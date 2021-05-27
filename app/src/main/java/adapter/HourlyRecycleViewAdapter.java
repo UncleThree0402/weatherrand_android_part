@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.nckupd2.weatherrand.R;
+import dataformatter.NumberFormatter;
 import dataformatter.TimeFormatter;
 import models.HourlyWeather;
 
@@ -39,13 +40,17 @@ public class HourlyRecycleViewAdapter extends RecyclerView.Adapter<HourlyRecycle
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Glide.with(mContext).asBitmap().load(mHourlyWeatherList.get(position).getWeatherIconUrl()).into(holder.weather_icon);
         holder.time.setText(TimeFormatter.datetimeToHour(mHourlyWeatherList.get(position).getDateTime()) + ":00");
-        holder.temp.setText(mHourlyWeatherList.get(position).getTemperature());
-        holder.rain.setText(mHourlyWeatherList.get(position).getRainPercentage());
+        holder.temp.setText(NumberFormatter.roundNumber(mHourlyWeatherList.get(position).getTemperature()));
+        holder.rain.setText(NumberFormatter.percentageFormat(mHourlyWeatherList.get(position).getRainPercentage()));
     }
 
     @Override
     public int getItemCount() {
-        return mHourlyWeatherList.size();
+        if(mHourlyWeatherList.size() >= 24){
+            return 24;
+        }else {
+            return mHourlyWeatherList.size();
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
