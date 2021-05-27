@@ -6,6 +6,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:background="@drawable/hourly_background">
+
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="8dp">
+
         <TextView
                 android:id="@+id/hourly_time_text"
                 android:layout_width="wrap_content"
@@ -35,17 +42,21 @@
                 android:textSize="32sp"
                 android:textColor="#707070"
                 android:fontFamily="@font/quicksand_medium"/>
+
         <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/hourly_temp_text"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+
             <ImageView
                     android:id="@+id/hourly_cloud_icon"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:src="@drawable/cloud_icon"/>
+
             <TextView
                     android:id="@+id/hourly_rain_text"
                     android:layout_width="wrap_content"
@@ -57,5 +68,5 @@
                     android:textColor="#000000"/>
 
         </RelativeLayout>
-
+    </RelativeLayout>
 </RelativeLayout>
