@@ -2,17 +2,20 @@ package com.nckupd2.weatherrand;
 
 
 import adapter.FragmentAdapter;
+import adapter.SheetBtnAdapter;
 import android.Manifest;
 import android.content.pm.PackageManager;
 
 import android.os.Message;
 import android.os.StrictMode;
 
+import android.view.View;
 import androidx.core.app.ActivityCompat;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.viewpager.widget.ViewPager;
+import controller.SheetBtnController;
 import fragments.TodayPageFragment;
 import thread.UpdateDataHandle;
 import thread.UpdateDataHandlerThread;
@@ -68,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
         FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
         fragmentAdapter.addFragment(new TodayPageFragment(),"Fresh Food");
         viewPage.setAdapter(fragmentAdapter);
+    }
+
+    public void locationListener(View view) {
+        SheetBtnController sheetBtn = new SheetBtnController();
+        sheetBtn.show(getSupportFragmentManager(),"sheet button");
     }
 
 
