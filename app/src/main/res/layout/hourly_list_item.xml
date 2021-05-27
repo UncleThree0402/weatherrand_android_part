@@ -32,6 +32,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="30°"
                 android:textSize="32sp"
+                android:textColor="#707070"
                 android:fontFamily="@font/quicksand_medium"/>
         <RelativeLayout
                 android:layout_width="wrap_content"

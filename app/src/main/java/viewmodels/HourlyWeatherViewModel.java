@@ -24,6 +24,10 @@ public class HourlyWeatherViewModel extends AndroidViewModel {
         mWeatherrandRepositoty.insertHourlyWeather(hourlyWeather);
     }
 
+    public void deleteHourlyWeather(){
+        mWeatherrandRepositoty.deleteAllHourlyWeather();
+    }
+
     public LiveData<List<HourlyWeather>> getHourlyWeather(){
         return mHourlyWeather;
     }

@@ -5,10 +5,12 @@ import androidx.lifecycle.LiveData;
 import async.airpollution.InsertAirPollutionAsyncTask;
 import async.currentwearther.InsertCurrentWeatherAsyncTask;
 import async.dailyweather.InsertDailyWeatherAsyncTask;
+import async.hourlyweather.DeleteHourlyWeatherAsyncTask;
 import async.hourlyweather.InsertHourlyWeatherAsyncTask;
 import async.monthlyweather.InsertMonthlyWeatherAsyncTask;
 import models.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherrandRepositoty {
@@ -59,6 +61,9 @@ public class WeatherrandRepositoty {
         return mWetherrandDatabase.getWeatherrandDao().getAirPollution();
     }
 
+    public void deleteAllHourlyWeather(){
+        new DeleteHourlyWeatherAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute();
+    }
 
 
 

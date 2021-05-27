@@ -1,6 +1,7 @@
 package adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +14,10 @@ import com.nckupd2.weatherrand.R;
 import models.HourlyWeather;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HourlyRecycleViewAdapter extends RecyclerView.Adapter<HourlyRecycleViewAdapter.ViewHolder> {
+    private static final String TAG = "HourlyRecycleViewAdapter";
 
     private ArrayList<HourlyWeather> mHourlyWeatherList = new ArrayList<>();
     private Context mContext;
@@ -33,6 +36,7 @@ public class HourlyRecycleViewAdapter extends RecyclerView.Adapter<HourlyRecycle
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Log.d(TAG, "onBindViewHolder: " + mHourlyWeatherList);
         Glide.with(mContext).asBitmap().load(mHourlyWeatherList.get(position).getWeatherIconUrl()).into(holder.weather_icon);
         holder.time.setText(mHourlyWeatherList.get(position).getDateTime());
         holder.temp.setText(mHourlyWeatherList.get(position).getTemperature());
@@ -41,7 +45,7 @@ public class HourlyRecycleViewAdapter extends RecyclerView.Adapter<HourlyRecycle
 
     @Override
     public int getItemCount() {
-        return 24;
+        return mHourlyWeatherList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

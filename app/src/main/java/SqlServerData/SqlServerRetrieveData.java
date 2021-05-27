@@ -1,6 +1,7 @@
 package SqlServerData;
 
 import android.content.Context;
+import android.util.Log;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 import models.*;
@@ -8,12 +9,15 @@ import viewmodels.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class SqlServerRetrieveData {
+    private static final String TAG = "SqlServerRetrieveData";
 
     private ViewModelStoreOwner viewModelStoreOwner;
 
     public SqlServerRetrieveData(ViewModelStoreOwner viewModelStoreOwner) {
+        
         this.viewModelStoreOwner = viewModelStoreOwner;
     }
 
@@ -64,6 +68,7 @@ public class SqlServerRetrieveData {
 
                     currentWeatherViewModel.insetCurrentWeather(currentWeather);
                     airPollutionViewModel.insetAirPollution(airPollution);
+                    
                 }
 
             }catch (SQLException e){
@@ -78,8 +83,10 @@ public class SqlServerRetrieveData {
         SqlServerConnection.connect();
         if(SqlServerConnection.getConnection() != null){
             try {
+                hourlyWeatherViewModel.deleteHourlyWeather();
                 ResultSet resultSet = SqlServerConnection.getStatement().executeQuery("Select * from " + location + "HourlyWeatherForecast; ");
                 while (resultSet.next()){
+                    Log.d(TAG, "insertHourlyWeather: called");
                     HourlyWeather hourlyWeather = new HourlyWeather();
                     hourlyWeather.setDateTime(resultSet.getString("dt"));
 
@@ -105,7 +112,10 @@ public class SqlServerRetrieveData {
                     hourlyWeather.setWeatherId(resultSet.getString("weather_id"));
 
                     hourlyWeatherViewModel.insetHourlyWeather(hourlyWeather);
+
                 }
+
+
             }catch (SQLException e){
                 e.printStackTrace();
             }

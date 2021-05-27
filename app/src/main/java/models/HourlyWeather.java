@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
 public class HourlyWeather {
 
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int hourly_weather_id;
 
     @ColumnInfo(name = "datetime")

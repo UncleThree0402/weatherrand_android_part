@@ -4,6 +4,8 @@ import android.os.AsyncTask;
 import models.HourlyWeather;
 import persistance.WeatherrandDao;
 
+import java.util.ArrayList;
+
 public class InsertHourlyWeatherAsyncTask extends AsyncTask<HourlyWeather,Void,Void> {
 
     private WeatherrandDao mWeatherrandDao;
@@ -14,7 +16,6 @@ public class InsertHourlyWeatherAsyncTask extends AsyncTask<HourlyWeather,Void,V
 
     @Override
     protected Void doInBackground(HourlyWeather... hourlyWeathers) {
-        mWeatherrandDao.deleteAllHourlyWeather();
         mWeatherrandDao.insertHourlyWeather(hourlyWeathers);
         return null;
     }

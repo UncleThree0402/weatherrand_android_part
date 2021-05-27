@@ -5,7 +5,10 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity"
+        android:theme="@style/Theme.Weatherrand"
+        android:background="@drawable/sunny_background">
+
 
     <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
@@ -18,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/toolbar"
-            android:layout_margin="0dp"
-            android:background="@drawable/sunny_background">
+            android:layout_margin="0dp">
     </androidx.viewpager.widget.ViewPager>
 </RelativeLayout>

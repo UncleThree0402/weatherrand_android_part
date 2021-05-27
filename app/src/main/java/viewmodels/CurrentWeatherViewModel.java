@@ -1,6 +1,7 @@
 package viewmodels;
 
 import android.app.Application;
+import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -10,6 +11,7 @@ import persistance.WeatherrandRepositoty;
 import java.util.List;
 
 public class CurrentWeatherViewModel extends AndroidViewModel {
+    private static final String TAG = "CurrentWeatherViewModel";
 
     private WeatherrandRepositoty mWeatherrandRepositoty;
     private LiveData<List<CurrentWeather>> mCurrentWeather;
@@ -21,6 +23,7 @@ public class CurrentWeatherViewModel extends AndroidViewModel {
     }
 
     public void insetCurrentWeather(CurrentWeather currentWeather){
+        Log.d(TAG, "insetCurrentWeather: " + currentWeather.getDateTime());
         mWeatherrandRepositoty.insertCurrentWeather(currentWeather);
     }
 
