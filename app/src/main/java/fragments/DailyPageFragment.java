@@ -34,6 +34,8 @@ public class DailyPageFragment extends Fragment {
 
         mDailyRecycleView = view.findViewById(R.id.seven_day_recycle_view);
 
+        initDailyRecycleView();
+
         return view;
     }
 

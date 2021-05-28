@@ -179,7 +179,7 @@ public class SheetBtnFragment extends BottomSheetDialogFragment implements Sheet
                 dismiss();
                 break;
             case 17:
-                mLocation.setText("TaiNan City");
+                mLocation.setText("Tainan City");
                 mUpdateDataMethod.init("TaiNanCity");
                 mUpdateDataHandlerThread.quitSafely();
                 dismiss();

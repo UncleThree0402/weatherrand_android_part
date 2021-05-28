@@ -76,7 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tomorrow_date_text"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_centerHorizontal="true"
                     android:text="30°"
                     android:textSize="64sp"
@@ -109,7 +109,10 @@
                             android:layout_below="@+id/tomorrow_wind_icon"
                             android:layout_centerHorizontal="true"
                             android:text="2km/h"
-                            android:textSize="16sp"/>
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/quicksand"
+                            android:textSize="16sp"
+                            />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -133,7 +136,9 @@
                             android:layout_below="@+id/tomorrow_humidity_icon"
                             android:layout_centerHorizontal="true"
                             android:text="32%"
-                            android:textSize="16sp"/>
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/quicksand"/>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -157,7 +162,9 @@
                             android:layout_below="@+id/tomorrow_cloud_icon"
                             android:layout_centerHorizontal="true"
                             android:text="20%"
-                            android:textSize="16sp"/>
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/quicksand"/>
                 </RelativeLayout>
 
             </RelativeLayout>

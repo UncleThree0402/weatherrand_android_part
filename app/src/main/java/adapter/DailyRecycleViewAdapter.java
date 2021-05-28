@@ -43,7 +43,7 @@ public class DailyRecycleViewAdapter extends RecyclerView.Adapter<DailyRecycleVi
 
     @Override
     public int getItemCount() {
-        return 6;
+        return mDailyWeatherList.size();
     }
 
 

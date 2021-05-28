@@ -135,8 +135,6 @@ public class TodayPageFragment extends Fragment {
             }
         });
 
-
-
         return view;
     }
 

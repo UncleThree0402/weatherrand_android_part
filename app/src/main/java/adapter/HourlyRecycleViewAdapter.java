@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +25,7 @@ public class HourlyRecycleViewAdapter extends RecyclerView.Adapter<HourlyRecycle
     private ArrayList<HourlyWeather> mHourlyWeatherList = new ArrayList<>();
     private Context mContext;
 
+
     public HourlyRecycleViewAdapter(ArrayList<HourlyWeather> mHourlyWeatherList, Context context) {
         this.mHourlyWeatherList = mHourlyWeatherList;
         this.mContext = context;
@@ -32,7 +34,7 @@ public class HourlyRecycleViewAdapter extends RecyclerView.Adapter<HourlyRecycle
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.hourly_list_item,parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.hourly_list_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -46,17 +48,18 @@ public class HourlyRecycleViewAdapter extends RecyclerView.Adapter<HourlyRecycle
 
     @Override
     public int getItemCount() {
-        if(mHourlyWeatherList.size() >= 24){
+        if (mHourlyWeatherList.size() >= 24) {
             return 24;
-        }else {
+        } else {
             return mHourlyWeatherList.size();
         }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView time,temp,rain;
+        TextView time, temp, rain;
         ImageView weather_icon;
+        RelativeLayout hourly_rel;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,6 +67,7 @@ public class HourlyRecycleViewAdapter extends RecyclerView.Adapter<HourlyRecycle
             temp = itemView.findViewById(R.id.hourly_temp_text);
             rain = itemView.findViewById(R.id.hourly_rain_text);
             weather_icon = itemView.findViewById(R.id.hourly_weather_icon);
+            hourly_rel = itemView.findViewById(R.id.hourly_item_rel);
         }
     }
 }
