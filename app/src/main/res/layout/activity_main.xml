@@ -7,7 +7,8 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity"
         android:theme="@style/Theme.Weatherrand"
-        android:background="@drawable/sunny_background">
+        android:background="@drawable/sunny_background"
+        android:id="@+id/main_layout">
 
 
     <androidx.appcompat.widget.Toolbar

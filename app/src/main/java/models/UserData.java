@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "user_table")
 public class UserData {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int user_id;
     @ColumnInfo(name = "location")
     private String location;
