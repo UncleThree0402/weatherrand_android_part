@@ -3,8 +3,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/rel_background"
-                android:background="@drawable/sunny_background">
+                android:id="@+id/rel_background">
 
     <TextView
             android:id="@+id/current_temp_text"

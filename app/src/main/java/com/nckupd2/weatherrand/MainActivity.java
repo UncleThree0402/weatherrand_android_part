@@ -1,6 +1,7 @@
 package com.nckupd2.weatherrand;
 
 
+import SqlServerData.SqlServerRetrieveData;
 import adapter.FragmentAdapter;
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     private FragmentAdapter mFragmentAdapter;
 
     private String currentLocation = "TaiNanCity";
+
+    private SqlServerRetrieveData mSqlServerRetrieveData = new SqlServerRetrieveData(this);
 
     private UpdateDataHandlerThread mUpdateDataHandlerThread;
     private UpdateDataHandle testHandle;

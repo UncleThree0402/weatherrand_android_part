@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,6 +46,7 @@ public class TodayPageFragment extends Fragment {
     private TextView currentAqi;
     private TextView currentHumidity;
     private RecyclerView hourlyWeatherRecycleView;
+    private RelativeLayout layout;
 
     //Var
     private ArrayList<HourlyWeather> mHourlyWeathers = new ArrayList<>();
@@ -67,6 +69,7 @@ public class TodayPageFragment extends Fragment {
         currentAqi = view.findViewById(R.id.current_aqi_text);
         currentHumidity = view.findViewById(R.id.current_humidity_text);
         hourlyWeatherRecycleView = view.findViewById(R.id.hourly_recycle_view);
+        layout = getActivity().findViewById(R.id.main_layout);
 
         CurrentWeatherViewModel mCurrentWeatherViewModel = new ViewModelProvider(this).get(CurrentWeatherViewModel.class);
         AirPollutionViewModel mAirPollutionViewModel = new ViewModelProvider(this).get(AirPollutionViewModel.class);
@@ -81,10 +84,11 @@ public class TodayPageFragment extends Fragment {
             public void onChanged(List<CurrentWeather> currentWeathers) {
                 if (currentWeathers.size() > 0) {
                     currentTempText = NumberFormatter.roundNumber(currentWeathers.get(0).getCurrentTemperature()) + "°";
-                    currentWindText = currentWeathers.get(0).getWindSpeed();
+                    currentWindText = currentWeathers.get(0).getWindSpeed()+ "km/h";
                     currentHumidityText = currentWeathers.get(0).getHumidity() + "%";
                     currentIconText = currentWeathers.get(0).getWeatherIconUrl();
                     currentWeatherTextText = currentWeathers.get(0).getWeatherDescription();
+                    layoutSrc(currentWeathers.get(0).getWeatherId());
                 }
             }
         });
@@ -145,5 +149,16 @@ public class TodayPageFragment extends Fragment {
         hourlyWeatherRecycleView.addItemDecoration(hourlyWeatherDecorator);
         mHourlyRecycleViewAdapter = new HourlyRecycleViewAdapter(mHourlyWeathers, getContext());
         hourlyWeatherRecycleView.setAdapter(mHourlyRecycleViewAdapter);
+    }
+
+    private void layoutSrc(String weatherId){
+        int check =NumberFormatter.stringToNumber(weatherId);
+        if(check >= 200 && check <= 531){
+            layout.setBackgroundResource(R.drawable.rainy_background);
+        }else if(check == 800){
+            layout.setBackgroundResource(R.drawable.sunny_background);
+        }else{
+            layout.setBackgroundResource(R.drawable.cloudy_background);
+        }
     }
 }
