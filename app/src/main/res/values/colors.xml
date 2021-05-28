@@ -10,4 +10,5 @@
     <color name="hourly_background">#80FFFFFF</color>
     <color name="hourly_current_background">#80EE8ED7</color>
     <color name="air_pollution_item_back">#B3FFFFFF</color>
+
 </resources>
