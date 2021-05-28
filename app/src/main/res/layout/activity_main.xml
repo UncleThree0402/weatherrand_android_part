@@ -10,15 +10,15 @@
         android:background="@drawable/sunny_background">
 
 
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginTop="24dp"
+            android:background="@null">
 
-        <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_marginTop="24dp"
-                android:background="@null">
-            <include layout="@layout/tool_bar_layout"/>
-        </androidx.appcompat.widget.Toolbar>
+        <include layout="@layout/tool_bar_layout"/>
+    </androidx.appcompat.widget.Toolbar>
 
 
     <androidx.viewpager.widget.ViewPager
@@ -28,4 +28,5 @@
             android:layout_below="@+id/toolbar"
             android:layout_margin="0dp">
     </androidx.viewpager.widget.ViewPager>
+
 </RelativeLayout>

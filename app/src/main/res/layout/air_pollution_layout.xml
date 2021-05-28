@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:id="@+id/relative_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+            <ImageView
+                    android:id="@+id/space"
+                    android:layout_width="33dp"
+                    android:layout_height="wrap_content"/>
+
+            <ImageView
+                    android:id="@+id/aqi_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:src="@drawable/aqi1_icon"
+                    android:layout_toEndOf="@+id/space"
+                    />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/relative_layout">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp">
+
+            <RelativeLayout
+                    android:id="@+id/rel_layout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/air_pollution_item_back">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="32dp"
+                        android:text="CO2"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+                <TextView
+                        android:id="@+id/co2_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="201.94"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="32dp"
+                        android:text="µg/m³"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/rel_layout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_below="@+id/rel_layout1"
+                    android:background="@color/air_pollution_item_back">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="32dp"
+                        android:text="NO"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+                <TextView
+                        android:id="@+id/no_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="0.02"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="32dp"
+                        android:text="µg/m³"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/rel_layout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_below="@+id/rel_layout2"
+                    android:background="@color/air_pollution_item_back">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="32dp"
+                        android:text="NO2"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+                <TextView
+                        android:id="@+id/no2_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="0.77"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="32dp"
+                        android:text="µg/m³"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/rel_layout4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_below="@+id/rel_layout3"
+                    android:background="@color/air_pollution_item_back">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="32dp"
+                        android:text="O3"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+                <TextView
+                        android:id="@+id/o3_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="68.88"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="32dp"
+                        android:text="µg/m³"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/rel_layout5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_below="@+id/rel_layout4"
+                    android:background="@color/air_pollution_item_back">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="32dp"
+                        android:text="SO2"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+                <TextView
+                        android:id="@+id/so2_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="0.64"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="32dp"
+                        android:text="µg/m³"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/rel_layout6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_below="@+id/rel_layout5"
+                    android:background="@color/air_pollution_item_back">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="32dp"
+                        android:text="PM2.5"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+                <TextView
+                        android:id="@+id/pm2.5_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="0.5"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="32dp"
+                        android:text="µg/m³"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/rel_layout7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_below="@+id/rel_layout6"
+                    android:background="@color/air_pollution_item_back">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="32dp"
+                        android:text="PM10"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+                <TextView
+                        android:id="@+id/pm10_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="0.54"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="32dp"
+                        android:text="µg/m³"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/rel_layout8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_below="@+id/rel_layout7"
+                    android:background="@color/air_pollution_item_back">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="32dp"
+                        android:text="NH3"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+                <TextView
+                        android:id="@+id/nh3_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="0.12"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="32dp"
+                        android:text="µg/m³"
+                        android:textSize="24sp"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/quicksand_bold"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
