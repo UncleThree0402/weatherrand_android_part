@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.viewpager.widget.ViewPager;
+import fragments.AirPollutionFragment;
 import fragments.DailyPageFragment;
 import fragments.SheetBtnFragment;
 import fragments.TodayPageFragment;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     private UpdateDataMethod mUpdateDataMethod;
 
     private GestureDetector mGestureDetector;
-    private int currentPage = 0;
+    private int currentPage = 1;
 
 
     @Override
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         mViewPager.setOnTouchListener(this);
         mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
         setViewPage(mViewPager);
+        mViewPager.setCurrentItem(1);
 
     }
 
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     public void setViewPage(ViewPager viewPage) {
         FragmentAdapter fragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
+        fragmentAdapter.addFragment(new AirPollutionFragment(),"Air Pollution Page");
         fragmentAdapter.addFragment(new TodayPageFragment(), "Today Page");
         fragmentAdapter.addFragment(new DailyPageFragment(),"Daily Page");
         viewPage.setAdapter(fragmentAdapter);
@@ -128,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
         if (velocityX < 0) {
             Log.d(TAG, "onFling: velocity X < 0");
-            if (currentPage + 1 <= 1) {
+            if (currentPage + 1 <= 2) {
                 currentPage++;
                 mViewPager.setCurrentItem(currentPage);
             }
@@ -140,6 +143,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 mViewPager.setCurrentItem(currentPage);
             }
         }
-        return true;
+        return false;
     }
 }

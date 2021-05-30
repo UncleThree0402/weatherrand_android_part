@@ -7,9 +7,8 @@
     <RelativeLayout
             android:id="@+id/relative_layout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
 
         <RelativeLayout
                 android:layout_width="match_parent"
@@ -25,7 +24,6 @@
                     android:id="@+id/aqi_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:src="@drawable/aqi1_icon"
                     android:layout_toEndOf="@+id/space"
                     />
@@ -48,7 +46,7 @@
                     android:id="@+id/rel_layout1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/air_pollution_item_back">
+                    android:background="@drawable/air_pollution_back">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -56,13 +54,13 @@
                         android:layout_centerVertical="true"
                         android:layout_alignParentStart="true"
                         android:layout_marginStart="32dp"
-                        android:text="CO2"
+                        android:text="CO"
                         android:textSize="24sp"
                         android:textColor="#000000"
                         android:fontFamily="@font/quicksand_bold"/>
 
                 <TextView
-                        android:id="@+id/co2_text"
+                        android:id="@+id/co_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
@@ -90,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_below="@+id/rel_layout1"
-                    android:background="@color/air_pollution_item_back">
+                    android:background="@drawable/air_pollution_back">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -132,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_below="@+id/rel_layout2"
-                    android:background="@color/air_pollution_item_back">
+                    android:background="@drawable/air_pollution_back">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -174,7 +172,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_below="@+id/rel_layout3"
-                    android:background="@color/air_pollution_item_back">
+                    android:background="@drawable/air_pollution_back">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -216,7 +214,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_below="@+id/rel_layout4"
-                    android:background="@color/air_pollution_item_back">
+                    android:background="@drawable/air_pollution_back">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -258,7 +256,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_below="@+id/rel_layout5"
-                    android:background="@color/air_pollution_item_back">
+                    android:background="@drawable/air_pollution_back">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -300,7 +298,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_below="@+id/rel_layout6"
-                    android:background="@color/air_pollution_item_back">
+                    android:background="@drawable/air_pollution_back">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -342,7 +340,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_below="@+id/rel_layout7"
-                    android:background="@color/air_pollution_item_back">
+                    android:background="@drawable/air_pollution_back">
 
                 <TextView
                         android:layout_width="wrap_content"

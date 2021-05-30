@@ -113,8 +113,6 @@ public class TodayPageFragment extends Fragment {
                         mHourlyWeathers.addAll(hourlyWeathers);
                     }
 
-
-
                 }
             }
         });
