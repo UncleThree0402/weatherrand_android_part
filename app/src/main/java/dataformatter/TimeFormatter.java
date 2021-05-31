@@ -16,7 +16,7 @@ public class TimeFormatter {
         return dateFormat.format(date);
     }
 
-    private static String timeStringToTomorrow(String datetime){
+    public static String timeStringToTomorrow(String datetime){
         return timeString(Long.parseLong(datetime), "E MM-dd");
     }
 

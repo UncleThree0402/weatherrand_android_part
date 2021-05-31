@@ -10,6 +10,7 @@
             android:id="@+id/rel_tomorrow"
             android:layout_width="315dp"
             android:layout_height="215dp"
+            android:background="@drawable/hourly_background"
             android:layout_centerHorizontal="true">
 
         <RelativeLayout
@@ -67,7 +68,7 @@
                     android:layout_marginEnd="8dp"
                     android:text="FRI 5-28"
                     android:textSize="16sp"
-                    android:textColor="#707070"
+                    android:textColor="#616161"
                     android:fontFamily="@font/quicksand_medium"
                     android:layout_alignParentEnd="true"/>
 
@@ -174,7 +175,7 @@
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/seven_day_recycle_view"
+            android:id="@+id/daily_recycle_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/rel_tomorrow"

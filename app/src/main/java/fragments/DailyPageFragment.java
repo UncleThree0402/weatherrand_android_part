@@ -1,8 +1,8 @@
 package fragments;
 
 import adapter.DailyRecycleViewAdapter;
-import adapter.HourlyRecycleViewAdapter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +20,6 @@ import com.nckupd2.weatherrand.R;
 import dataformatter.NumberFormatter;
 import dataformatter.TimeFormatter;
 import models.DailyWeather;
-import models.HourlyWeather;
 import models.UserData;
 import util.DailyWeatherDecorator;
 import viewmodels.DailyWeatherViewModel;
@@ -30,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DailyPageFragment extends Fragment {
+    private static final String TAG = "DailyPageFragment";
 
     //UI
     private RecyclerView mDailyRecycleView;
@@ -52,7 +52,7 @@ public class DailyPageFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.day_page_fragment, container, false);
 
-        mDailyRecycleView = view.findViewById(R.id.seven_day_recycle_view);
+        mDailyRecycleView = view.findViewById(R.id.daily_recycle_view);
         tmrDate = view.findViewById(R.id.tomorrow_date_text);
         tmrTemp = view.findViewById(R.id.tomorrow_temp_text);
         tmrWind = view.findViewById(R.id.tomorrow_wind_text);
@@ -64,11 +64,13 @@ public class DailyPageFragment extends Fragment {
         dailyWeatherViewModel = new ViewModelProvider(this).get(DailyWeatherViewModel.class);
         userDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
 
+        initDailyRecycleView();
+
         userDataViewModel.getUserData().observe(getViewLifecycleOwner(), new Observer<List<UserData>>() {
             @Override
             public void onChanged(List<UserData> userData) {
                 if(mDailyWeathers.size() > 0){
-                    tmrDate.setText(TimeFormatter.datetimeToHour(mDailyWeathers.get(0).getDatetime()));
+                    tmrDate.setText(TimeFormatter.timeStringToTomorrow(mDailyWeathers.get(0).getDatetime()));
                     tmrTemp.setText(NumberFormatter.roundNumber(mDailyWeathers.get(0).getDayTemperature()) + "°");
                     tmrWind.setText(mDailyWeathers.get(0).getWindSpeed() + "km/h");
                     tmrHum.setText(NumberFormatter.percentageFormat(mDailyWeathers.get(0).getHumidity()));
@@ -95,12 +97,11 @@ public class DailyPageFragment extends Fragment {
             }
         });
 
-        initDailyRecycleView();
-
         return view;
     }
 
     private void initDailyRecycleView() {
+        Log.d(TAG, "initDailyRecycleView: mDailyWeather : " + mDailyWeathers);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         mDailyRecycleView.setLayoutManager(linearLayoutManager);
         DailyWeatherDecorator dailyWeatherDecorator = new DailyWeatherDecorator(16);
