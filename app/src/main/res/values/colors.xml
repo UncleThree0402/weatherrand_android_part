@@ -7,7 +7,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="hourly_background">#80FFFFFF</color>
-    <color name="hourly_current_background">#80EE8ED7</color>
+    <color name="hourly_color">#80FFFFFF</color>
     <color name="air_pollution_item_color">#99FFFFFF</color>
 </resources>

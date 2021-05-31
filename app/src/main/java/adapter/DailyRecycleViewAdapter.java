@@ -1,6 +1,7 @@
 package adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.nckupd2.weatherrand.R;
+import dataformatter.NumberFormatter;
+import dataformatter.TimeFormatter;
 import models.DailyWeather;
 
 import java.util.ArrayList;
 
 public class DailyRecycleViewAdapter extends RecyclerView.Adapter<DailyRecycleViewAdapter.ViewHolder> {
+    private static final String TAG = "DailyRecycleViewAdapter";
 
     private ArrayList<DailyWeather> mDailyWeatherList = new ArrayList<>();
     private Context mContext;
@@ -33,12 +37,12 @@ public class DailyRecycleViewAdapter extends RecyclerView.Adapter<DailyRecycleVi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        Log.d(TAG, "onBindViewHolder: Called");
         Glide.with(mContext).asBitmap().load(mDailyWeatherList.get(position).getWeatherIconUrl()).into(holder.weather_icon);
-        holder.date.setText(mDailyWeatherList.get(position).getDatetime());
+        holder.date.setText(TimeFormatter.timeStringToTomorrow(mDailyWeatherList.get(position).getDatetime()));
         holder.weather.setText(mDailyWeatherList.get(position).getWeatherDescription());
-        holder.rain.setText(mDailyWeatherList.get(position).getRainPercentage());
-        holder.temp.setText(mDailyWeatherList.get(position).getDayTemperature());
+        holder.rain.setText(NumberFormatter.percentageFormat(mDailyWeatherList.get(position).getRainPercentage()));
+        holder.temp.setText(NumberFormatter.roundNumber(mDailyWeatherList.get(position).getDayTemperature()) + "°");
     }
 
     @Override
