@@ -28,6 +28,14 @@ public class UserDataViewModel extends AndroidViewModel {
         return mUserData;
     }
 
+    public LiveData<List<Integer>> getUserTableCount(){
+        return mWeatherrandRepositoty.getUserTableCount();
+    }
+
+    public void updateUserData(UserData userData){
+        mWeatherrandRepositoty.updateUserData(userData);
+    }
+
     public void deleteAllUserData(){
         mWeatherrandRepositoty.deleteAllUserData();
     }

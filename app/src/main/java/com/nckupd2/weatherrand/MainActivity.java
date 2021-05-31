@@ -16,14 +16,20 @@ import androidx.core.app.ActivityCompat;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 import fragments.AirPollutionFragment;
 import fragments.DailyPageFragment;
 import fragments.SheetBtnFragment;
 import fragments.TodayPageFragment;
+import models.UserData;
 import thread.UpdateDataHandle;
 import thread.UpdateDataHandlerThread;
 import thread.UpdateDataMethod;
+import viewmodels.UserDataViewModel;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener, GestureDetector.OnGestureListener {
     private static final String TAG = "MainActivity";
@@ -36,7 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     private String currentLocation = "TaiNanCity";
 
-    private SqlServerRetrieveData mSqlServerRetrieveData = new SqlServerRetrieveData(this);
+    private SqlServerRetrieveData mSqlServerRetrieveData;
+    private UserDataViewModel mUserDataViewModel;
 
     private UpdateDataHandlerThread mUpdateDataHandlerThread;
     private UpdateDataHandle testHandle;
@@ -56,9 +63,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+
         mUpdateDataHandlerThread = new UpdateDataHandlerThread();
         mUpdateDataHandlerThread.start();
-        testHandle = new UpdateDataHandle(mUpdateDataHandlerThread.getLooper(), this);
+        testHandle = new UpdateDataHandle(mUpdateDataHandlerThread.getLooper(), this,this);
         mUpdateDataMethod = new UpdateDataMethod(testHandle);
         mUpdateDataMethod.init(currentLocation);
 
@@ -86,8 +94,17 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         viewPage.setAdapter(fragmentAdapter);
     }
 
+    private void initUserData() {
+        mUserDataViewModel.getUserData().observe(this, new Observer<List<UserData>>() {
+            @Override
+            public void onChanged(List<UserData> userData) {
+                Log.d(TAG, "onChanged: called");
+            }
+        });
+    }
+
     public void locationListener(View view) {
-        SheetBtnFragment sheetBtn = new SheetBtnFragment(this);
+        SheetBtnFragment sheetBtn = new SheetBtnFragment(this,this);
         sheetBtn.show(getSupportFragmentManager(), "Sheet Button");
     }
 
@@ -99,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 mGestureDetector.onTouchEvent(event);
                 break;
         }
+        Log.d(TAG, "onFling: " + currentPage);
         return true;
     }
 
@@ -145,4 +163,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         }
         return false;
     }
+
+
+
 }

@@ -30,7 +30,6 @@ import java.util.List;
 
 public class DailyPageFragment extends Fragment {
     private static final String TAG = "DailyPageFragment";
-
     //UI
     private RecyclerView mDailyRecycleView;
     private TextView tmrDate;
@@ -50,6 +49,7 @@ public class DailyPageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView: called");
         View view = inflater.inflate(R.layout.day_page_fragment, container, false);
 
         mDailyRecycleView = view.findViewById(R.id.daily_recycle_view);

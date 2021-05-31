@@ -5,15 +5,16 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelStoreOwner;
 
 public class UpdateDataHandle extends Handler {
 
     private SqlServerRetrieveData mSqlServerRetrieveData;
 
-    public UpdateDataHandle(@NonNull Looper looper, ViewModelStoreOwner viewModelStoreOwner) {
+    public UpdateDataHandle(@NonNull Looper looper, ViewModelStoreOwner viewModelStoreOwner, LifecycleOwner lifecycleOwner) {
         super(looper);
-        this.mSqlServerRetrieveData = new SqlServerRetrieveData(viewModelStoreOwner);
+        this.mSqlServerRetrieveData = new SqlServerRetrieveData(viewModelStoreOwner,lifecycleOwner);
     }
 
     public static final int UPDATE_CURRENT_WEATHER_AND_AIR_POLLUTION = 1;

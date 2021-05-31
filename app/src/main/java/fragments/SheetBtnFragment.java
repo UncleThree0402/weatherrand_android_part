@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,14 +32,16 @@ public class SheetBtnFragment extends BottomSheetDialogFragment implements Sheet
     private TextView mLocation;
     //var
     private ViewModelStoreOwner viewModelStoreOwner;
+    private LifecycleOwner lifecycleOwner;
 
     private UpdateDataHandlerThread mUpdateDataHandlerThread;
     private UpdateDataHandle testHandle;
 
     private UpdateDataMethod mUpdateDataMethod;
 
-    public SheetBtnFragment(ViewModelStoreOwner viewModelStoreOwner) {
+    public SheetBtnFragment(ViewModelStoreOwner viewModelStoreOwner, LifecycleOwner lifecycleOwner) {
         this.viewModelStoreOwner = viewModelStoreOwner;
+        this.lifecycleOwner = lifecycleOwner;
     }
 
     @Nullable
@@ -59,7 +62,7 @@ public class SheetBtnFragment extends BottomSheetDialogFragment implements Sheet
 
         mUpdateDataHandlerThread = new UpdateDataHandlerThread();
         mUpdateDataHandlerThread.start();
-        testHandle = new UpdateDataHandle(mUpdateDataHandlerThread.getLooper(), viewModelStoreOwner);
+        testHandle = new UpdateDataHandle(mUpdateDataHandlerThread.getLooper(), viewModelStoreOwner,lifecycleOwner);
         mUpdateDataMethod = new UpdateDataMethod(testHandle);
 
 

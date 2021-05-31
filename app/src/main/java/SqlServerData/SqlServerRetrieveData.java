@@ -1,7 +1,10 @@
 package SqlServerData;
 
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 import models.*;
@@ -10,21 +13,37 @@ import viewmodels.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
+@SuppressWarnings("SqlResolve")
 public class SqlServerRetrieveData {
     private static final String TAG = "SqlServerRetrieveData";
 
-    private ViewModelStoreOwner viewModelStoreOwner;
+    private ViewModelStoreOwner mViewModelStoreOwner;
+    private LifecycleOwner mLifecycleOwner;
 
-    public SqlServerRetrieveData(ViewModelStoreOwner viewModelStoreOwner) {
+    private UserDataViewModel mUserDataViewModel;
+    private CurrentWeatherViewModel mCurrentWeatherViewModel;
+    private AirPollutionViewModel mAirPollutionViewModel;
+    private HourlyWeatherViewModel mHourlyWeatherViewModel;
+    private DailyWeatherViewModel mDailyWeatherViewModel;
+    private MonthlyWeatherViewModel mMonthlyWeatherViewModel;
 
-        this.viewModelStoreOwner = viewModelStoreOwner;
+    private UserData mUserData;
+
+    public SqlServerRetrieveData(ViewModelStoreOwner viewModelStoreOwner, LifecycleOwner lifecycleOwner) {
+        this.mViewModelStoreOwner = viewModelStoreOwner;
+        this.mLifecycleOwner = lifecycleOwner;
+        mUserDataViewModel = new ViewModelProvider(mViewModelStoreOwner).get(UserDataViewModel.class);
+    }
+
+    public SqlServerRetrieveData() {
     }
 
     public void updateAll(String location) {
+
         SqlServerConnection.connect();
-        UserDataViewModel userDataViewModel = new ViewModelProvider(viewModelStoreOwner).get(UserDataViewModel.class);
-        userDataViewModel.insertUserData(new UserData(location, true));
+        mUserDataViewModel.insertUserData(new UserData(location,true));
         if (SqlServerConnection.getConnection() != null) {
             insertCurrentWeatherNAirPollution(location);
             insertHourlyWeather(location);
@@ -32,18 +51,16 @@ public class SqlServerRetrieveData {
             insertMonthlyWeather(location);
             SqlServerConnection.disconnect();
         }
-        userDataViewModel.deleteAllUserData();
+        mUserDataViewModel.deleteAllUserData();
     }
 
     public void insertCurrentWeatherNAirPollution(String location) {
-        CurrentWeatherViewModel currentWeatherViewModel = new ViewModelProvider(viewModelStoreOwner).get(CurrentWeatherViewModel.class);
-        AirPollutionViewModel airPollutionViewModel = new ViewModelProvider(viewModelStoreOwner).get(AirPollutionViewModel.class);
-        currentWeatherViewModel.deleteAllCurrentWeather();
-        airPollutionViewModel.deleteAllAirPollution();
+        mCurrentWeatherViewModel = new ViewModelProvider(mViewModelStoreOwner).get(CurrentWeatherViewModel.class);
+        mAirPollutionViewModel = new ViewModelProvider(mViewModelStoreOwner).get(AirPollutionViewModel.class);
         try {
             ResultSet resultSet = SqlServerConnection.getStatement().executeQuery("Select * from " + location + "CurrentlyWeather; ");
-            airPollutionViewModel.deleteAllAirPollution();
-            currentWeatherViewModel.deleteAllCurrentWeather();
+            mAirPollutionViewModel.deleteAllAirPollution();
+            mCurrentWeatherViewModel.deleteAllCurrentWeather();
             while (resultSet.next()) {
                 CurrentWeather currentWeather = new CurrentWeather();
                 AirPollution airPollution = new AirPollution();
@@ -71,7 +88,7 @@ public class SqlServerRetrieveData {
                 currentWeather.setWeatherMain(resultSet.getString("weather_main"));
                 currentWeather.setWeatherId(resultSet.getString("weather_id"));
 
-                airPollution.setAqi(resultSet.getString("aqi"));
+                airPollution.setAqi(Integer.toString((int)Double.parseDouble(resultSet.getString("aqi"))));
                 airPollution.setCo(resultSet.getString("ap_co"));
                 airPollution.setNo(resultSet.getString("ap_no"));
                 airPollution.setNoTwo(resultSet.getString("ap_no2"));
@@ -81,8 +98,9 @@ public class SqlServerRetrieveData {
                 airPollution.setPmTen(resultSet.getString("ap_pm10"));
                 airPollution.setNhThree(resultSet.getString("ap_nh3"));
 
-                currentWeatherViewModel.insetCurrentWeather(currentWeather);
-                airPollutionViewModel.insetAirPollution(airPollution);
+                Log.d(TAG, "insertCurrentWeatherNAirPollution: " + airPollution.getAqi());
+                mCurrentWeatherViewModel.insetCurrentWeather(currentWeather);
+                mAirPollutionViewModel.insetAirPollution(airPollution);
 
             }
 
@@ -90,13 +108,12 @@ public class SqlServerRetrieveData {
             e.printStackTrace();
 
         }
-
     }
 
     public void insertHourlyWeather(String location) {
-        HourlyWeatherViewModel hourlyWeatherViewModel = new ViewModelProvider(viewModelStoreOwner).get(HourlyWeatherViewModel.class);
+        mHourlyWeatherViewModel = new ViewModelProvider(mViewModelStoreOwner).get(HourlyWeatherViewModel.class);
         try {
-            hourlyWeatherViewModel.deleteAllHourlyWeather();
+            mHourlyWeatherViewModel.deleteAllHourlyWeather();
             ResultSet resultSet = SqlServerConnection.getStatement().executeQuery("Select * from " + location + "HourlyWeatherForecast; ");
             while (resultSet.next()) {
                 HourlyWeather hourlyWeather = new HourlyWeather();
@@ -123,22 +140,18 @@ public class SqlServerRetrieveData {
                 hourlyWeather.setWeatherId(resultSet.getString("weather_main"));
                 hourlyWeather.setWeatherId(resultSet.getString("weather_id"));
 
-                hourlyWeatherViewModel.insetHourlyWeather(hourlyWeather);
+                mHourlyWeatherViewModel.insetHourlyWeather(hourlyWeather);
 
             }
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 
     public void insertDailyWeather(String location) {
-        DailyWeatherViewModel dailyWeatherViewModel = new ViewModelProvider(viewModelStoreOwner).get(DailyWeatherViewModel.class);
+        mDailyWeatherViewModel = new ViewModelProvider(mViewModelStoreOwner).get(DailyWeatherViewModel.class);
         try {
-            dailyWeatherViewModel.deleteAllDailyWeather();
+            mDailyWeatherViewModel.deleteAllDailyWeather();
             ResultSet resultSet = SqlServerConnection.getStatement().executeQuery("Select * from " + location + "DailyWeatherForecast; ");
             while (resultSet.next()) {
                 DailyWeather dailyWeather = new DailyWeather();
@@ -176,8 +189,7 @@ public class SqlServerRetrieveData {
                 dailyWeather.setWeatherMain(resultSet.getString("weather_main"));
                 dailyWeather.setWeatherId(resultSet.getString("weather_id"));
 
-                dailyWeatherViewModel.insetDailyWeather(dailyWeather);
-
+                mDailyWeatherViewModel.insetDailyWeather(dailyWeather);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -187,9 +199,9 @@ public class SqlServerRetrieveData {
     }
 
     public void insertMonthlyWeather(String location) {
-        MonthlyWeatherViewModel monthlyWeatherViewModel = new ViewModelProvider(viewModelStoreOwner).get(MonthlyWeatherViewModel.class);
+        mMonthlyWeatherViewModel = new ViewModelProvider(mViewModelStoreOwner).get(MonthlyWeatherViewModel.class);
         try {
-            monthlyWeatherViewModel.deleteAllMonthlyWeather();
+            mMonthlyWeatherViewModel.deleteAllMonthlyWeather();
             ResultSet resultSet = SqlServerConnection.getStatement().executeQuery("Select * from " + location + "30DaysWeatherForecast; ");
             while (resultSet.next()) {
                 MonthlyWeather monthlyWeather = new MonthlyWeather();
@@ -223,14 +235,11 @@ public class SqlServerRetrieveData {
                 monthlyWeather.setWeatherMain(resultSet.getString("weather_main"));
                 monthlyWeather.setWeatherId(resultSet.getString("weather_id"));
 
-                monthlyWeatherViewModel.insetMonthlyWeather(monthlyWeather);
+                mMonthlyWeatherViewModel.insetMonthlyWeather(monthlyWeather);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 
 

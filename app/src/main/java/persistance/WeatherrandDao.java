@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 import models.*;
 
 import java.util.ArrayList;
@@ -48,6 +49,12 @@ public interface WeatherrandDao {
 
     @Query("SELECT * FROM user_table")
     LiveData<List<UserData>> getUserData();
+
+    @Query("SELECT COUNT(*) FROM user_table")
+    LiveData<List<Integer>> getUserTableCount();
+
+    @Update
+    int updateUserData(UserData... userData);
 
     @Query("DELETE FROM current_weather")
     void deleteAllCurrentWeather();

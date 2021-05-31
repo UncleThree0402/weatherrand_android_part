@@ -14,6 +14,7 @@ import async.monthlyweather.DeleteMonthlyWeatherAsyncTask;
 import async.monthlyweather.InsertMonthlyWeatherAsyncTask;
 import async.userdata.DeleteUserDataAsyncTask;
 import async.userdata.InsertUserDataAsyncTask;
+import async.userdata.UpdateUserDataAsyncTask;
 import models.*;
 
 import java.util.List;
@@ -73,6 +74,14 @@ public class WeatherrandRepositoty {
 
     public LiveData<List<UserData>> getUserData(){
         return mWetherrandDatabase.getWeatherrandDao().getUserData();
+    }
+
+    public LiveData<List<Integer>> getUserTableCount(){
+        return mWetherrandDatabase.getWeatherrandDao().getUserTableCount();
+    }
+
+    public void updateUserData(UserData userData){
+        new UpdateUserDataAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute(userData);
     }
 
     public void deleteAllHourlyWeather(){
