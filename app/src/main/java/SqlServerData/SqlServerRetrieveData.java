@@ -38,7 +38,8 @@ public class SqlServerRetrieveData {
     public void insertCurrentWeatherNAirPollution(String location) {
         CurrentWeatherViewModel currentWeatherViewModel = new ViewModelProvider(viewModelStoreOwner).get(CurrentWeatherViewModel.class);
         AirPollutionViewModel airPollutionViewModel = new ViewModelProvider(viewModelStoreOwner).get(AirPollutionViewModel.class);
-
+        currentWeatherViewModel.deleteAllCurrentWeather();
+        airPollutionViewModel.deleteAllAirPollution();
         try {
             ResultSet resultSet = SqlServerConnection.getStatement().executeQuery("Select * from " + location + "CurrentlyWeather; ");
             airPollutionViewModel.deleteAllAirPollution();
@@ -177,7 +178,6 @@ public class SqlServerRetrieveData {
 
                 dailyWeatherViewModel.insetDailyWeather(dailyWeather);
 
-                SqlServerConnection.disconnect();
             }
         } catch (SQLException e) {
             e.printStackTrace();
