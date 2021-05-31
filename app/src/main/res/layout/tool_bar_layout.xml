@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
             android:id="@+id/location_icon"
@@ -10,6 +12,7 @@
             android:src="@drawable/location_icon"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/location_text"/>
+
     <TextView
             android:id="@+id/location_text"
             android:layout_width="wrap_content"
@@ -23,13 +26,16 @@
             android:onClick="locationListener"/>
 
     <ImageView
+            tools:ignore="OnClick"
             android:id="@+id/more_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/more_icon"
             android:layout_centerVertical="true"
             android:layout_marginEnd="16dp"
-            android:layout_alignParentEnd="true"/>
-
-
+            android:layout_alignParentEnd="true"
+            android:onClick="menuListener"/>
 </RelativeLayout>
+
+
+

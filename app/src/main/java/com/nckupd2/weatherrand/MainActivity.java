@@ -12,12 +12,18 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
+import com.google.android.material.navigation.NavigationView;
 import fragments.AirPollutionFragment;
 import fragments.DailyPageFragment;
 import fragments.SheetBtmFragment;
@@ -35,6 +41,9 @@ public class MainActivity extends AppCompatActivity  {
 
     //UI
     private ViewPager mViewPager;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private Toolbar toolbar;
 
     //Var
     private FragmentAdapter mFragmentAdapter;
@@ -58,20 +67,25 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
         mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
-//        mUserDataViewModel.getUserData().observe(this, new Observer<List<UserData>>() {
-//            @Override
-//            public void onChanged(List<UserData> userData) {
-//                if(userData.size() == 0){
-//                    mUserDataViewModel.insertUserData(new UserData(currentLocation,false));
-//                    Log.d(TAG, "onChanged: called");
-//                }
-//            }
-//        });
+        mUserDataViewModel.getUserData().observe(this, new Observer<List<UserData>>() {
+            @Override
+            public void onChanged(List<UserData> userData) {
+                if(userData.size() == 0){
+                    mUserDataViewModel.insertUserData(new UserData(currentLocation,false));
+                    Log.d(TAG, "onChanged: called");
+                }
+            }
+        });
         mUpdateDataHandlerThread = new UpdateDataHandlerThread();
         mUpdateDataHandlerThread.start();
         testHandle = new UpdateDataHandle(mUpdateDataHandlerThread.getLooper(), this,this);
@@ -114,6 +128,7 @@ public class MainActivity extends AppCompatActivity  {
         sheetBtn.show(getSupportFragmentManager(), "Sheet Button");
     }
 
-
-
+    public void menuListener(View view) {
+        drawerLayout.openDrawer(GravityCompat.START);
+    }
 }
