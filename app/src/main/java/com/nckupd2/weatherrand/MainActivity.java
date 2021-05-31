@@ -31,7 +31,7 @@ import viewmodels.UserDataViewModel;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnTouchListener, GestureDetector.OnGestureListener {
+public class MainActivity extends AppCompatActivity  {
     private static final String TAG = "MainActivity";
 
     //UI
@@ -63,7 +63,16 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-
+        mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
+//        mUserDataViewModel.getUserData().observe(this, new Observer<List<UserData>>() {
+//            @Override
+//            public void onChanged(List<UserData> userData) {
+//                if(userData.size() == 0){
+//                    mUserDataViewModel.insertUserData(new UserData(currentLocation,false));
+//                    Log.d(TAG, "onChanged: called");
+//                }
+//            }
+//        });
         mUpdateDataHandlerThread = new UpdateDataHandlerThread();
         mUpdateDataHandlerThread.start();
         testHandle = new UpdateDataHandle(mUpdateDataHandlerThread.getLooper(), this,this);
@@ -72,8 +81,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
 
         mViewPager = findViewById(R.id.view_page_container);
-        mGestureDetector = new GestureDetector(this, this);
-        mViewPager.setOnTouchListener(this);
         mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
         setViewPage(mViewPager);
         mViewPager.setCurrentItem(1);
@@ -106,62 +113,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     public void locationListener(View view) {
         SheetBtnFragment sheetBtn = new SheetBtnFragment(this,this);
         sheetBtn.show(getSupportFragmentManager(), "Sheet Button");
-    }
-
-
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        switch (v.getId()) {
-            case R.id.view_page_container:
-                mGestureDetector.onTouchEvent(event);
-                break;
-        }
-        Log.d(TAG, "onFling: " + currentPage);
-        return true;
-    }
-
-    @Override
-    public boolean onDown(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public void onShowPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        return false;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent e) {
-
-    }
-
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        if (velocityX < 0) {
-            Log.d(TAG, "onFling: velocity X < 0");
-            if (currentPage + 1 <= 2) {
-                currentPage++;
-                mViewPager.setCurrentItem(currentPage);
-            }
-        }
-        if (velocityX > 0) {
-            Log.d(TAG, "onFling: velocity X > 0");
-            if (currentPage - 1 >= 0) {
-                currentPage--;
-                mViewPager.setCurrentItem(currentPage);
-            }
-        }
-        return false;
     }
 
 

@@ -49,7 +49,6 @@ public class DailyPageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: called");
         View view = inflater.inflate(R.layout.day_page_fragment, container, false);
 
         mDailyRecycleView = view.findViewById(R.id.daily_recycle_view);
@@ -101,7 +100,6 @@ public class DailyPageFragment extends Fragment {
     }
 
     private void initDailyRecycleView() {
-        Log.d(TAG, "initDailyRecycleView: mDailyWeather : " + mDailyWeathers);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         mDailyRecycleView.setLayoutManager(linearLayoutManager);
         DailyWeatherDecorator dailyWeatherDecorator = new DailyWeatherDecorator(16);

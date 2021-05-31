@@ -37,7 +37,6 @@ public class DailyRecycleViewAdapter extends RecyclerView.Adapter<DailyRecycleVi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.d(TAG, "onBindViewHolder: Called");
         Glide.with(mContext).asBitmap().load(mDailyWeatherList.get(position).getWeatherIconUrl()).into(holder.weather_icon);
         holder.date.setText(TimeFormatter.timeStringToTomorrow(mDailyWeatherList.get(position).getDatetime()));
         holder.weather.setText(mDailyWeatherList.get(position).getWeatherDescription());

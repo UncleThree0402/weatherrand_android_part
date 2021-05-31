@@ -26,8 +26,7 @@
             android:id="@+id/view_page_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar"
-            android:layout_margin="0dp">
+            android:layout_below="@+id/toolbar">
     </androidx.viewpager.widget.ViewPager>
 
 </RelativeLayout>

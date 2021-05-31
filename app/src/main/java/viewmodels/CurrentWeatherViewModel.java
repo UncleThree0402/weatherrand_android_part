@@ -23,7 +23,6 @@ public class CurrentWeatherViewModel extends AndroidViewModel {
     }
 
     public void insetCurrentWeather(CurrentWeather currentWeather){
-        Log.d(TAG, "insetCurrentWeather: " + currentWeather.getDateTime());
         mWeatherrandRepositoty.insertCurrentWeather(currentWeather);
     }
 

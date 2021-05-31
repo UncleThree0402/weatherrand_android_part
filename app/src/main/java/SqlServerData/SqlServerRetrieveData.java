@@ -98,7 +98,6 @@ public class SqlServerRetrieveData {
                 airPollution.setPmTen(resultSet.getString("ap_pm10"));
                 airPollution.setNhThree(resultSet.getString("ap_nh3"));
 
-                Log.d(TAG, "insertCurrentWeatherNAirPollution: " + airPollution.getAqi());
                 mCurrentWeatherViewModel.insetCurrentWeather(currentWeather);
                 mAirPollutionViewModel.insetAirPollution(airPollution);
 
