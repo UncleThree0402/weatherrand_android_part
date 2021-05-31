@@ -16,7 +16,7 @@ public class SheetBtnAdapter extends RecyclerView.Adapter<SheetBtnAdapter.ViewHo
     private List<String> locationList = Arrays.asList("Changhua County", "Chiayi City", "Chiayi County", "Hengchun", "Hsinchu County", "Hsinchu City",
             "Hualien Country", "Kaohsiung City", "Keelung City", "Kinmen", "Lienchiang", "Miaoli County",
             "Nantou County", "Newtaipei City", "Penghu", "Pingtung County", "Taichung City", "Tainan City",
-            "Taipei City", "Taoyuan City", "Yilan County", "Yunlin County");
+            "Taipei City", "Taitung City","Taoyuan City", "Yilan County", "Yunlin County");
     private locationClickListener mLocationListener;
 
     public SheetBtnAdapter(locationClickListener locationListener) {

@@ -23,7 +23,7 @@ import thread.UpdateDataHandlerThread;
 import thread.UpdateDataMethod;
 import util.SheetBtnDecorator;
 
-public class SheetBtnFragment extends BottomSheetDialogFragment implements SheetBtnAdapter.locationClickListener {
+public class SheetBtmFragment extends BottomSheetDialogFragment implements SheetBtnAdapter.locationClickListener {
     private static final String TAG = "SheetBtnController";
 
     //ui
@@ -39,7 +39,7 @@ public class SheetBtnFragment extends BottomSheetDialogFragment implements Sheet
 
     private UpdateDataMethod mUpdateDataMethod;
 
-    public SheetBtnFragment(ViewModelStoreOwner viewModelStoreOwner, LifecycleOwner lifecycleOwner) {
+    public SheetBtmFragment(ViewModelStoreOwner viewModelStoreOwner, LifecycleOwner lifecycleOwner) {
         this.viewModelStoreOwner = viewModelStoreOwner;
         this.lifecycleOwner = lifecycleOwner;
     }
@@ -197,18 +197,24 @@ public class SheetBtnFragment extends BottomSheetDialogFragment implements Sheet
                 dismiss();
                 break;
             case 19:
+                mLocation.setText("Taitung County");
+                mUpdateDataMethod.init("TaiTungCounty");
+                mUpdateDataHandlerThread.quitSafely();
+                dismiss();
+                break;
+            case 20:
                 mLocation.setText("TaoYuan City");
                 mUpdateDataMethod.init("TaoYuanCity");
                 mUpdateDataHandlerThread.quitSafely();
                 dismiss();
                 break;
-            case 20:
+            case 21:
                 mLocation.setText("YiLan County");
                 mUpdateDataMethod.init("YiLanCounty");
                 mUpdateDataHandlerThread.quitSafely();
                 dismiss();
                 break;
-            case 21:
+            case 22:
                 mLocation.setText("YunLin County");
                 mUpdateDataMethod.init("YunLinCounty");
                 mUpdateDataHandlerThread.quitSafely();

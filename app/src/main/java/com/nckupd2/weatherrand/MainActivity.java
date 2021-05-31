@@ -17,11 +17,10 @@ import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 import fragments.AirPollutionFragment;
 import fragments.DailyPageFragment;
-import fragments.SheetBtnFragment;
+import fragments.SheetBtmFragment;
 import fragments.TodayPageFragment;
 import models.UserData;
 import thread.UpdateDataHandle;
@@ -111,7 +110,7 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void locationListener(View view) {
-        SheetBtnFragment sheetBtn = new SheetBtnFragment(this,this);
+        SheetBtmFragment sheetBtn = new SheetBtmFragment(this,this);
         sheetBtn.show(getSupportFragmentManager(), "Sheet Button");
     }
 
