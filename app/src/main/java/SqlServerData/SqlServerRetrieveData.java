@@ -49,7 +49,6 @@ public class SqlServerRetrieveData {
             insertHourlyWeather(location);
             insertDailyWeather(location);
             insertMonthlyWeather(location);
-            SqlServerConnection.disconnect();
         }
         mUserDataViewModel.deleteAllUserData();
     }
@@ -241,5 +240,19 @@ public class SqlServerRetrieveData {
         }
     }
 
+    public ResultSet retrieveEarthquake(){
+        SqlServerConnection.connect();
+        if(SqlServerConnection.getConnection() != null){
+            try{
+                ResultSet resultSet = SqlServerConnection.getStatement().executeQuery("Select * from earthquake ");
+                return resultSet;
+            }catch (SQLException e){
+                e.printStackTrace();
+                return null;
+            }
+        }else{
+            return null;
+        }
+    }
 
 }

@@ -63,24 +63,27 @@ public class DailyPageFragment extends Fragment {
         dailyWeatherViewModel = new ViewModelProvider(this).get(DailyWeatherViewModel.class);
         userDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
 
-        initDailyRecycleView();
+
 
         userDataViewModel.getUserData().observe(getViewLifecycleOwner(), new Observer<List<UserData>>() {
             @Override
             public void onChanged(List<UserData> userData) {
                 if(mDailyWeathers.size() > 0){
-                    tmrDate.setText(TimeFormatter.timeStringToTomorrow(mDailyWeathers.get(0).getDatetime()));
-                    tmrTemp.setText(NumberFormatter.roundNumber(mDailyWeathers.get(0).getDayTemperature()) + "°");
-                    tmrWind.setText(mDailyWeathers.get(0).getWindSpeed() + "km/h");
-                    tmrHum.setText(NumberFormatter.percentageFormat(mDailyWeathers.get(0).getHumidity()));
-                    tmrRain.setText(NumberFormatter.percentageFormat(mDailyWeathers.get(0).getRainPercentage()));
-                    Glide.with(getActivity()).asBitmap().load(mDailyWeathers.get(0).getWeatherIconUrl()).into(tmrIcon);
-                    tmrDescription.setText(mDailyWeathers.get(0).getWeatherDescription());
+                    tmrDate.setText(TimeFormatter.timeStringToTomorrow(mDailyWeathers.get(1).getDatetime()));
+                    tmrTemp.setText(NumberFormatter.roundNumber(mDailyWeathers.get(1).getDayTemperature()) + "°");
+                    tmrWind.setText(NumberFormatter.roundNumber(mDailyWeathers.get(1).getWindSpeed()) + "km/h");
+                    tmrHum.setText(mDailyWeathers.get(1).getHumidity() + "%");
+                    tmrRain.setText(NumberFormatter.percentageFormat(mDailyWeathers.get(1).getRainPercentage()) + "%");
+                    Glide.with(getActivity()).asBitmap().load(mDailyWeathers.get(1).getWeatherIconUrl()).into(tmrIcon);
+                    tmrDescription.setText(mDailyWeathers.get(1).getWeatherDescription());
+                    mDailyWeathers.remove(0);
                     mDailyWeathers.remove(0);
                     mDailyRecycleViewAdapter.notifyDataSetChanged();
                 }
             }
         });
+
+        initDailyRecycleView();
 
         dailyWeatherViewModel.getDailyWeather().observe(getViewLifecycleOwner(), new Observer<List<DailyWeather>>() {
             @Override

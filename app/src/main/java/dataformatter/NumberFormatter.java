@@ -7,7 +7,7 @@ public class NumberFormatter {
     }
 
     public static String percentageFormat(String number){
-        return Integer.toString((int) Math.round(Double.parseDouble(number) * 100)/100) + "%";
+        return (int) (Math.round(Double.parseDouble(number) * 100)) + "%";
     }
 
     public static int stringToNumber(String number){

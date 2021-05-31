@@ -42,7 +42,7 @@ public class HourlyRecycleViewAdapter extends RecyclerView.Adapter<HourlyRecycle
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Glide.with(mContext).asBitmap().load(mHourlyWeatherList.get(position).getWeatherIconUrl()).into(holder.weather_icon);
         holder.time.setText(TimeFormatter.datetimeToHour(mHourlyWeatherList.get(position).getDateTime()) + ":00");
-        holder.temp.setText(NumberFormatter.roundNumber(mHourlyWeatherList.get(position).getTemperature()));
+        holder.temp.setText(NumberFormatter.roundNumber(mHourlyWeatherList.get(position).getTemperature()) + "°");
         holder.rain.setText(NumberFormatter.percentageFormat(mHourlyWeatherList.get(position).getRainPercentage()));
     }
 

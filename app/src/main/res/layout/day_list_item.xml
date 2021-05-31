@@ -68,7 +68,7 @@
 
     <RelativeLayout
             android:id="@+id/rel_rain"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_centerVertical="true"
@@ -80,6 +80,7 @@
                 android:paddingTop="20dp"
                 android:layout_width="30dp"
                 android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
                 android:src="@drawable/cloud_icon"/>
 
         <TextView
@@ -89,12 +90,12 @@
                 android:layout_below="@+id/seven_day_cloud_icon"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
                 android:text="20%"
                 android:textSize="16sp"
                 android:textColor="#000000"
-                android:fontFamily="@font/quicksand_medium"/>
+                android:fontFamily="@font/quicksand_medium"
+                android:layout_centerInParent="true"/>
 
 
     </RelativeLayout>

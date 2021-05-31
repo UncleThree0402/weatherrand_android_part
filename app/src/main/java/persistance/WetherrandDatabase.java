@@ -6,9 +6,9 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import models.*;
 
-@Database(entities = {CurrentWeather.class, DailyWeather.class, HourlyWeather.class, MonthlyWeather.class, AirPollution.class, UserData.class}, version = 6)
+@Database(entities = {CurrentWeather.class, DailyWeather.class, HourlyWeather.class, MonthlyWeather.class, AirPollution.class, UserData.class, Earthquake.class}, version = 1)
 public abstract class WetherrandDatabase extends RoomDatabase {
-    public static final String DATABASE_NAME = "weatherrand_db";
+    public static final String DATABASE_NAME = "weatherrandVer1_db";
 
     private static WetherrandDatabase instance;
 

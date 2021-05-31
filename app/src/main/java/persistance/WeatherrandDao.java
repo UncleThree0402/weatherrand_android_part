@@ -32,6 +32,9 @@ public interface WeatherrandDao {
     @Insert
     long[] insertUserData(UserData... userData);
 
+    @Insert
+    long[] insertEarthquake(Earthquake... earthquakes);
+
     @Query("SELECT * FROM current_weather")
     LiveData<List<CurrentWeather>> getCurrentWeather();
 
@@ -52,6 +55,9 @@ public interface WeatherrandDao {
 
     @Query("SELECT COUNT(*) FROM user_table")
     LiveData<List<Integer>> getUserTableCount();
+
+    @Query("SELECT * FROM earthquake")
+    LiveData<List<Earthquake>> getEarthquake();
 
     @Update
     int updateUserData(UserData... userData);

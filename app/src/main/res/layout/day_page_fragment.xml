@@ -162,6 +162,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/tomorrow_cloud_icon"
                             android:layout_centerHorizontal="true"
+                            android:textAlignment="center"
                             android:text="20%"
                             android:textSize="16sp"
                             android:textColor="@color/black"

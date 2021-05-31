@@ -8,6 +8,7 @@ import async.currentwearther.DeleteCurrentWeatherAsyncTask;
 import async.currentwearther.InsertCurrentWeatherAsyncTask;
 import async.dailyweather.DeleteDailyWeatherAsyncTask;
 import async.dailyweather.InsertDailyWeatherAsyncTask;
+import async.earthquake.InsertEarthquakeAsyncTask;
 import async.hourlyweather.DeleteHourlyWeatherAsyncTask;
 import async.hourlyweather.InsertHourlyWeatherAsyncTask;
 import async.monthlyweather.DeleteMonthlyWeatherAsyncTask;
@@ -52,6 +53,10 @@ public class WeatherrandRepositoty {
         new InsertUserDataAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute(userData);
     }
 
+    public void insertEarthquake(Earthquake earthquake){
+        new InsertEarthquakeAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute(earthquake);
+    }
+
     public LiveData<List<CurrentWeather>> getCurrentWeather(){
         return mWetherrandDatabase.getWeatherrandDao().getCurrentWeather();
     }
@@ -78,6 +83,10 @@ public class WeatherrandRepositoty {
 
     public LiveData<List<Integer>> getUserTableCount(){
         return mWetherrandDatabase.getWeatherrandDao().getUserTableCount();
+    }
+
+    public LiveData<List<Earthquake>> getEarthquake(){
+        return mWetherrandDatabase.getWeatherrandDao().getEarthquake();
     }
 
     public void updateUserData(UserData userData){
