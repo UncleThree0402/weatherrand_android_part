@@ -11,7 +11,13 @@ public class NumberFormatter {
     }
 
     public static int stringToNumber(String number){
-        return Integer.parseInt(number);
+        int a = 0;
+        try {
+            a =  Integer.parseInt(number);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return a;
     }
 
     public static String correctToSig(String number){
