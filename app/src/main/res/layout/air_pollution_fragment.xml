@@ -46,7 +46,7 @@
                     android:id="@+id/rel_layout1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/air_pollution_back">
+                    >
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
                     android:id="@+id/rel_layout2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     android:layout_below="@+id/rel_layout1"
                     android:background="@drawable/air_pollution_back">
 
@@ -128,9 +128,8 @@
                     android:id="@+id/rel_layout3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_below="@+id/rel_layout2"
-                    android:background="@drawable/air_pollution_back">
+                    android:layout_marginTop="24dp"
+                    android:layout_below="@+id/rel_layout2">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -170,7 +169,7 @@
                     android:id="@+id/rel_layout4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     android:layout_below="@+id/rel_layout3"
                     android:background="@drawable/air_pollution_back">
 
@@ -212,9 +211,8 @@
                     android:id="@+id/rel_layout5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_below="@+id/rel_layout4"
-                    android:background="@drawable/air_pollution_back">
+                    android:layout_marginTop="24dp"
+                    android:layout_below="@+id/rel_layout4">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -254,7 +252,7 @@
                     android:id="@+id/rel_layout6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     android:layout_below="@+id/rel_layout5"
                     android:background="@drawable/air_pollution_back">
 
@@ -296,9 +294,8 @@
                     android:id="@+id/rel_layout7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_below="@+id/rel_layout6"
-                    android:background="@drawable/air_pollution_back">
+                    android:layout_marginTop="24dp"
+                    android:layout_below="@+id/rel_layout6">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -338,7 +335,7 @@
                     android:id="@+id/rel_layout8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     android:layout_below="@+id/rel_layout7"
                     android:background="@drawable/air_pollution_back">
 

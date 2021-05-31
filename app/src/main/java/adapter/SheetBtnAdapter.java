@@ -1,6 +1,5 @@
 package adapter;
 
-import android.location.LocationListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.nckupd2.weatherrand.R;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,7 +26,7 @@ public class SheetBtnAdapter extends RecyclerView.Adapter<SheetBtnAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.sheet_btn_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.sheet_bottom_list_item, parent, false);
         return new ViewHolder(view, mLocationListener);
     }
 
