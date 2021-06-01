@@ -147,6 +147,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.nav_menu,menu);
+        menu.getItem(0).setChecked(true);
+        menu.getItem(0).setIcon(R.drawable.bell_on_icon);
         return true;
     }
 
