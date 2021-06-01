@@ -20,13 +20,8 @@ import androidx.core.app.ActivityCompat;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
-import com.google.android.material.navigation.NavigationView;
 import fragments.AirPollutionFragment;
 import fragments.DailyPageFragment;
 import fragments.SheetBtmFragment;
@@ -61,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
     private UpdateDataMethod mUpdateDataMethod;
 
     private GestureDetector mGestureDetector;
-    private int currentPage = 1;
 
 
     @Override
@@ -76,23 +70,12 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        scheduleJob();
+        SqlServerRetrieveData sqlServerRetrieveData = new SqlServerRetrieveData(this,this);
 
-        mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
-        mUserDataViewModel.getUserData().observe(this, new Observer<List<UserData>>() {
-            @Override
-            public void onChanged(List<UserData> userData) {
-                if(userData.size() == 0){
-                    mUserDataViewModel.insertUserData(new UserData(currentLocation,false));
-                    Log.d(TAG, "onChanged: called");
-                }
-            }
-        });
-        mUpdateDataHandlerThread = new UpdateDataHandlerThread();
-        mUpdateDataHandlerThread.start();
-        testHandle = new UpdateDataHandle(mUpdateDataHandlerThread.getLooper(), this, this);
-        mUpdateDataMethod = new UpdateDataMethod(testHandle);
-        mUpdateDataMethod.init(currentLocation);
+//        mUpdateDataHandlerThread = new UpdateDataHandlerThread();
+//        mUpdateDataHandlerThread.start();
+//        testHandle = new UpdateDataHandle(mUpdateDataHandlerThread.getLooper(), this, this);
+//        mUpdateDataMethod = new UpdateDataMethod(testHandle);
 
 
         mViewPager = findViewById(R.id.view_page_container);
@@ -107,14 +90,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mUpdateDataMethod.init(currentLocation);
+//        mUpdateDataMethod.init(currentLocation);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        cancelJob();
-        mUpdateDataHandlerThread.quitSafely();
+//        mUpdateDataHandlerThread.quitSafely();
     }
 
     private void scheduleJob() {
@@ -178,9 +160,11 @@ public class MainActivity extends AppCompatActivity {
                 if(item.isChecked()) {
                     item.setChecked(false);
                     item.setIcon(R.drawable.bell_off_icon);
+                    cancelJob();
                 }else{
                     item.setChecked(true);
                     item.setIcon(R.drawable.bell_on_icon);
+                    scheduleJob();
                 }
                 return true;
             default:

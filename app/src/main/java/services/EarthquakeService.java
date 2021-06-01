@@ -40,8 +40,8 @@ public class EarthquakeService extends JobService {
             public void onChanged(List<Earthquake> earthquakes) {
                 if (earthquakes.size() > 0) {
                     earthquakeId = earthquakes.get(0).getEarthquakeId();
-                    doBackgroundWork(params);
                 }
+                doBackgroundWork(params);
             }
         });
         return true;
@@ -66,16 +66,14 @@ public class EarthquakeService extends JobService {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                if(earthquake.getEarthquakeId() == earthquakeId){
-                    return;
-                }
                 if (jobCancelled) {
                     return;
                 }
                 if (earthquakeId == null) {
                     mWeatherrandRepositoty.insertEarthquake(earthquake);
+                } else if(earthquake.getEarthquakeId() == earthquakeId){
+                    return;
                 } else if (earthquakeId != earthquake.getEarthquakeId()) {
-                    Log.d(TAG, "run: called");
                     NotificationManager mNotificationManager;
 
                     NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "1");

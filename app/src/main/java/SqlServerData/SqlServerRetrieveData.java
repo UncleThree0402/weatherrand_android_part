@@ -1,7 +1,5 @@
 package SqlServerData;
 
-import android.content.Context;
-import android.net.Uri;
 import android.util.Log;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
@@ -14,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @SuppressWarnings("SqlResolve")
 public class SqlServerRetrieveData {
@@ -29,28 +28,48 @@ public class SqlServerRetrieveData {
     private DailyWeatherViewModel mDailyWeatherViewModel;
     private MonthlyWeatherViewModel mMonthlyWeatherViewModel;
 
-    private UserData mUserData;
+    private boolean initStatus = true;
+
 
     public SqlServerRetrieveData(ViewModelStoreOwner viewModelStoreOwner, LifecycleOwner lifecycleOwner) {
         this.mViewModelStoreOwner = viewModelStoreOwner;
         this.mLifecycleOwner = lifecycleOwner;
         mUserDataViewModel = new ViewModelProvider(mViewModelStoreOwner).get(UserDataViewModel.class);
+        mUserDataViewModel.getUserData().observe(lifecycleOwner, new Observer<List<UserData>>() {
+            @Override
+            public void onChanged(List<UserData> userData) {
+                if (userData.size() == 0) {
+                    UserData userData1 = new UserData("TaiNanCity", false);
+                    mUserDataViewModel.insertUserData(userData1);
+                    SqlServerConnection.connect();
+                    if (SqlServerConnection.getConnection() != null) {
+                        insertCurrentWeatherNAirPollution("TaiNanCity");
+                        insertHourlyWeather("TaiNanCity");
+                        insertDailyWeather("TaiNanCity");
+                        insertMonthlyWeather("TaiNanCity");
+                    }
+                } else if (userData.size() == 1) {
+                    if(userData.get(0).isUpdateStatus() | initStatus){
+                        SqlServerConnection.connect();
+                        if (SqlServerConnection.getConnection() != null) {
+                            insertCurrentWeatherNAirPollution(userData.get(0).getLocation());
+                            insertHourlyWeather(userData.get(0).getLocation());
+                            insertDailyWeather(userData.get(0).getLocation());
+                            insertMonthlyWeather(userData.get(0).getLocation());
+                        }
+                        UserData newUserData = new UserData(userData.get(0).getUser_id(),userData.get(0).getLocation(),false);
+                        mUserDataViewModel.updateUserData(newUserData);
+                        initStatus = false;
+                    }
+                }
+            }
+        });
     }
 
     public SqlServerRetrieveData() {
     }
 
     public void updateAll(String location) {
-
-        SqlServerConnection.connect();
-        mUserDataViewModel.insertUserData(new UserData(location,true));
-        if (SqlServerConnection.getConnection() != null) {
-            insertCurrentWeatherNAirPollution(location);
-            insertHourlyWeather(location);
-            insertDailyWeather(location);
-            insertMonthlyWeather(location);
-        }
-        mUserDataViewModel.deleteAllUserData();
     }
 
     public void insertCurrentWeatherNAirPollution(String location) {
@@ -87,7 +106,7 @@ public class SqlServerRetrieveData {
                 currentWeather.setWeatherMain(resultSet.getString("weather_main"));
                 currentWeather.setWeatherId(resultSet.getString("weather_id"));
 
-                airPollution.setAqi(Integer.toString((int)Double.parseDouble(resultSet.getString("aqi"))));
+                airPollution.setAqi(Integer.toString((int) Double.parseDouble(resultSet.getString("aqi"))));
                 airPollution.setCo(resultSet.getString("ap_co"));
                 airPollution.setNo(resultSet.getString("ap_no"));
                 airPollution.setNoTwo(resultSet.getString("ap_no2"));
@@ -240,17 +259,17 @@ public class SqlServerRetrieveData {
         }
     }
 
-    public ResultSet retrieveEarthquake(){
+    public ResultSet retrieveEarthquake() {
         SqlServerConnection.connect();
-        if(SqlServerConnection.getConnection() != null){
-            try{
+        if (SqlServerConnection.getConnection() != null) {
+            try {
                 ResultSet resultSet = SqlServerConnection.getStatement().executeQuery("Select * from earthquake ");
                 return resultSet;
-            }catch (SQLException e){
+            } catch (SQLException e) {
                 e.printStackTrace();
                 return null;
             }
-        }else{
+        } else {
             return null;
         }
     }
