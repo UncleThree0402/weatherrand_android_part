@@ -156,7 +156,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_about_us:
-                Toast.makeText(MainActivity.this, "about us", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Weatherrand\n"+"NCKU PD2 Group project\n" + "Leader : Marco\n" + "Member : " +
+                        "Tommy\n"+"                   Hugo\n"+"                   Wayne\n"+"                   Eason", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.nav_notify:
                 if(item.isChecked()) {
