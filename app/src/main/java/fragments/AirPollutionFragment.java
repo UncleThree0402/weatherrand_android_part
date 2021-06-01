@@ -83,16 +83,18 @@ public class AirPollutionFragment extends Fragment {
         mUserDataViewModel.getUserData().observe(this.getViewLifecycleOwner(), new Observer<List<UserData>>() {
             @Override
             public void onChanged(List<UserData> userData) {
-                if(coText!=null) {
-                    co.setText(NumberFormatter.correctToSig(coText));
-                    no.setText(NumberFormatter.correctToSig(noText));
-                    no2.setText(NumberFormatter.correctToSig(no2Text));
-                    o3.setText(NumberFormatter.correctToSig(o3Text));
-                    so2.setText(NumberFormatter.correctToSig(so2Text));
-                    pm2_5.setText(NumberFormatter.correctToSig(pm2_5Text));
-                    pm10.setText(NumberFormatter.correctToSig(pm10Text));
-                    nh3.setText(NumberFormatter.correctToSig(nh3Text));
-                    setAqiIcon(aqiText);
+                if(!userData.get(0).isUpdateStatus()) {
+                    if (coText != null) {
+                        co.setText(NumberFormatter.correctToSig(coText));
+                        no.setText(NumberFormatter.correctToSig(noText));
+                        no2.setText(NumberFormatter.correctToSig(no2Text));
+                        o3.setText(NumberFormatter.correctToSig(o3Text));
+                        so2.setText(NumberFormatter.correctToSig(so2Text));
+                        pm2_5.setText(NumberFormatter.correctToSig(pm2_5Text));
+                        pm10.setText(NumberFormatter.correctToSig(pm10Text));
+                        nh3.setText(NumberFormatter.correctToSig(nh3Text));
+                        setAqiIcon(aqiText);
+                    }
                 }
             }
         });

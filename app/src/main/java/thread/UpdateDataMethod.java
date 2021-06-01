@@ -10,10 +10,6 @@ public class UpdateDataMethod {
         this.updateDataHandler = updateDataHandler;
     }
 
-    public void init(String location){
-        updateAll(location);
-    }
-
     public void updateCurrentWeatherNAirPollution(String currentLocation){
         Message msg = Message.obtain();
         msg.what = 1;

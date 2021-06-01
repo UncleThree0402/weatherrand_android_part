@@ -58,12 +58,10 @@ public class SheetBtmFragment extends BottomSheetDialogFragment implements Sheet
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.sheet_bottom, container, false);
 
-        mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
-
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
         SheetBtnDecorator sheetBtnDecorator = new SheetBtnDecorator(16);
 
+        mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
 
         mLocation = getActivity().findViewById(R.id.location_text);
         mRecycleView = view.findViewById(R.id.sheet_btn_recycle_view);
@@ -72,22 +70,12 @@ public class SheetBtmFragment extends BottomSheetDialogFragment implements Sheet
         mRecycleView.addItemDecoration(sheetBtnDecorator);
         mRecycleView.setAdapter(mSheetBtnAdapter);
 
-//        mUpdateDataHandlerThread = new UpdateDataHandlerThread();
-//        mUpdateDataHandlerThread.start();
-//        testHandle = new UpdateDataHandle(mUpdateDataHandlerThread.getLooper(), viewModelStoreOwner,lifecycleOwner);
-//        mUpdateDataMethod = new UpdateDataMethod(testHandle);
-
-
-
-        Log.d(TAG, "onCreateView: mLocation location = " + mLocation);
-
         return view;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-//        mUpdateDataHandlerThread.quitSafely();
     }
 
     @Override
@@ -98,184 +86,138 @@ public class SheetBtmFragment extends BottomSheetDialogFragment implements Sheet
                 mUserData = userData.get(0);
                 switch (position) {
                     case 0:
-                        mLocation.setText("ChangHua County");
-                        mLocation.setTextSize(24);
                         mUserData.setLocation("ChangHuaCounty");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 1:
-                        mLocation.setText("ChiaYi City");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("ChiaYiCity");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 2:
-                        mLocation.setText("ChiaYi County");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("ChiaYiCounty");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 3:
-                        mLocation.setText("Heng Chun");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("HengChun");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 4:
-                        mLocation.setText("HsinChu County");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("HsinChuCounty");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 5:
-                        mLocation.setText("HsinChu City");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("HsinChuCity");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 6:
-                        mLocation.setText("Hualien Country");
-                        mLocation.setTextSize(28);
-                        mUserData.setLocation("HualienCountry");
+                        mUserData.setLocation("HuaLienCounty");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 7:
-                        mLocation.setText("KaohSiung City");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("KaohSiungCity");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 8:
-                        mLocation.setText("KeeLung City");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("KeeLungCity");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 9:
-                        mLocation.setText("KinMen");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("KinMen");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 10:
-                        mLocation.setText("LienChiang");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("LienChiang");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 11:
-                        mLocation.setText("MiaoLi County");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("MiaoLiCounty");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 12:
-                        mLocation.setText("NanTou County");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("NanTouCounty");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 13:
-                        mLocation.setText("NewTaipei Cityy");
-                        mLocation.setTextSize(28);
-                        mUserData.setLocation("NewTaipei Cityy");
+                        mUserData.setLocation("NewTaipeiCity");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 14:
-                        mLocation.setText("PengHu");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("PengHu");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 15:
-                        mLocation.setText("PingTung County");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("PingTungCounty");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 16:
-                        mLocation.setText("TaiChung City");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("TaiChungCity");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 17:
-                        mLocation.setText("Tainan City");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("TainanCity");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 18:
-                        mLocation.setText("Taipei City");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("TaipeiCity");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 19:
-                        mLocation.setText("Taitung County");
-                        mLocation.setTextSize(28);
-                        mUserData.setLocation("TaiTung ounty");
+                        mUserData.setLocation("TaiTungCounty");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 20:
-                        mLocation.setText("TaoYuan City");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("TaoYuanCity");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 21:
-                        mLocation.setText("YiLan County");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("YiLanCounty");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);
                         dismiss();
                         break;
                     case 22:
-                        mLocation.setText("YunLin County");
-                        mLocation.setTextSize(28);
                         mUserData.setLocation("YunLinCounty");
                         mUserData.setUpdateStatus(true);
                         mUserDataViewModel.updateUserData(mUserData);

@@ -120,20 +120,21 @@ public class TodayPageFragment extends Fragment {
         mUserDataViewModel.getUserData().observe(this.getViewLifecycleOwner(), new Observer<List<UserData>>() {
             @Override
             public void onChanged(List<UserData> userData) {
-                currentTemp.setText(currentTempText);
-                currentWind.setText(currentWindText);
-                currentHumidity.setText(currentHumidityText);
-                Glide.with(getActivity()).asBitmap().load(currentIconText).into(currentIcon);
-                currentWeatherText.setText(currentWeatherTextText);
-                currentAqi.setText(currentAqiText);
-                while(mHourlyWeathers.size() > 0){
-                    if(TimeFormatter.datetimeToHour(mHourlyWeathers.get(0).getDateTime()).equals(TimeFormatter.datetimeToHour(Long.toString(System.currentTimeMillis() / 1000)))){
-                        break;
+                if(!userData.get(0).isUpdateStatus()) {
+                    currentTemp.setText(currentTempText);
+                    currentWind.setText(currentWindText);
+                    currentHumidity.setText(currentHumidityText);
+                    Glide.with(getActivity()).asBitmap().load(currentIconText).into(currentIcon);
+                    currentWeatherText.setText(currentWeatherTextText);
+                    currentAqi.setText(currentAqiText);
+                    while (mHourlyWeathers.size() > 0) {
+                        if (TimeFormatter.datetimeToHour(mHourlyWeathers.get(0).getDateTime()).equals(TimeFormatter.datetimeToHour(Long.toString(System.currentTimeMillis() / 1000)))) {
+                            break;
+                        }
+                        mHourlyWeathers.remove(0);
                     }
-                    mHourlyWeathers.remove(0);
+                    mHourlyRecycleViewAdapter.notifyDataSetChanged();
                 }
-                mHourlyRecycleViewAdapter.notifyDataSetChanged();
-
             }
         });
 

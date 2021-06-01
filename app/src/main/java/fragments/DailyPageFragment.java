@@ -67,17 +67,19 @@ public class DailyPageFragment extends Fragment {
         userDataViewModel.getUserData().observe(getViewLifecycleOwner(), new Observer<List<UserData>>() {
             @Override
             public void onChanged(List<UserData> userData) {
-                if(mDailyWeathers.size() > 0){
-                    tmrDate.setText(TimeFormatter.timeStringToTomorrow(mDailyWeathers.get(1).getDatetime()));
-                    tmrTemp.setText(NumberFormatter.roundNumber(mDailyWeathers.get(1).getDayTemperature()) + "°");
-                    tmrWind.setText(NumberFormatter.roundNumber(mDailyWeathers.get(1).getWindSpeed()) + "km/h");
-                    tmrHum.setText(mDailyWeathers.get(1).getHumidity() + "%");
-                    tmrRain.setText(NumberFormatter.percentageFormat(mDailyWeathers.get(1).getRainPercentage()));
-                    Glide.with(getActivity()).asBitmap().load(mDailyWeathers.get(1).getWeatherIconUrl()).into(tmrIcon);
-                    tmrDescription.setText(mDailyWeathers.get(1).getWeatherDescription());
-                    mDailyWeathers.remove(0);
-                    mDailyWeathers.remove(0);
-                    mDailyRecycleViewAdapter.notifyDataSetChanged();
+                if(!userData.get(0).isUpdateStatus()) {
+                    if (mDailyWeathers.size() > 0) {
+                        tmrDate.setText(TimeFormatter.timeStringToTomorrow(mDailyWeathers.get(1).getDatetime()));
+                        tmrTemp.setText(NumberFormatter.roundNumber(mDailyWeathers.get(1).getDayTemperature()) + "°");
+                        tmrWind.setText(NumberFormatter.roundNumber(mDailyWeathers.get(1).getWindSpeed()) + "km/h");
+                        tmrHum.setText(mDailyWeathers.get(1).getHumidity() + "%");
+                        tmrRain.setText(NumberFormatter.percentageFormat(mDailyWeathers.get(1).getRainPercentage()));
+                        Glide.with(getActivity()).asBitmap().load(mDailyWeathers.get(1).getWeatherIconUrl()).into(tmrIcon);
+                        tmrDescription.setText(mDailyWeathers.get(1).getWeatherDescription());
+                        mDailyWeathers.remove(0);
+                        mDailyWeathers.remove(0);
+                        mDailyRecycleViewAdapter.notifyDataSetChanged();
+                    }
                 }
             }
         });

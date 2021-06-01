@@ -34,43 +34,11 @@ public class SqlServerRetrieveData {
     public SqlServerRetrieveData(ViewModelStoreOwner viewModelStoreOwner, LifecycleOwner lifecycleOwner) {
         this.mViewModelStoreOwner = viewModelStoreOwner;
         this.mLifecycleOwner = lifecycleOwner;
-        mUserDataViewModel = new ViewModelProvider(mViewModelStoreOwner).get(UserDataViewModel.class);
-        mUserDataViewModel.getUserData().observe(lifecycleOwner, new Observer<List<UserData>>() {
-            @Override
-            public void onChanged(List<UserData> userData) {
-                if (userData.size() == 0) {
-                    UserData userData1 = new UserData("TaiNanCity", false);
-                    mUserDataViewModel.insertUserData(userData1);
-                    SqlServerConnection.connect();
-                    if (SqlServerConnection.getConnection() != null) {
-                        insertCurrentWeatherNAirPollution("TaiNanCity");
-                        insertHourlyWeather("TaiNanCity");
-                        insertDailyWeather("TaiNanCity");
-                        insertMonthlyWeather("TaiNanCity");
-                    }
-                } else if (userData.size() == 1) {
-                    if(userData.get(0).isUpdateStatus() | initStatus){
-                        SqlServerConnection.connect();
-                        if (SqlServerConnection.getConnection() != null) {
-                            insertCurrentWeatherNAirPollution(userData.get(0).getLocation());
-                            insertHourlyWeather(userData.get(0).getLocation());
-                            insertDailyWeather(userData.get(0).getLocation());
-                            insertMonthlyWeather(userData.get(0).getLocation());
-                        }
-                        UserData newUserData = new UserData(userData.get(0).getUser_id(),userData.get(0).getLocation(),false);
-                        mUserDataViewModel.updateUserData(newUserData);
-                        initStatus = false;
-                    }
-                }
-            }
-        });
     }
 
     public SqlServerRetrieveData() {
     }
 
-    public void updateAll(String location) {
-    }
 
     public void insertCurrentWeatherNAirPollution(String location) {
         mCurrentWeatherViewModel = new ViewModelProvider(mViewModelStoreOwner).get(CurrentWeatherViewModel.class);
@@ -158,7 +126,6 @@ public class SqlServerRetrieveData {
                 hourlyWeather.setWeatherId(resultSet.getString("weather_id"));
 
                 mHourlyWeatherViewModel.insetHourlyWeather(hourlyWeather);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();

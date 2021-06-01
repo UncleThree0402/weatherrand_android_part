@@ -39,7 +39,10 @@ public class UpdateDataHandle extends Handler {
                 mSqlServerRetrieveData.insertMonthlyWeather((String) msg.obj);
                 break;
             case UPDATE_ALL:
-                mSqlServerRetrieveData.updateAll((String) msg.obj);
+                mSqlServerRetrieveData.insertCurrentWeatherNAirPollution((String) msg.obj);
+                mSqlServerRetrieveData.insertHourlyWeather((String) msg.obj);
+                mSqlServerRetrieveData.insertDailyWeather((String) msg.obj);
+                mSqlServerRetrieveData.insertMonthlyWeather((String) msg.obj);
                 break;
         }
     }
