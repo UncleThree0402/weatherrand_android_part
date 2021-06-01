@@ -12,8 +12,9 @@ import android.content.pm.PackageManager;
 import android.os.StrictMode;
 
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.View;
+import android.view.*;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
@@ -23,6 +24,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.navigation.NavigationView;
 import fragments.AirPollutionFragment;
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     //UI
     private ViewPager mViewPager;
+    private Toolbar toolbar;
 
     //Var
     private FragmentAdapter mFragmentAdapter;
@@ -66,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -73,15 +79,15 @@ public class MainActivity extends AppCompatActivity {
         scheduleJob();
 
         mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
-//        mUserDataViewModel.getUserData().observe(this, new Observer<List<UserData>>() {
-//            @Override
-//            public void onChanged(List<UserData> userData) {
-//                if(userData.size() == 0){
-//                    mUserDataViewModel.insertUserData(new UserData(currentLocation,false));
-//                    Log.d(TAG, "onChanged: called");
-//                }
-//            }
-//        });
+        mUserDataViewModel.getUserData().observe(this, new Observer<List<UserData>>() {
+            @Override
+            public void onChanged(List<UserData> userData) {
+                if(userData.size() == 0){
+                    mUserDataViewModel.insertUserData(new UserData(currentLocation,false));
+                    Log.d(TAG, "onChanged: called");
+                }
+            }
+        });
         mUpdateDataHandlerThread = new UpdateDataHandlerThread();
         mUpdateDataHandlerThread.start();
         testHandle = new UpdateDataHandle(mUpdateDataHandlerThread.getLooper(), this, this);
@@ -93,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
         mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
         setViewPage(mViewPager);
         mViewPager.setCurrentItem(1);
+
+
 
     }
 
@@ -153,5 +161,30 @@ public class MainActivity extends AppCompatActivity {
         sheetBtn.show(getSupportFragmentManager(), "Sheet Button");
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.nav_menu,menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.nav_about_us:
+                Toast.makeText(MainActivity.this, "about us", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.nav_notify:
+                if(item.isChecked()) {
+                    item.setChecked(false);
+                    item.setIcon(R.drawable.bell_off_icon);
+                }else{
+                    item.setChecked(true);
+                    item.setIcon(R.drawable.bell_on_icon);
+                }
+                return true;
+            default:
+                return true;
+        }
+    }
 }
