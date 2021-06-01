@@ -39,7 +39,6 @@ public class DailyPageFragment extends Fragment {
     private TextView tmrRain;
     private ImageView tmrIcon;
     private TextView tmrDescription;
-
     //Var
     private ArrayList<DailyWeather> mDailyWeathers = new ArrayList<>();
     private DailyRecycleViewAdapter mDailyRecycleViewAdapter;
@@ -73,7 +72,7 @@ public class DailyPageFragment extends Fragment {
                     tmrTemp.setText(NumberFormatter.roundNumber(mDailyWeathers.get(1).getDayTemperature()) + "°");
                     tmrWind.setText(NumberFormatter.roundNumber(mDailyWeathers.get(1).getWindSpeed()) + "km/h");
                     tmrHum.setText(mDailyWeathers.get(1).getHumidity() + "%");
-                    tmrRain.setText(NumberFormatter.percentageFormat(mDailyWeathers.get(1).getRainPercentage()) + "%");
+                    tmrRain.setText(NumberFormatter.percentageFormat(mDailyWeathers.get(1).getRainPercentage()));
                     Glide.with(getActivity()).asBitmap().load(mDailyWeathers.get(1).getWeatherIconUrl()).into(tmrIcon);
                     tmrDescription.setText(mDailyWeathers.get(1).getWeatherDescription());
                     mDailyWeathers.remove(0);

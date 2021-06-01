@@ -8,7 +8,8 @@
         tools:context=".MainActivity"
         android:theme="@style/Theme.Weatherrand"
         android:background="@drawable/sunny_background"
-        android:id="@+id/drawer_layout">
+        android:id="@+id/drawer_layout"
+        android:fitsSystemWindows="true">
 
 <RelativeLayout
         android:id="@+id/main_layout"
@@ -37,8 +38,7 @@
             android:id="@+id/nav_view"
             android:layout_marginTop="82dp"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            app:menu="@menu/about_us_menu"
-            android:layout_gravity="start"/>
-
+            android:layout_height="110dp"
+            app:menu="@menu/nav_menu"
+            android:layout_gravity="end"/>
 </androidx.drawerlayout.widget.DrawerLayout>

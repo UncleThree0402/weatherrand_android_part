@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+            android:id="@+id/nav_notify"
+            android:title="notification"
+            android:icon="@drawable/bell_off_icon"
+            app:showAsAction="ifRoom"/>
+    <item
+            android:icon="@drawable/more_icon"
+            app:showAsAction="always"
+            android:title="more">
+
+        <menu>
+            <item
+                    android:id="@+id/nav_about_us"
+                    android:title="About us"
+                    android:icon="@drawable/about_us_icon"
+                    app:showAsAction="never"/>
+        </menu>
+    </item>
+</menu>

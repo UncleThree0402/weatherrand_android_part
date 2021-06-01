@@ -173,7 +173,7 @@ public class SheetBtmFragment extends BottomSheetDialogFragment implements Sheet
                 dismiss();
                 break;
             case 15:
-                mLocation.setText("CPingTung County");
+                mLocation.setText("PingTung County");
                 mUpdateDataMethod.init("PingTungCounty");
                 mUpdateDataHandlerThread.quitSafely();
                 dismiss();
