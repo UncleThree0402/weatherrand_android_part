@@ -8,6 +8,7 @@ import async.currentwearther.DeleteCurrentWeatherAsyncTask;
 import async.currentwearther.InsertCurrentWeatherAsyncTask;
 import async.dailyweather.DeleteDailyWeatherAsyncTask;
 import async.dailyweather.InsertDailyWeatherAsyncTask;
+import async.earthquake.DeleteAllEarthquakeAsyncTask;
 import async.earthquake.InsertEarthquakeAsyncTask;
 import async.hourlyweather.DeleteHourlyWeatherAsyncTask;
 import async.hourlyweather.InsertHourlyWeatherAsyncTask;
@@ -117,6 +118,9 @@ public class WeatherrandRepositoty {
         new DeleteUserDataAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute();
     }
 
+    public void deleteAllEarthquake(){
+        new DeleteAllEarthquakeAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute();
+    }
 
 
 }

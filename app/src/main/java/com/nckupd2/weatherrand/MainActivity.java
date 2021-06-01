@@ -14,13 +14,17 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.View;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
+import com.google.android.material.navigation.NavigationView;
 import fragments.AirPollutionFragment;
 import fragments.DailyPageFragment;
 import fragments.SheetBtmFragment;

@@ -75,6 +75,7 @@ public class EarthquakeService extends JobService {
                 if (earthquakeId == null) {
                     mWeatherrandRepositoty.insertEarthquake(earthquake);
                 } else if (earthquakeId != earthquake.getEarthquakeId()) {
+                    Log.d(TAG, "run: called");
                     NotificationManager mNotificationManager;
 
                     NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "1");
@@ -106,6 +107,8 @@ public class EarthquakeService extends JobService {
                     }
 
                     mNotificationManager.notify(0, mBuilder.build());
+                    mWeatherrandRepositoty.deleteAllEarthquake();
+                    mWeatherrandRepositoty.insertEarthquake(earthquake);
                 }
             }
         }).start();

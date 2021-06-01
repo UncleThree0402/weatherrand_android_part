@@ -79,4 +79,7 @@ public interface WeatherrandDao {
 
     @Query("DELETE FROM user_table")
     void deleteAllUserData();
+
+    @Query("DELETE FROM earthquake")
+    void deleteAllEarthquake();
 }
