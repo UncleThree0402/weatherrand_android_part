@@ -12,7 +12,7 @@ import android.os.Bundle;
 
 public class CoverActivity extends AppCompatActivity {
 
-    Animation leftAni , rightAni , sunAni;
+    Animation leftAni , rightAni , sunAni , logoAni;
     ImageView sunIcon,cloudIcon,cloud1,cloud2;
     TextView logo;
 
@@ -25,6 +25,7 @@ public class CoverActivity extends AppCompatActivity {
         rightAni = AnimationUtils.loadAnimation(this,R.anim.right_ain);
         leftAni = AnimationUtils.loadAnimation(this,R.anim.left_ani);
         sunAni = AnimationUtils.loadAnimation(this,R.anim.sun_ani);
+        logoAni = AnimationUtils.loadAnimation(this,R.anim.text_ani);
 
 
         sunIcon = findViewById(R.id.weatherrand_sun);
@@ -35,7 +36,7 @@ public class CoverActivity extends AppCompatActivity {
 
         sunIcon.setAnimation(sunAni);
         cloudIcon.setAnimation(leftAni);
-        logo.setAnimation(rightAni);
+        logo.setAnimation(logoAni);
         cloud1.setAnimation(rightAni);
         cloud2.setAnimation(leftAni);
 
