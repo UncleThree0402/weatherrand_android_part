@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.view.WindowManager;
+import android.view.animation.Animation;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -14,8 +15,11 @@ import android.os.Bundle;
 
 public class RemindActivity extends AppCompatActivity {
 
+    //ui
+    Animation rightAni;
     RelativeLayout relativeLayout;
     TextView weather, reminder;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

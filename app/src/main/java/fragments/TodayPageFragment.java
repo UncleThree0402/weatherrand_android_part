@@ -21,15 +21,9 @@ import com.bumptech.glide.Glide;
 import com.nckupd2.weatherrand.R;
 import dataformatter.NumberFormatter;
 import dataformatter.TimeFormatter;
-import models.AirPollution;
-import models.CurrentWeather;
-import models.HourlyWeather;
-import models.UserData;
+import models.*;
 import util.HourlyWeatherDecorator;
-import viewmodels.AirPollutionViewModel;
-import viewmodels.CurrentWeatherViewModel;
-import viewmodels.HourlyWeatherViewModel;
-import viewmodels.UserDataViewModel;
+import viewmodels.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +36,6 @@ public class TodayPageFragment extends Fragment {
     private ImageView currentIcon;
     private TextView currentWeatherText;
     private TextView currentWind;
-    private TextView currentAqi;
     private TextView currentUv;
     private TextView currentHumidity;
     private RecyclerView hourlyWeatherRecycleView;
@@ -55,7 +48,6 @@ public class TodayPageFragment extends Fragment {
     private String currentIconText;
     private String currentWeatherTextText;
     private String currentWindText;
-    private String currentAqiText;
     private String currentUvText;
     private String currentHumidityText;
 
@@ -67,7 +59,6 @@ public class TodayPageFragment extends Fragment {
         currentIcon = view.findViewById(R.id.current_weather_icon);
         currentWeatherText = view.findViewById(R.id.current_weather_text);
         currentWind = view.findViewById(R.id.current_wind_text);
-        currentAqi = view.findViewById(R.id.current_uv_text);
         currentUv = view .findViewById(R.id.current_uv_text);
         currentHumidity = view.findViewById(R.id.current_humidity_text);
         hourlyWeatherRecycleView = view.findViewById(R.id.hourly_recycle_view);
@@ -77,6 +68,7 @@ public class TodayPageFragment extends Fragment {
         AirPollutionViewModel mAirPollutionViewModel = new ViewModelProvider(this).get(AirPollutionViewModel.class);
         HourlyWeatherViewModel mHourlyWeatherViewModel = new ViewModelProvider(this).get(HourlyWeatherViewModel.class);
         UserDataViewModel mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
+        DailyWeatherViewModel mDailyWeatherViewModel = new ViewModelProvider(this).get(DailyWeatherViewModel.class);
 
         initHourlyRecycleView();
 
@@ -94,15 +86,15 @@ public class TodayPageFragment extends Fragment {
                 }
             }
         });
-
-        mAirPollutionViewModel.getAirPollution().observe(this.getViewLifecycleOwner(), new Observer<List<AirPollution>>() {
+        mDailyWeatherViewModel.getDailyWeather().observe(this.getViewLifecycleOwner(), new Observer<List<DailyWeather>>() {
             @Override
-            public void onChanged(List<AirPollution> airPollutions) {
-                if (airPollutions.size() > 0) {
-                    currentAqiText = airPollutions.get(0).getAqi();
+            public void onChanged(List<DailyWeather> dailyWeathers) {
+                if(dailyWeathers.size()>0){
+                    currentUvText = dailyWeathers.get(0).getUvi();
                 }
             }
         });
+
 
         mHourlyWeatherViewModel.getHourlyWeather().observe(this.getViewLifecycleOwner(), new Observer<List<HourlyWeather>>() {
             @Override
@@ -130,7 +122,7 @@ public class TodayPageFragment extends Fragment {
                         currentHumidity.setText(currentHumidityText);
                         Glide.with(getActivity()).asBitmap().load(currentIconText).into(currentIcon);
                         currentWeatherText.setText(currentWeatherTextText);
-                        currentAqi.setText(currentAqiText);
+                        currentUv.setText(currentUvText);
                         while (mHourlyWeathers.size() > 0) {
                             if (TimeFormatter.datetimeToHour(mHourlyWeathers.get(0).getDateTime()).equals(TimeFormatter.datetimeToHour(Long.toString(System.currentTimeMillis() / 1000)))) {
                                 break;
