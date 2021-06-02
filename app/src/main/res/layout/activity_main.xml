@@ -7,7 +7,6 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity"
         android:theme="@style/Theme.Weatherrand"
-        android:background="@drawable/sunny_background"
         android:id="@+id/drawer_layout"
         android:fitsSystemWindows="true">
 

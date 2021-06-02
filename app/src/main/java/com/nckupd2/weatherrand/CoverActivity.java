@@ -40,6 +40,8 @@ public class CoverActivity extends AppCompatActivity {
         cloud1.setAnimation(rightAni);
         cloud2.setAnimation(leftAni);
 
+
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
