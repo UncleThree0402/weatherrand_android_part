@@ -13,21 +13,21 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="About us"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:textColor="@color/black"
             android:fontFamily="@font/quicksand_medium"/>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:textSize="16dp"
+            android:layout_marginTop="50dp"
+            android:textSize="16sp"
             android:textColor="@color/black"
             android:text="Weatherand\nLeader   :   Marco\nMember :   Tommy\n
                   Hugo\n
                   Wayne\n
                   Eason"
             android:fontFamily="@font/quicksand_medium"
-            android:layout_centerInParent="true"/>
+            android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

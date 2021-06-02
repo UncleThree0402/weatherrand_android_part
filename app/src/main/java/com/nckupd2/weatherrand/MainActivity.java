@@ -27,6 +27,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.viewpager.widget.ViewPager;
+import dialog.AboutUsDialog;
 import fragments.AirPollutionFragment;
 import fragments.DailyPageFragment;
 import fragments.SheetBtmFragment;
@@ -77,10 +78,6 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-//        mUpdateDataHandlerThread = new UpdateDataHandlerThread();
-//        mUpdateDataHandlerThread.start();
-//        updateHandle = new UpdateDataHandle(mUpdateDataHandlerThread.getLooper(), viewModelStoreOwner, lifecycleOwner);
-//        mUpdateDataMethod = new UpdateDataMethod(updateHandle);
 
         mSqlServerRetrieveData = new SqlServerRetrieveData(viewModelStoreOwner, lifecycleOwner);
         mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
@@ -88,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<UserData> userData) {
                 if (userData.size() == 0) {
-                    UserData userData1 = new UserData("TaiNanCity", false);
+                    UserData userData1 = new UserData("TaiNanCity", false,false);
                     mUserDataViewModel.insertUserData(userData1);
                     SqlServerConnection.connect();
                     if (SqlServerConnection.getConnection() != null) {
@@ -107,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                             mSqlServerRetrieveData.insertMonthlyWeather(userData.get(0).getLocation());
                         }
                         setLocationName(userData.get(0).getLocation());
-                        UserData newUserData = new UserData(userData.get(0).getUser_id(), userData.get(0).getLocation(), false);
+                        UserData newUserData = new UserData(userData.get(0).getUser_id(), userData.get(0).getLocation(), false,userData.get(0).isNotificationStatus());
                         mUserDataViewModel.updateUserData(newUserData);
                         initStatus = false;
                     }
@@ -168,71 +165,71 @@ public class MainActivity extends AppCompatActivity {
     private void setLocationName(String name) {
         switch (name) {
             case "ChangHuaCounty":
-                mLocation.setText("ChangHua County");
+                mLocation.setText("Changhua County");
                 mLocation.setTextSize(24);
                 break;
             case "ChiaYiCity":
-                mLocation.setText("ChiaYi City");
+                mLocation.setText("Chiayi City");
                 mLocation.setTextSize(28);
                 break;
             case "ChiaYiCounty":
-                mLocation.setText("ChiaYi County");
+                mLocation.setText("Chiayi County");
                 mLocation.setTextSize(28);
                 break;
             case "HengChun":
-                mLocation.setText("Heng Chun");
+                mLocation.setText("Hengchun");
                 mLocation.setTextSize(28);
                 break;
             case "HsinChuCounty":
-                mLocation.setText("HsinChu County");
+                mLocation.setText("Hsinchu County");
                 mLocation.setTextSize(28);
                 break;
             case "HsinChuCity":
-                mLocation.setText("HsinChu City");
+                mLocation.setText("Hsinchu City");
                 mLocation.setTextSize(28);
                 break;
             case "HuaLienCounty":
-                mLocation.setText("Hualien Country");
+                mLocation.setText("Hualien County");
                 mLocation.setTextSize(28);
                 break;
             case "KaohSiungCity":
-                mLocation.setText("KaohSiung City");
+                mLocation.setText("Kaohsiung City");
                 mLocation.setTextSize(28);
                 break;
             case "KeeLungCity":
-                mLocation.setText("KeeLung City");
+                mLocation.setText("Keelung City");
                 mLocation.setTextSize(28);
                 break;
             case "KinMen":
-                mLocation.setText("KinMen");
-                mLocation.setTextSize(28);
+                mLocation.setText("Kinmen Islands");
+                mLocation.setTextSize(24);
                 break;
             case "LienChiang":
-                mLocation.setText("LienChiang");
+                mLocation.setText("Matsu Islands");
                 mLocation.setTextSize(28);
                 break;
             case "MiaoLiCounty":
-                mLocation.setText("MiaoLi County");
+                mLocation.setText("Miaoli County");
                 mLocation.setTextSize(28);
                 break;
             case "NanTouCounty":
-                mLocation.setText("NanTou County");
+                mLocation.setText("Nantou County");
                 mLocation.setTextSize(28);
                 break;
             case "NewTaipeiCity":
-                mLocation.setText("NewTaipei Cityy");
+                mLocation.setText("New Taipei City");
                 mLocation.setTextSize(28);
                 break;
             case "PengHu":
-                mLocation.setText("PengHu");
+                mLocation.setText("Penghu County");
                 mLocation.setTextSize(28);
                 break;
             case "PingTungCounty":
-                mLocation.setText("PingTung County");
+                mLocation.setText("Pingtung County");
                 mLocation.setTextSize(28);
                 break;
             case "TaiChungCity":
-                mLocation.setText("TaiChung City");
+                mLocation.setText("Taichung City");
                 mLocation.setTextSize(28);
                 break;
             case "TainanCity":
@@ -244,19 +241,19 @@ public class MainActivity extends AppCompatActivity {
                 mLocation.setTextSize(28);
                 break;
             case "TaiTungCounty":
-                mLocation.setText("TaiTung County");
+                mLocation.setText("Taitung County");
                 mLocation.setTextSize(28);
                 break;
             case "TaoYuanCity":
-                mLocation.setText("TaoYuan City");
+                mLocation.setText("Taoyuan City");
                 mLocation.setTextSize(28);
                 break;
             case "YiLanCounty":
-                mLocation.setText("YiLan County");
+                mLocation.setText("Yilan County");
                 mLocation.setTextSize(28);
                 break;
             case "YunLinCounty":
-                mLocation.setText("YunLin County");
+                mLocation.setText("Yunlin County");
                 mLocation.setTextSize(28);
                 break;
         }
@@ -271,8 +268,21 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.nav_menu, menu);
-        menu.getItem(0).setChecked(true);
-        menu.getItem(0).setIcon(R.drawable.bell_on_icon);
+        mUserDataViewModel.getUserData().observe(this, new Observer<List<UserData>>() {
+            @Override
+            public void onChanged(List<UserData> userData) {
+                if(userData.size() > 0){
+                    if(userData.get(0).isNotificationStatus()){
+                        menu.getItem(0).setChecked(true);
+                        menu.getItem(0).setIcon(R.drawable.bell_on_icon);
+                    }else{
+                        menu.getItem(0).setChecked(false);
+                        menu.getItem(0).setIcon(R.drawable.bell_off_icon);
+                    }
+                }
+            }
+        });
+
         return true;
     }
 
@@ -280,19 +290,34 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_about_us:
-                Toast.makeText(MainActivity.this, "Weatherrand\n"+"NCKU PD2 Group project\n" + "Leader : Marco\n" + "Member : " +
-                        "Tommy\n"+"                   Hugo\n"+"                   Wayne\n"+"                   Eason", Toast.LENGTH_SHORT).show();
+                AboutUsDialog aboutUsDialog = new AboutUsDialog();
+                aboutUsDialog.show(getSupportFragmentManager(),"AboutUs");
                 return true;
             case R.id.nav_notify:
+                boolean update;
                 if (item.isChecked()) {
                     item.setChecked(false);
                     item.setIcon(R.drawable.bell_off_icon);
                     cancelJob();
+                    update = false;
                 } else {
                     item.setChecked(true);
                     item.setIcon(R.drawable.bell_on_icon);
                     scheduleJob();
+                    update = true;
                 }
+                mUserDataViewModel.getUserData().observe(this, new Observer<List<UserData>>() {
+                    boolean status = true;
+                    @Override
+                    public void onChanged(List<UserData> userData) {
+                        UserData newUserData = userData.get(0);
+                        newUserData.setNotificationStatus(update);
+                        if(status) {
+                            mUserDataViewModel.updateUserData(newUserData);
+                            status = false;
+                        }
+                    }
+                });
                 return true;
             default:
                 return true;

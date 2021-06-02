@@ -14,8 +14,8 @@ import java.util.List;
 public class SheetBtnAdapter extends RecyclerView.Adapter<SheetBtnAdapter.ViewHolder> {
 
     private List<String> locationList = Arrays.asList("Changhua County", "Chiayi City", "Chiayi County", "Hengchun", "Hsinchu County", "Hsinchu City",
-            "Hualien Country", "Kaohsiung City", "Keelung City", "Kinmen", "Lienchiang", "Miaoli County",
-            "Nantou County", "Newtaipei City", "Penghu", "Pingtung County", "Taichung City", "Tainan City",
+            "Hualien Country", "Kaohsiung City", "Keelung City", "Kinmen Islands", "Matsu Islands", "Miaoli County",
+            "Nantou County", "New Taipei City", "Penghu County", "Pingtung County", "Taichung City", "Tainan City",
             "Taipei City", "Taitung City","Taoyuan City", "Yilan County", "Yunlin County");
     private locationClickListener mLocationListener;
 

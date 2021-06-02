@@ -14,4 +14,9 @@
         <item name="android:windowTranslucentNavigation">true</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="DialogRounded" parent="Theme.AppCompat.Dialog">
+        <item name="dialogCornerRadius">10dp</item>
+    </style>
+
 </resources>

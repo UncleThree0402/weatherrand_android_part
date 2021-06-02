@@ -13,17 +13,21 @@ public class UserData {
     private String location;
     @ColumnInfo(name = "update_status")
     private boolean updateStatus;
+    @ColumnInfo(name = "notification_status")
+    private boolean notificationStatus;
 
-    public UserData(int user_id, String location, boolean updateStatus) {
+    public UserData(int user_id, String location, boolean updateStatus, boolean notificationStatus) {
         this.user_id = user_id;
         this.location = location;
         this.updateStatus = updateStatus;
+        this.notificationStatus = notificationStatus;
     }
 
     @Ignore
-    public UserData(String location, boolean updateStatus) {
+    public UserData(String location, boolean updateStatus, boolean notificationStatus) {
         this.location = location;
         this.updateStatus = updateStatus;
+        this.notificationStatus = notificationStatus;
     }
 
     @Ignore
@@ -52,5 +56,13 @@ public class UserData {
 
     public void setUpdateStatus(boolean updateStatus) {
         this.updateStatus = updateStatus;
+    }
+
+    public boolean isNotificationStatus() {
+        return notificationStatus;
+    }
+
+    public void setNotificationStatus(boolean notificationStatus) {
+        this.notificationStatus = notificationStatus;
     }
 }
