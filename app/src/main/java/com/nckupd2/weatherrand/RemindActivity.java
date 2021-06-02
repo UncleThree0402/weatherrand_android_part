@@ -3,21 +3,17 @@ package com.nckupd2.weatherrand;
 import SqlServerData.SqlServerConnection;
 import SqlServerData.SqlServerRetrieveData;
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.os.StrictMode;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -27,13 +23,12 @@ import models.UserData;
 import viewmodels.DailyWeatherViewModel;
 import viewmodels.UserDataViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RemindActivity extends AppCompatActivity {
 
     //ui
-    private Animation rightAni,leftAni;
+    private Animation rightAni, leftAni;
     private RelativeLayout relativeLayout;
     private TextView weather, reminder;
 
@@ -59,8 +54,8 @@ public class RemindActivity extends AppCompatActivity {
         weather = findViewById(R.id.weather_text);
         reminder = findViewById(R.id.remind_reminder_text);
 
-        rightAni = AnimationUtils.loadAnimation(this,R.anim.right_ain);
-        leftAni = AnimationUtils.loadAnimation(this,R.anim.left_ani);
+        rightAni = AnimationUtils.loadAnimation(this, R.anim.right_ain);
+        leftAni = AnimationUtils.loadAnimation(this, R.anim.left_ani);
 
         mSqlServerRetrieveData = new SqlServerRetrieveData(this, this);
         mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
@@ -88,8 +83,7 @@ public class RemindActivity extends AppCompatActivity {
                         UserData newUserData = new UserData(userData.get(0).getUser_id(), userData.get(0).getLocation(), false, userData.get(0).isNotificationStatus());
                         mUserDataViewModel.updateUserData(newUserData);
                         initStatus = false;
-                    }
-                    else {
+                    } else {
                         setReminder(mDailyWeather.getWeatherId());
                     }
                 }

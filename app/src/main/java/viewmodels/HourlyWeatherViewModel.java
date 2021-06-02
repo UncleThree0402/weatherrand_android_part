@@ -11,8 +11,8 @@ import java.util.List;
 
 public class HourlyWeatherViewModel extends AndroidViewModel {
 
-    private WeatherrandRepositoty mWeatherrandRepositoty;
-    private LiveData<List<HourlyWeather>> mHourlyWeather;
+    private final WeatherrandRepositoty mWeatherrandRepositoty;
+    private final LiveData<List<HourlyWeather>> mHourlyWeather;
 
     public HourlyWeatherViewModel(@NonNull Application application) {
         super(application);
@@ -20,15 +20,15 @@ public class HourlyWeatherViewModel extends AndroidViewModel {
         mHourlyWeather = mWeatherrandRepositoty.getHourlyWeather();
     }
 
-    public void insetHourlyWeather(HourlyWeather hourlyWeather){
+    public void insetHourlyWeather(HourlyWeather hourlyWeather) {
         mWeatherrandRepositoty.insertHourlyWeather(hourlyWeather);
     }
 
-    public LiveData<List<HourlyWeather>> getHourlyWeather(){
+    public LiveData<List<HourlyWeather>> getHourlyWeather() {
         return mHourlyWeather;
     }
 
-    public void deleteAllHourlyWeather(){
+    public void deleteAllHourlyWeather() {
         mWeatherrandRepositoty.deleteAllHourlyWeather();
     }
 

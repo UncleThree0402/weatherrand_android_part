@@ -25,12 +25,9 @@ import java.util.List;
 public class EarthquakeService extends JobService {
 
     private static final String TAG = "ExampleJobService";
+    private final WeatherrandRepositoty mWeatherrandRepositoty = new WeatherrandRepositoty(this);
     private boolean jobCancelled = false;
-
     private Long earthquakeId;
-
-    private WeatherrandRepositoty mWeatherrandRepositoty = new WeatherrandRepositoty(this);
-
 
     @Override
     public boolean onStartJob(JobParameters params) {
@@ -71,7 +68,7 @@ public class EarthquakeService extends JobService {
                 }
                 if (earthquakeId == null) {
                     mWeatherrandRepositoty.insertEarthquake(earthquake);
-                } else if(earthquake.getEarthquakeId() == earthquakeId){
+                } else if (earthquake.getEarthquakeId() == earthquakeId) {
                     return;
                 } else if (earthquakeId != earthquake.getEarthquakeId()) {
                     NotificationManager mNotificationManager;
@@ -86,7 +83,7 @@ public class EarthquakeService extends JobService {
                     bigText.setSummaryText(earthquake.getReportColour());
 
                     mBuilder.setContentIntent(pendingIntent);
-                    mBuilder.setSmallIcon(R.mipmap.ic_launcher_round);
+                    mBuilder.setSmallIcon(R.mipmap.weatherrand_icon_rounded);
                     mBuilder.setContentTitle("Earthquake! " + earthquake.getReportColour());
                     mBuilder.setContentText(earthquake.getReportContent());
                     mBuilder.setPriority(Notification.PRIORITY_MAX);

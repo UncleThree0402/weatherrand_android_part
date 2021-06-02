@@ -3,8 +3,8 @@ package async.airpollution;
 import android.os.AsyncTask;
 import persistance.WeatherrandDao;
 
-public class DeleteAirPollutionAsyncTask extends AsyncTask<Void,Void,Void> {
-    private WeatherrandDao mWeatherrandDao;
+public class DeleteAirPollutionAsyncTask extends AsyncTask<Void, Void, Void> {
+    private final WeatherrandDao mWeatherrandDao;
 
     public DeleteAirPollutionAsyncTask(WeatherrandDao mWeatherrandDao) {
         this.mWeatherrandDao = mWeatherrandDao;

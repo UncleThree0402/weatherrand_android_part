@@ -7,14 +7,13 @@ import androidx.lifecycle.LiveData;
 import models.Earthquake;
 import persistance.WeatherrandRepositoty;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EarthquakeViewModel extends AndroidViewModel {
 
-    private WeatherrandRepositoty mWeatherrandRepositoty;
+    private final WeatherrandRepositoty mWeatherrandRepositoty;
 
-    private LiveData<List<Earthquake>> mEarthquakes;
+    private final LiveData<List<Earthquake>> mEarthquakes;
 
     public EarthquakeViewModel(@NonNull Application application) {
         super(application);
@@ -22,7 +21,7 @@ public class EarthquakeViewModel extends AndroidViewModel {
         mEarthquakes = mWeatherrandRepositoty.getEarthquake();
     }
 
-    public void insertEarthquake(Earthquake earthquake){
+    public void insertEarthquake(Earthquake earthquake) {
         mWeatherrandRepositoty.insertEarthquake(earthquake);
     }
 

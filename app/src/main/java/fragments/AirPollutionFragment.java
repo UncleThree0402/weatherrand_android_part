@@ -1,6 +1,5 @@
 package fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +17,7 @@ import models.AirPollution;
 import models.UserData;
 import viewmodels.AirPollutionViewModel;
 import viewmodels.UserDataViewModel;
+
 import java.util.List;
 
 public class AirPollutionFragment extends Fragment {
@@ -47,7 +47,7 @@ public class AirPollutionFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.air_pollution_fragment,container,false);
+        View view = inflater.inflate(R.layout.air_pollution_fragment, container, false);
 
         aqiIcon = view.findViewById(R.id.aqi_icon);
         co = view.findViewById(R.id.co_text);
@@ -83,7 +83,7 @@ public class AirPollutionFragment extends Fragment {
         mUserDataViewModel.getUserData().observe(this.getViewLifecycleOwner(), new Observer<List<UserData>>() {
             @Override
             public void onChanged(List<UserData> userData) {
-                if(userData.size()>0) {
+                if (userData.size() > 0) {
                     if (!userData.get(0).isUpdateStatus()) {
                         if (coText != null) {
                             co.setText(NumberFormatter.correctToSig(coText));
@@ -105,7 +105,7 @@ public class AirPollutionFragment extends Fragment {
 
     public void setAqiIcon(String aqiText) {
         int aqiInt = NumberFormatter.stringToNumber(aqiText);
-        switch (aqiInt){
+        switch (aqiInt) {
             case 1:
                 aqiIcon.setBackgroundResource(R.drawable.aqi1_icon);
                 break;

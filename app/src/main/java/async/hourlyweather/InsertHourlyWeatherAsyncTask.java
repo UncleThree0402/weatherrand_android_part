@@ -4,11 +4,9 @@ import android.os.AsyncTask;
 import models.HourlyWeather;
 import persistance.WeatherrandDao;
 
-import java.util.ArrayList;
+public class InsertHourlyWeatherAsyncTask extends AsyncTask<HourlyWeather, Void, Void> {
 
-public class InsertHourlyWeatherAsyncTask extends AsyncTask<HourlyWeather,Void,Void> {
-
-    private WeatherrandDao mWeatherrandDao;
+    private final WeatherrandDao mWeatherrandDao;
 
     public InsertHourlyWeatherAsyncTask(WeatherrandDao weatherrandDao) {
         this.mWeatherrandDao = weatherrandDao;

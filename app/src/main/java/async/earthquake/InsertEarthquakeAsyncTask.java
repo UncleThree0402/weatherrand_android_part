@@ -6,7 +6,7 @@ import persistance.WeatherrandDao;
 
 public class InsertEarthquakeAsyncTask extends AsyncTask<Earthquake, Void, Void> {
 
-    private WeatherrandDao mWeatherrandDao;
+    private final WeatherrandDao mWeatherrandDao;
 
     public InsertEarthquakeAsyncTask(WeatherrandDao mWeatherrandDao) {
         this.mWeatherrandDao = mWeatherrandDao;

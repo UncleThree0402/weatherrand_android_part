@@ -1,7 +1,6 @@
 package adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +16,11 @@ import dataformatter.TimeFormatter;
 import models.HourlyWeather;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HourlyRecycleViewAdapter extends RecyclerView.Adapter<HourlyRecycleViewAdapter.ViewHolder> {
     private static final String TAG = "HourlyRecycleViewAdapter";
-
+    private final Context mContext;
     private ArrayList<HourlyWeather> mHourlyWeatherList = new ArrayList<>();
-    private Context mContext;
 
 
     public HourlyRecycleViewAdapter(ArrayList<HourlyWeather> mHourlyWeatherList, Context context) {

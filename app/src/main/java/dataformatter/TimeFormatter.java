@@ -6,8 +6,8 @@ import java.util.Locale;
 
 public class TimeFormatter {
 
-    public static String datetimeToHour(String datetime){
-        return timeString(Long.parseLong(datetime),"HH");
+    public static String datetimeToHour(String datetime) {
+        return timeString(Long.parseLong(datetime), "HH");
     }
 
     private static String timeString(long timeStamp, String format) {
@@ -16,7 +16,7 @@ public class TimeFormatter {
         return dateFormat.format(date);
     }
 
-    public static String timeStringToTomorrow(String datetime){
+    public static String timeStringToTomorrow(String datetime) {
         return timeString(Long.parseLong(datetime), "E MM-dd");
     }
 

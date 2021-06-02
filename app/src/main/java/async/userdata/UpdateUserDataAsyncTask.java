@@ -4,9 +4,9 @@ import android.os.AsyncTask;
 import models.UserData;
 import persistance.WeatherrandDao;
 
-public class UpdateUserDataAsyncTask extends AsyncTask<UserData,Void,Void> {
+public class UpdateUserDataAsyncTask extends AsyncTask<UserData, Void, Void> {
 
-    private WeatherrandDao mWeatherrandDao;
+    private final WeatherrandDao mWeatherrandDao;
 
     public UpdateUserDataAsyncTask(WeatherrandDao mWeatherrandDao) {
         this.mWeatherrandDao = mWeatherrandDao;

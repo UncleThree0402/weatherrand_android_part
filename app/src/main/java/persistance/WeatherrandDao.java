@@ -7,7 +7,6 @@ import androidx.room.Query;
 import androidx.room.Update;
 import models.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Dao

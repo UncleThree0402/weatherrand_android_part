@@ -20,105 +20,104 @@ import async.userdata.UpdateUserDataAsyncTask;
 import models.*;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class WeatherrandRepositoty {
 
-    private WetherrandDatabase mWetherrandDatabase;
+    private final WetherrandDatabase mWetherrandDatabase;
 
-    public WeatherrandRepositoty(Context context){
+    public WeatherrandRepositoty(Context context) {
         mWetherrandDatabase = WetherrandDatabase.getInstance(context);
     }
 
-    public void insertCurrentWeather(CurrentWeather currentWeather){
+    public void insertCurrentWeather(CurrentWeather currentWeather) {
         new InsertCurrentWeatherAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute(currentWeather);
     }
 
-    public void insertHourlyWeather(HourlyWeather hourlyWeather){
+    public void insertHourlyWeather(HourlyWeather hourlyWeather) {
         new InsertHourlyWeatherAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute(hourlyWeather);
     }
 
-    public void insertDailyWeather(DailyWeather dailyWeather){
+    public void insertDailyWeather(DailyWeather dailyWeather) {
         new InsertDailyWeatherAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute(dailyWeather);
     }
 
-    public void insertMonthlyWeather(MonthlyWeather monthlyWeather){
+    public void insertMonthlyWeather(MonthlyWeather monthlyWeather) {
         new InsertMonthlyWeatherAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute(monthlyWeather);
     }
 
-    public void insertAirPollution(AirPollution airPollution){
+    public void insertAirPollution(AirPollution airPollution) {
         new InsertAirPollutionAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute(airPollution);
     }
 
-    public void insertUserData(UserData userData){
+    public void insertUserData(UserData userData) {
         new InsertUserDataAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute(userData);
     }
 
-    public void insertEarthquake(Earthquake earthquake){
+    public void insertEarthquake(Earthquake earthquake) {
         new InsertEarthquakeAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute(earthquake);
     }
 
-    public LiveData<List<CurrentWeather>> getCurrentWeather(){
+    public LiveData<List<CurrentWeather>> getCurrentWeather() {
         return mWetherrandDatabase.getWeatherrandDao().getCurrentWeather();
     }
 
-    public LiveData<List<HourlyWeather>> getHourlyWeather(){
+    public LiveData<List<HourlyWeather>> getHourlyWeather() {
         return mWetherrandDatabase.getWeatherrandDao().getHourlyWeather();
     }
 
-    public LiveData<List<DailyWeather>> getDailyWeather(){
+    public LiveData<List<DailyWeather>> getDailyWeather() {
         return mWetherrandDatabase.getWeatherrandDao().getDailyWeather();
     }
 
-    public LiveData<List<MonthlyWeather>> getMonthlyWeather(){
+    public LiveData<List<MonthlyWeather>> getMonthlyWeather() {
         return mWetherrandDatabase.getWeatherrandDao().getMonthlyWeather();
     }
 
-    public LiveData<List<AirPollution>> getAirPollution(){
+    public LiveData<List<AirPollution>> getAirPollution() {
         return mWetherrandDatabase.getWeatherrandDao().getAirPollution();
     }
 
-    public LiveData<List<UserData>> getUserData(){
+    public LiveData<List<UserData>> getUserData() {
         return mWetherrandDatabase.getWeatherrandDao().getUserData();
     }
 
-    public LiveData<List<Integer>> getUserTableCount(){
+    public LiveData<List<Integer>> getUserTableCount() {
         return mWetherrandDatabase.getWeatherrandDao().getUserTableCount();
     }
 
-    public LiveData<List<Earthquake>> getEarthquake(){
+    public LiveData<List<Earthquake>> getEarthquake() {
         return mWetherrandDatabase.getWeatherrandDao().getEarthquake();
     }
 
-    public void updateUserData(UserData userData){
+    public void updateUserData(UserData userData) {
         new UpdateUserDataAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute(userData);
     }
 
-    public void deleteAllHourlyWeather(){
+    public void deleteAllHourlyWeather() {
         new DeleteHourlyWeatherAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute();
     }
 
-    public void deleteAllDailyWeather(){
+    public void deleteAllDailyWeather() {
         new DeleteDailyWeatherAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute();
     }
 
-    public void deleteAllMonthlyWeather(){
+    public void deleteAllMonthlyWeather() {
         new DeleteMonthlyWeatherAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute();
     }
 
-    public void deleteAllCurrentWeather(){
+    public void deleteAllCurrentWeather() {
         new DeleteCurrentWeatherAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute();
     }
 
-    public void deleteAllAirPollution(){
+    public void deleteAllAirPollution() {
         new DeleteAirPollutionAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute();
     }
 
-    public void deleteAllUserData(){
+    public void deleteAllUserData() {
         new DeleteUserDataAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute();
     }
 
-    public void deleteAllEarthquake(){
+    public void deleteAllEarthquake() {
         new DeleteAllEarthquakeAsyncTask(mWetherrandDatabase.getWeatherrandDao()).execute();
     }
 

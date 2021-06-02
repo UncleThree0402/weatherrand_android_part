@@ -1,8 +1,6 @@
 package SqlServerData;
 
-import android.util.Log;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 import models.*;
@@ -10,25 +8,20 @@ import viewmodels.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @SuppressWarnings("SqlResolve")
 public class SqlServerRetrieveData {
     private static final String TAG = "SqlServerRetrieveData";
-
+    private final boolean initStatus = true;
     private ViewModelStoreOwner mViewModelStoreOwner;
     private LifecycleOwner mLifecycleOwner;
-
     private UserDataViewModel mUserDataViewModel;
     private CurrentWeatherViewModel mCurrentWeatherViewModel;
     private AirPollutionViewModel mAirPollutionViewModel;
     private HourlyWeatherViewModel mHourlyWeatherViewModel;
     private DailyWeatherViewModel mDailyWeatherViewModel;
     private MonthlyWeatherViewModel mMonthlyWeatherViewModel;
-
-    private boolean initStatus = true;
 
 
     public SqlServerRetrieveData(ViewModelStoreOwner viewModelStoreOwner, LifecycleOwner lifecycleOwner) {

@@ -48,7 +48,6 @@ public class AirPollution {
     }
 
 
-
     public int getAir_pollution_id() {
         return air_pollution_id;
     }

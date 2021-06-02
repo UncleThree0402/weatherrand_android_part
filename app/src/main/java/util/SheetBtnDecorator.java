@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class SheetBtnDecorator extends RecyclerView.ItemDecoration {
 
     private final int ver_spacing;
+
     public SheetBtnDecorator(int ver_spacing) {
         this.ver_spacing = ver_spacing;
     }

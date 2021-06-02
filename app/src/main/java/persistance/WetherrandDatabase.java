@@ -12,9 +12,9 @@ public abstract class WetherrandDatabase extends RoomDatabase {
 
     private static WetherrandDatabase instance;
 
-    static WetherrandDatabase getInstance(final Context context){
-        if(instance == null){
-            instance = Room.databaseBuilder(context.getApplicationContext(),WetherrandDatabase.class,DATABASE_NAME).build();
+    static WetherrandDatabase getInstance(final Context context) {
+        if (instance == null) {
+            instance = Room.databaseBuilder(context.getApplicationContext(), WetherrandDatabase.class, DATABASE_NAME).build();
         }
         return instance;
     }

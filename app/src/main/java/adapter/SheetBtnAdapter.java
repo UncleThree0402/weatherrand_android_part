@@ -13,11 +13,11 @@ import java.util.List;
 
 public class SheetBtnAdapter extends RecyclerView.Adapter<SheetBtnAdapter.ViewHolder> {
 
-    private List<String> locationList = Arrays.asList("Changhua County", "Chiayi City", "Chiayi County", "Hengchun", "Hsinchu County", "Hsinchu City",
+    private final List<String> locationList = Arrays.asList("Changhua County", "Chiayi City", "Chiayi County", "Hengchun", "Hsinchu County", "Hsinchu City",
             "Hualien Country", "Kaohsiung City", "Keelung City", "Kinmen Islands", "Matsu Islands", "Miaoli County",
             "Nantou County", "New Taipei City", "Penghu County", "Pingtung County", "Taichung City", "Tainan City",
-            "Taipei City", "Taitung City","Taoyuan City", "Yilan County", "Yunlin County");
-    private locationClickListener mLocationListener;
+            "Taipei City", "Taitung City", "Taoyuan City", "Yilan County", "Yunlin County");
+    private final locationClickListener mLocationListener;
 
     public SheetBtnAdapter(locationClickListener locationListener) {
         this.mLocationListener = locationListener;
@@ -41,6 +41,10 @@ public class SheetBtnAdapter extends RecyclerView.Adapter<SheetBtnAdapter.ViewHo
     }
 
 
+    public interface locationClickListener {
+        void locationOnclick(int position);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView location;
         locationClickListener mLocationClickListener;
@@ -56,10 +60,6 @@ public class SheetBtnAdapter extends RecyclerView.Adapter<SheetBtnAdapter.ViewHo
         public void onClick(View v) {
             mLocationClickListener.locationOnclick(getPosition());
         }
-    }
-
-    public interface locationClickListener {
-        void locationOnclick(int position);
     }
 
 }

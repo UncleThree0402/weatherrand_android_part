@@ -4,9 +4,9 @@ import android.os.AsyncTask;
 import models.AirPollution;
 import persistance.WeatherrandDao;
 
-public class InsertAirPollutionAsyncTask extends AsyncTask<AirPollution,Void,Void> {
+public class InsertAirPollutionAsyncTask extends AsyncTask<AirPollution, Void, Void> {
 
-    private WeatherrandDao mWeatherrandDao;
+    private final WeatherrandDao mWeatherrandDao;
 
     public InsertAirPollutionAsyncTask(WeatherrandDao weatherrandDao) {
         this.mWeatherrandDao = weatherrandDao;

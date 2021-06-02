@@ -3,9 +3,9 @@ package async.monthlyweather;
 import android.os.AsyncTask;
 import persistance.WeatherrandDao;
 
-public class DeleteMonthlyWeatherAsyncTask extends AsyncTask<Void,Void,Void> {
+public class DeleteMonthlyWeatherAsyncTask extends AsyncTask<Void, Void, Void> {
 
-    private WeatherrandDao mWeatherrandDao;
+    private final WeatherrandDao mWeatherrandDao;
 
     public DeleteMonthlyWeatherAsyncTask(WeatherrandDao mWeatherrandDao) {
         this.mWeatherrandDao = mWeatherrandDao;

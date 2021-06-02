@@ -1,7 +1,6 @@
 package adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +18,8 @@ import java.util.ArrayList;
 
 public class DailyRecycleViewAdapter extends RecyclerView.Adapter<DailyRecycleViewAdapter.ViewHolder> {
     private static final String TAG = "DailyRecycleViewAdapter";
-
+    private final Context mContext;
     private ArrayList<DailyWeather> mDailyWeatherList = new ArrayList<>();
-    private Context mContext;
 
     public DailyRecycleViewAdapter(ArrayList<DailyWeather> mDailyWeatherList, Context mContext) {
         this.mDailyWeatherList = mDailyWeatherList;

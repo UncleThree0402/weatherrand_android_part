@@ -5,7 +5,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class HourlyWeatherDecorator extends RecyclerView.ItemDecoration{
+public class HourlyWeatherDecorator extends RecyclerView.ItemDecoration {
 
     private final int hoz_spacing;
 

@@ -2,7 +2,6 @@ package fragments;
 
 import adapter.DailyRecycleViewAdapter;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +29,8 @@ import java.util.List;
 
 public class DailyPageFragment extends Fragment {
     private static final String TAG = "DailyPageFragment";
+    //Var
+    private final ArrayList<DailyWeather> mDailyWeathers = new ArrayList<>();
     //UI
     private RecyclerView mDailyRecycleView;
     private TextView tmrDate;
@@ -39,8 +40,6 @@ public class DailyPageFragment extends Fragment {
     private TextView tmrRain;
     private ImageView tmrIcon;
     private TextView tmrDescription;
-    //Var
-    private ArrayList<DailyWeather> mDailyWeathers = new ArrayList<>();
     private DailyRecycleViewAdapter mDailyRecycleViewAdapter;
     private DailyWeatherViewModel dailyWeatherViewModel;
     private UserDataViewModel userDataViewModel;
@@ -63,11 +62,10 @@ public class DailyPageFragment extends Fragment {
         userDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
 
 
-
         userDataViewModel.getUserData().observe(getViewLifecycleOwner(), new Observer<List<UserData>>() {
             @Override
             public void onChanged(List<UserData> userData) {
-                if(userData.size()>0) {
+                if (userData.size() > 0) {
                     if (!userData.get(0).isUpdateStatus()) {
                         if (mDailyWeathers.size() > 0) {
                             tmrDate.setText(TimeFormatter.timeStringToTomorrow(mDailyWeathers.get(1).getDatetime()));

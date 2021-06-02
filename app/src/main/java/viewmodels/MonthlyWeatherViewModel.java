@@ -11,8 +11,8 @@ import java.util.List;
 
 public class MonthlyWeatherViewModel extends AndroidViewModel {
 
-    private WeatherrandRepositoty mWeatherrandRepositoty;
-    private LiveData<List<MonthlyWeather>> mMonthlyWeather;
+    private final WeatherrandRepositoty mWeatherrandRepositoty;
+    private final LiveData<List<MonthlyWeather>> mMonthlyWeather;
 
     public MonthlyWeatherViewModel(@NonNull Application application) {
         super(application);
@@ -20,15 +20,15 @@ public class MonthlyWeatherViewModel extends AndroidViewModel {
         mMonthlyWeather = mWeatherrandRepositoty.getMonthlyWeather();
     }
 
-    public void insetMonthlyWeather(MonthlyWeather monthlyWeather){
+    public void insetMonthlyWeather(MonthlyWeather monthlyWeather) {
         mWeatherrandRepositoty.insertMonthlyWeather(monthlyWeather);
     }
 
-    public LiveData<List<MonthlyWeather>> getMonthlyWeather(){
+    public LiveData<List<MonthlyWeather>> getMonthlyWeather() {
         return mMonthlyWeather;
     }
 
-    public void deleteAllMonthlyWeather(){
+    public void deleteAllMonthlyWeather() {
         mWeatherrandRepositoty.deleteAllMonthlyWeather();
     }
 }

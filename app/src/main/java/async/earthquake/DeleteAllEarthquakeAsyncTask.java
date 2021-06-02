@@ -3,9 +3,9 @@ package async.earthquake;
 import android.os.AsyncTask;
 import persistance.WeatherrandDao;
 
-public class DeleteAllEarthquakeAsyncTask extends AsyncTask<Void,Void,Void> {
+public class DeleteAllEarthquakeAsyncTask extends AsyncTask<Void, Void, Void> {
 
-    private WeatherrandDao mWeatherrandDao;
+    private final WeatherrandDao mWeatherrandDao;
 
     public DeleteAllEarthquakeAsyncTask(WeatherrandDao mWeatherrandDao) {
         this.mWeatherrandDao = mWeatherrandDao;

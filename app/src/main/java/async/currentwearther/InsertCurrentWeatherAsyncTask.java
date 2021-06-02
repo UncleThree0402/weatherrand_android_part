@@ -1,15 +1,14 @@
 package async.currentwearther;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import models.CurrentWeather;
 import persistance.WeatherrandDao;
 
-public class InsertCurrentWeatherAsyncTask extends AsyncTask<CurrentWeather,Void,Void> {
+public class InsertCurrentWeatherAsyncTask extends AsyncTask<CurrentWeather, Void, Void> {
 
-    private WeatherrandDao mWeatherrandDao;
+    private final WeatherrandDao mWeatherrandDao;
 
-    public InsertCurrentWeatherAsyncTask(WeatherrandDao weatherrandDao){
+    public InsertCurrentWeatherAsyncTask(WeatherrandDao weatherrandDao) {
         mWeatherrandDao = weatherrandDao;
     }
 

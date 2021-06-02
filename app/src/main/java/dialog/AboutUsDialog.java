@@ -1,6 +1,5 @@
 package dialog;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +25,7 @@ public class AboutUsDialog extends AppCompatDialogFragment {
 
         fragmentManager = getChildFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.about_us_frame_layout,new AboutUsFragment());
+        fragmentTransaction.replace(R.id.about_us_frame_layout, new AboutUsFragment());
         fragmentTransaction.commit();
 
         return view;

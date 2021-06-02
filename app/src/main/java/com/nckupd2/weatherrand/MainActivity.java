@@ -9,19 +9,18 @@ import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.pm.PackageManager;
-
+import android.os.Bundle;
 import android.os.StrictMode;
-
 import android.util.Log;
-import android.view.*;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -34,36 +33,23 @@ import fragments.SheetBtmFragment;
 import fragments.TodayPageFragment;
 import models.UserData;
 import services.EarthquakeService;
-import thread.UpdateDataHandle;
-import thread.UpdateDataHandlerThread;
-import thread.UpdateDataMethod;
 import viewmodels.UserDataViewModel;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-
+    private final String currentLocation = "TaiNanCity";
+    private final LifecycleOwner lifecycleOwner = this;
+    private final ViewModelStoreOwner viewModelStoreOwner = this;
     //UI
     private ViewPager mViewPager;
     private Toolbar toolbar;
     private TextView mLocation;
-
     //Var
-    private FragmentAdapter mFragmentAdapter;
-
-    private String currentLocation = "TaiNanCity";
-
     private SqlServerRetrieveData mSqlServerRetrieveData;
     private UserDataViewModel mUserDataViewModel;
     private boolean initStatus = true;
-
-    private UpdateDataHandlerThread mUpdateDataHandlerThread;
-    private UpdateDataHandle updateHandle;
-    private UpdateDataMethod mUpdateDataMethod;
-    private LifecycleOwner lifecycleOwner = this;
-    private ViewModelStoreOwner viewModelStoreOwner = this;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<UserData> userData) {
                 if (userData.size() == 0) {
-                    UserData userData1 = new UserData("TaiNanCity", false,false);
+                    UserData userData1 = new UserData("TaiNanCity", false, false);
                     mUserDataViewModel.insertUserData(userData1);
                     SqlServerConnection.connect();
                     if (SqlServerConnection.getConnection() != null) {
@@ -104,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                             mSqlServerRetrieveData.insertMonthlyWeather(userData.get(0).getLocation());
                         }
                         setLocationName(userData.get(0).getLocation());
-                        UserData newUserData = new UserData(userData.get(0).getUser_id(), userData.get(0).getLocation(), false,userData.get(0).isNotificationStatus());
+                        UserData newUserData = new UserData(userData.get(0).getUser_id(), userData.get(0).getLocation(), false, userData.get(0).isNotificationStatus());
                         mUserDataViewModel.updateUserData(newUserData);
                         initStatus = false;
                     }
@@ -114,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         mViewPager = findViewById(R.id.view_page_container);
-        mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
         setViewPage(mViewPager);
         mViewPager.setCurrentItem(1);
 
@@ -271,11 +256,11 @@ public class MainActivity extends AppCompatActivity {
         mUserDataViewModel.getUserData().observe(this, new Observer<List<UserData>>() {
             @Override
             public void onChanged(List<UserData> userData) {
-                if(userData.size() > 0){
-                    if(userData.get(0).isNotificationStatus()){
+                if (userData.size() > 0) {
+                    if (userData.get(0).isNotificationStatus()) {
                         menu.getItem(0).setChecked(true);
                         menu.getItem(0).setIcon(R.drawable.bell_on_icon);
-                    }else{
+                    } else {
                         menu.getItem(0).setChecked(false);
                         menu.getItem(0).setIcon(R.drawable.bell_off_icon);
                     }
@@ -291,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.nav_about_us:
                 AboutUsDialog aboutUsDialog = new AboutUsDialog();
-                aboutUsDialog.show(getSupportFragmentManager(),"AboutUs");
+                aboutUsDialog.show(getSupportFragmentManager(), "AboutUs");
                 return true;
             case R.id.nav_notify:
                 boolean update;
@@ -308,11 +293,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 mUserDataViewModel.getUserData().observe(this, new Observer<List<UserData>>() {
                     boolean status = true;
+
                     @Override
                     public void onChanged(List<UserData> userData) {
                         UserData newUserData = userData.get(0);
                         newUserData.setNotificationStatus(update);
-                        if(status) {
+                        if (status) {
                             mUserDataViewModel.updateUserData(newUserData);
                             status = false;
                         }

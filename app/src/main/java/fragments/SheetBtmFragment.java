@@ -1,17 +1,13 @@
 package fragments;
 
-import SqlServerData.SqlServerRetrieveData;
 import adapter.SheetBtnAdapter;
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -21,9 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.nckupd2.weatherrand.R;
 import models.UserData;
-import thread.UpdateDataHandle;
-import thread.UpdateDataHandlerThread;
-import thread.UpdateDataMethod;
 import util.SheetBtnDecorator;
 import viewmodels.UserDataViewModel;
 
@@ -31,19 +24,14 @@ import java.util.List;
 
 public class SheetBtmFragment extends BottomSheetDialogFragment implements SheetBtnAdapter.locationClickListener {
     private static final String TAG = "SheetBtnController";
-
+    //var
+    private final ViewModelStoreOwner viewModelStoreOwner;
+    private final LifecycleOwner lifecycleOwner;
     //ui
     private RecyclerView mRecycleView;
     private SheetBtnAdapter mSheetBtnAdapter;
     private TextView mLocation;
-    //var
-    private ViewModelStoreOwner viewModelStoreOwner;
-    private LifecycleOwner lifecycleOwner;
 
-    private UpdateDataHandlerThread mUpdateDataHandlerThread;
-    private UpdateDataHandle testHandle;
-
-    private UpdateDataMethod mUpdateDataMethod;
     private UserDataViewModel mUserDataViewModel;
 
     private UserData mUserData;
