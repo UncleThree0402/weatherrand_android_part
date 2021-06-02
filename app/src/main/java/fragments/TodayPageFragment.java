@@ -149,12 +149,28 @@ public class TodayPageFragment extends Fragment {
 
     private void layoutSrc(String weatherId){
         int check =NumberFormatter.stringToNumber(weatherId);
-        if(check >= 200 && check <= 531){
-            layout.setBackgroundResource(R.drawable.rainy_background);
+        if((check >= 200 && check <= 202) || (check >= 230 && check <= 232)){
+            layout.setBackgroundResource(R.drawable.rel_back_1);
+        }else if(check >= 210 && check <= 221){
+            layout.setBackgroundResource(R.drawable.rel_back_2);
+        }else if(check >= 300 && check <= 321){
+            layout.setBackgroundResource(R.drawable.rel_back_3);
+        }else if(check >= 520 && check <= 531){
+            layout.setBackgroundResource(R.drawable.rel_back_4);
+        }else if(check >= 500 && check <= 511){
+            layout.setBackgroundResource(R.drawable.rel_back_5);
+        }else if(check >= 600 && check <= 622){
+            layout.setBackgroundResource(R.drawable.rel_back_6);
+        }else if(check == 731 || check == 751 || check == 761 || check == 762){
+            layout.setBackgroundResource(R.drawable.rel_back_7);
+        }else if(check == 701 || check == 711 || check == 721 || check == 742|| check == 771|| check == 781){
+            layout.setBackgroundResource(R.drawable.rel_back_8);
         }else if(check == 800){
-            layout.setBackgroundResource(R.drawable.sunny_background);
-        }else{
-            layout.setBackgroundResource(R.drawable.cloudy_background);
+            layout.setBackgroundResource(R.drawable.rel_back_9);
+        }else if(check == 801 || check == 802){
+            layout.setBackgroundResource(R.drawable.rel_back_10);
+        }else if(check == 803 || check == 804){
+            layout.setBackgroundResource(R.drawable.rel_back_11);
         }
     }
 }
