@@ -9,5 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="hourly_color">#80FFFFFF</color>
     <color name="air_pollution_item_color">#4DFFFFFF</color>
-    <color name="about_us_color">#B386FDEF</color>
+    <color name="about_us_color">#B3000000</color>
 </resources>
