@@ -3,7 +3,6 @@ package fragments;
 import adapter.HourlyRecycleViewAdapter;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +43,7 @@ public class TodayPageFragment extends Fragment {
     private TextView currentWeatherText;
     private TextView currentWind;
     private TextView currentAqi;
+    private TextView currentUv;
     private TextView currentHumidity;
     private RecyclerView hourlyWeatherRecycleView;
     private RelativeLayout layout;
@@ -56,6 +56,7 @@ public class TodayPageFragment extends Fragment {
     private String currentWeatherTextText;
     private String currentWindText;
     private String currentAqiText;
+    private String currentUvText;
     private String currentHumidityText;
 
     @Nullable
@@ -66,7 +67,8 @@ public class TodayPageFragment extends Fragment {
         currentIcon = view.findViewById(R.id.current_weather_icon);
         currentWeatherText = view.findViewById(R.id.current_weather_text);
         currentWind = view.findViewById(R.id.current_wind_text);
-        currentAqi = view.findViewById(R.id.current_aqi_text);
+        currentAqi = view.findViewById(R.id.current_uv_text);
+        currentUv = view .findViewById(R.id.current_uv_text);
         currentHumidity = view.findViewById(R.id.current_humidity_text);
         hourlyWeatherRecycleView = view.findViewById(R.id.hourly_recycle_view);
         layout = getActivity().findViewById(R.id.main_layout);

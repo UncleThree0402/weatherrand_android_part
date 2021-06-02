@@ -78,19 +78,19 @@
                     android:layout_marginStart="16dp">
 
                 <ImageView
-                        android:id="@+id/current_aqi_icon"
+                        android:id="@+id/current_uv_icon"
                         android:layout_width="23dp"
                         android:layout_height="23dp"
-                        android:src="@drawable/aqi_icon"/>
+                        android:src="@drawable/sun_icon"/>
 
                 <TextView
-                        android:id="@+id/current_aqi_text"
+                        android:id="@+id/current_uv_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:layout_toEndOf="@+id/current_aqi_icon"
-                        android:text="2km/h"
+                        android:layout_toEndOf="@+id/current_uv_icon"
+                        android:text="2"
                         android:textColor="#000000"
                         android:textSize="16sp"
                         />
