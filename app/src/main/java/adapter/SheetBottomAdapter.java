@@ -11,7 +11,7 @@ import com.nckupd2.weatherrand.R;
 import java.util.Arrays;
 import java.util.List;
 
-public class SheetBtnAdapter extends RecyclerView.Adapter<SheetBtnAdapter.ViewHolder> {
+public class SheetBottomAdapter extends RecyclerView.Adapter<SheetBottomAdapter.ViewHolder> {
 
     private final List<String> locationList = Arrays.asList("Changhua County", "Chiayi City", "Chiayi County", "Hengchun", "Hsinchu County", "Hsinchu City",
             "Hualien Country", "Kaohsiung City", "Keelung City", "Kinmen Islands", "Matsu Islands", "Miaoli County",
@@ -19,7 +19,7 @@ public class SheetBtnAdapter extends RecyclerView.Adapter<SheetBtnAdapter.ViewHo
             "Taipei City", "Taitung City", "Taoyuan City", "Yilan County", "Yunlin County");
     private final locationClickListener mLocationListener;
 
-    public SheetBtnAdapter(locationClickListener locationListener) {
+    public SheetBottomAdapter(locationClickListener locationListener) {
         this.mLocationListener = locationListener;
     }
 

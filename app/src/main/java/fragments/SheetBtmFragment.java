@@ -1,6 +1,6 @@
 package fragments;
 
-import adapter.SheetBtnAdapter;
+import adapter.SheetBottomAdapter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,14 +22,14 @@ import viewmodels.UserDataViewModel;
 
 import java.util.List;
 
-public class SheetBtmFragment extends BottomSheetDialogFragment implements SheetBtnAdapter.locationClickListener {
+public class SheetBtmFragment extends BottomSheetDialogFragment implements SheetBottomAdapter.locationClickListener {
     private static final String TAG = "SheetBtnController";
     //var
     private final ViewModelStoreOwner viewModelStoreOwner;
     private final LifecycleOwner lifecycleOwner;
     //ui
     private RecyclerView mRecycleView;
-    private SheetBtnAdapter mSheetBtnAdapter;
+    private SheetBottomAdapter mSheetBtnAdapter;
     private TextView mLocation;
 
     private UserDataViewModel mUserDataViewModel;
@@ -54,7 +54,7 @@ public class SheetBtmFragment extends BottomSheetDialogFragment implements Sheet
         mLocation = getActivity().findViewById(R.id.location_text);
         mRecycleView = view.findViewById(R.id.sheet_btn_recycle_view);
         mRecycleView.setLayoutManager(linearLayoutManager);
-        mSheetBtnAdapter = new SheetBtnAdapter(this);
+        mSheetBtnAdapter = new SheetBottomAdapter(this);
         mRecycleView.addItemDecoration(sheetBtnDecorator);
         mRecycleView.setAdapter(mSheetBtnAdapter);
 
