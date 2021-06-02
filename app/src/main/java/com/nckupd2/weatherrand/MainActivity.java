@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -283,11 +284,13 @@ public class MainActivity extends AppCompatActivity {
                 if (item.isChecked()) {
                     item.setChecked(false);
                     item.setIcon(R.drawable.bell_off_icon);
+                    Toast.makeText(this, "earthquake notification off", Toast.LENGTH_SHORT).show();
                     cancelJob();
                     update = false;
                 } else {
                     item.setChecked(true);
                     item.setIcon(R.drawable.bell_on_icon);
+                    Toast.makeText(this, "earthquake notification on", Toast.LENGTH_SHORT  ).show();
                     scheduleJob();
                     update = true;
                 }

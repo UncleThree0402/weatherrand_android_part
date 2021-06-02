@@ -34,15 +34,7 @@ public class AirPollutionFragment extends Fragment {
     private TextView nh3;
 
     //var
-    private String aqiText;
-    private String coText;
-    private String noText;
-    private String no2Text;
-    private String o3Text;
-    private String so2Text;
-    private String pm2_5Text;
-    private String pm10Text;
-    private String nh3Text;
+    private AirPollution mAirPollution;
 
     @Nullable
     @Override
@@ -60,46 +52,29 @@ public class AirPollutionFragment extends Fragment {
         nh3 = view.findViewById(R.id.nh3_text);
 
         AirPollutionViewModel mAirPollutionViewModel = new ViewModelProvider(this).get(AirPollutionViewModel.class);
-        UserDataViewModel mUserDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
 
         mAirPollutionViewModel.getAirPollution().observe(this.getViewLifecycleOwner(), new Observer<List<AirPollution>>() {
             @Override
             public void onChanged(List<AirPollution> airPollutions) {
                 if (airPollutions.size() > 0) {
-                    aqiText = airPollutions.get(0).getAqi();
-                    coText = airPollutions.get(0).getCo();
-                    noText = airPollutions.get(0).getNo();
-                    no2Text = airPollutions.get(0).getNoTwo();
-                    o3Text = airPollutions.get(0).getOThree();
-                    so2Text = airPollutions.get(0).getSoTwo();
-                    pm2_5Text = airPollutions.get(0).getPmTwoPFive();
-                    pm10Text = airPollutions.get(0).getPmTen();
-                    nh3Text = airPollutions.get(0).getNhThree();
-                }
-            }
-        });
-
-
-        mUserDataViewModel.getUserData().observe(this.getViewLifecycleOwner(), new Observer<List<UserData>>() {
-            @Override
-            public void onChanged(List<UserData> userData) {
-                if (userData.size() > 0) {
-                    if (!userData.get(0).isUpdateStatus()) {
-                        if (coText != null) {
-                            co.setText(NumberFormatter.correctToSig(coText));
-                            no.setText(NumberFormatter.correctToSig(noText));
-                            no2.setText(NumberFormatter.correctToSig(no2Text));
-                            o3.setText(NumberFormatter.correctToSig(o3Text));
-                            so2.setText(NumberFormatter.correctToSig(so2Text));
-                            pm2_5.setText(NumberFormatter.correctToSig(pm2_5Text));
-                            pm10.setText(NumberFormatter.correctToSig(pm10Text));
-                            nh3.setText(NumberFormatter.correctToSig(nh3Text));
-                            setAqiIcon(aqiText);
-                        }
+                    mAirPollution = airPollutions.get(0);
+                    if(mAirPollution != null){
+                        co.setText(NumberFormatter.correctToSig(mAirPollution.getCo()));
+                        no.setText(NumberFormatter.correctToSig(mAirPollution.getNo()));
+                        no2.setText(NumberFormatter.correctToSig(mAirPollution.getNoTwo()));
+                        o3.setText(NumberFormatter.correctToSig(mAirPollution.getOThree()));
+                        so2.setText(NumberFormatter.correctToSig(mAirPollution.getSoTwo()));
+                        pm2_5.setText(NumberFormatter.correctToSig(mAirPollution.getPmTwoPFive()));
+                        pm10.setText(NumberFormatter.correctToSig(mAirPollution.getPmTen()));
+                        nh3.setText(NumberFormatter.correctToSig(mAirPollution.getNhThree()));
+                        setAqiIcon(mAirPollution.getAqi());
                     }
                 }
+
             }
         });
+
+
         return view;
     }
 

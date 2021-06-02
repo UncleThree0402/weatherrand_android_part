@@ -20,7 +20,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_centerHorizontal="true"
-                android:text="9:00"
                 android:textSize="24sp"
                 android:textColor="#434242"
                 android:fontFamily="@font/quicksand_medium"/>
@@ -39,7 +38,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/hourly_weather_icon"
                 android:layout_centerHorizontal="true"
-                android:text="30°"
                 android:textSize="32sp"
                 android:textColor="#707070"
                 android:fontFamily="@font/quicksand_medium"/>
@@ -64,7 +62,6 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/hourly_cloud_icon"
                     android:layout_marginStart="4dp"
-                    android:text="20%"
                     android:textSize="16sp"
                     android:textColor="#000000"/>
 

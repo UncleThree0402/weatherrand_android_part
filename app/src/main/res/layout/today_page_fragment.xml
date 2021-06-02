@@ -13,7 +13,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="8dp"
-                android:text="30°"
                 android:textSize="80sp"
                 android:textColor="#000000"
                 android:fontFamily="@font/quicksand_bold"/>
@@ -33,7 +32,6 @@
                 android:layout_below="@+id/current_weather_icon"
                 android:layout_marginTop="0dp"
                 android:layout_centerHorizontal="true"
-                android:text="Sunny"
                 android:textSize="24sp"
                 android:textColor="#707070"
                 android:fontFamily="@font/quicksand_medium"/>
@@ -64,7 +62,6 @@
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_toEndOf="@+id/current_wind_icon"
-                        android:text="2km/h"
                         android:textColor="#000000"
                         android:textSize="16sp"
                         />
@@ -90,7 +87,6 @@
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_toEndOf="@+id/current_uv_icon"
-                        android:text="2"
                         android:textColor="#000000"
                         android:textSize="16sp"
                         />
@@ -116,7 +112,6 @@
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_toEndOf="@+id/current_humidity_icon"
-                        android:text="32%"
                         android:textColor="#000000"
                         android:textSize="16sp"
                         />
@@ -134,9 +129,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:text="Today"
+                    android:text="@string/upcoming_24_hours"
                     android:textColor="#000000"
-                    android:textSize="32sp"
+                    android:textSize="24sp"
                     android:fontFamily="@font/quicksand_medium"/>
 
             <androidx.recyclerview.widget.RecyclerView

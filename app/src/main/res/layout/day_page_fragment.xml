@@ -24,7 +24,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:text="Tomorrow"
+                    android:text="@string/tomorrow"
                     android:textSize="24sp"
                     android:textColor="#000000"
                     android:fontFamily="@font/quicksand_medium"/>
@@ -44,7 +44,6 @@
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/tomorrow_weather_icon"
                     android:layout_marginTop="8dp"
-                    android:text="Sunny"
                     android:textColor="#000000"
                     android:textSize="16sp"
                     android:fontFamily="@font/quicksand_bold"/>
@@ -66,9 +65,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="FRI 5-28"
                     android:textSize="16sp"
-                    android:textColor="#616161"
+                    android:textColor="#706C6C"
                     android:fontFamily="@font/quicksand_medium"
                     android:layout_alignParentEnd="true"/>
 
@@ -79,7 +77,6 @@
                     android:layout_below="@+id/tomorrow_date_text"
                     android:layout_marginTop="8dp"
                     android:layout_centerHorizontal="true"
-                    android:text="30°"
                     android:textSize="64sp"
                     android:textColor="#000000"
                     android:fontFamily="@font/quicksand_bold"/>
@@ -109,10 +106,9 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/tomorrow_wind_icon"
                             android:layout_centerHorizontal="true"
-                            android:text="2km/h"
                             android:textColor="@color/black"
-                            android:fontFamily="@font/quicksand"
-                            android:textSize="16sp"
+                            android:fontFamily="@font/quicksand_medium"
+                            android:textSize="12sp"
                             />
                 </RelativeLayout>
 
@@ -136,10 +132,9 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/tomorrow_humidity_icon"
                             android:layout_centerHorizontal="true"
-                            android:text="32%"
-                            android:textSize="16sp"
+                            android:textSize="12sp"
                             android:textColor="@color/black"
-                            android:fontFamily="@font/quicksand"/>
+                            android:fontFamily="@font/quicksand_medium"/>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -163,10 +158,9 @@
                             android:layout_below="@+id/tomorrow_cloud_icon"
                             android:layout_centerHorizontal="true"
                             android:textAlignment="center"
-                            android:text="20%"
-                            android:textSize="16sp"
+                            android:textSize="12sp"
                             android:textColor="@color/black"
-                            android:fontFamily="@font/quicksand"/>
+                            android:fontFamily="@font/quicksand_medium"/>
                 </RelativeLayout>
 
             </RelativeLayout>

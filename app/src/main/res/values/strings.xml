@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Weatherrand</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="upcoming_24_hours">Upcoming 24 hours</string>
 </resources>

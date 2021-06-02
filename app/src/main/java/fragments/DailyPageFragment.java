@@ -2,6 +2,7 @@ package fragments;
 
 import adapter.DailyRecycleViewAdapter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,6 @@ public class DailyPageFragment extends Fragment {
     private TextView tmrDescription;
     private DailyRecycleViewAdapter mDailyRecycleViewAdapter;
     private DailyWeatherViewModel dailyWeatherViewModel;
-    private UserDataViewModel userDataViewModel;
 
     @Nullable
     @Override
@@ -59,30 +59,6 @@ public class DailyPageFragment extends Fragment {
         tmrDescription = view.findViewById(R.id.tomorrow_weather_text);
 
         dailyWeatherViewModel = new ViewModelProvider(this).get(DailyWeatherViewModel.class);
-        userDataViewModel = new ViewModelProvider(this).get(UserDataViewModel.class);
-
-
-        userDataViewModel.getUserData().observe(getViewLifecycleOwner(), new Observer<List<UserData>>() {
-            @Override
-            public void onChanged(List<UserData> userData) {
-                if (userData.size() > 0) {
-                    if (!userData.get(0).isUpdateStatus()) {
-                        if (mDailyWeathers.size() > 0) {
-                            tmrDate.setText(TimeFormatter.timeStringToTomorrow(mDailyWeathers.get(1).getDatetime()));
-                            tmrTemp.setText(NumberFormatter.roundNumber(mDailyWeathers.get(1).getDayTemperature()) + "°");
-                            tmrWind.setText(NumberFormatter.roundNumber(mDailyWeathers.get(1).getWindSpeed()) + "km/h");
-                            tmrHum.setText(mDailyWeathers.get(1).getHumidity() + "%");
-                            tmrRain.setText(NumberFormatter.percentageFormat(mDailyWeathers.get(1).getRainPercentage()));
-                            Glide.with(getActivity()).asBitmap().load(mDailyWeathers.get(1).getWeatherIconUrl()).into(tmrIcon);
-                            tmrDescription.setText(mDailyWeathers.get(1).getWeatherDescription());
-                            mDailyWeathers.remove(0);
-                            mDailyWeathers.remove(0);
-                            mDailyRecycleViewAdapter.notifyDataSetChanged();
-                        }
-                    }
-                }
-            }
-        });
 
         initDailyRecycleView();
 
@@ -95,6 +71,18 @@ public class DailyPageFragment extends Fragment {
                     }
                     if (mDailyWeathers != null) {
                         mDailyWeathers.addAll(dailyWeathers);
+                        if(mDailyWeathers.size()>1) {
+                            tmrDate.setText(TimeFormatter.timeStringToTomorrow(mDailyWeathers.get(1).getDatetime()));
+                            tmrTemp.setText(NumberFormatter.roundNumber(mDailyWeathers.get(1).getDayTemperature()) + "°");
+                            tmrWind.setText(NumberFormatter.roundNumber(mDailyWeathers.get(1).getWindSpeed()) + "km/h");
+                            tmrHum.setText(mDailyWeathers.get(1).getHumidity() + "%");
+                            tmrRain.setText(NumberFormatter.percentageFormat(mDailyWeathers.get(1).getRainPercentage()));
+                            Glide.with(getActivity()).asBitmap().load(mDailyWeathers.get(1).getWeatherIconUrl()).into(tmrIcon);
+                            tmrDescription.setText(mDailyWeathers.get(1).getWeatherDescription());
+                            mDailyWeathers.remove(0);
+                            mDailyWeathers.remove(0);
+                            mDailyRecycleViewAdapter.notifyDataSetChanged();
+                        }
                     }
                 }
             }
